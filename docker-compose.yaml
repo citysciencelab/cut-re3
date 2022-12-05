@@ -22,13 +22,19 @@ services:
     volumes:
       - ./frontend:/home/node/workspace
 
-  pygeoapi:
-    image: geopython/pygeoapi:0.13.0
+  processes:
+    build: processes-api/.
+    ports:
+      - 5001:80
     expose:
       - 80
-    ports:
-     - 5001:80
     volumes:
       - ./processes-api/cut.config.yml:/pygeoapi/local.config.yml
       - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
-      - ./processes-api/model1/src/model1.py:/pygeoapi/process/model1.py
+      - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
+      - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
+
+  postgres:
+    image: postgres:alpine
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data:delegated
