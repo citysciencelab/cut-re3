@@ -118,7 +118,7 @@ class BaseManager:
         :param p: `pygeoapi.process` object
         :param job_id: job identifier
         :param data_dict: `dict` of data parameters
-        :returns: tuple of None (i.e. initial response payload)
+        :returns: tuple of output hash with job_id (i.e. initial response payload)
                   and JobStatus.accepted (i.e. initial job status)
         """
         _process = dummy.Process(
@@ -126,7 +126,11 @@ class BaseManager:
             args=(p, job_id, data_dict)
         )
         _process.start()
-        return 'application/json', None, JobStatus.accepted
+
+        output = {
+          "job_id": job_id
+        }
+        return 'application/json', output, JobStatus.accepted
 
     def _execute_handler_sync(self, p, job_id, data_dict):
         """
@@ -175,6 +179,7 @@ class BaseManager:
             })
 
             if self.output_dir is not None:
+              # TODO: write output to Geoserver!
                 LOGGER.debug('writing output to {}'.format(job_filename))
                 if isinstance(outputs, dict):
                     mode = 'w'

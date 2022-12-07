@@ -20,21 +20,11 @@ server:
       output_dir: /tmp/
 # manager:  # optional OGC API - Processes asynchronous job management
 #       name: PostgreSQL  # plugin name (see pygeoapi.plugin for supported process_manager's)
-#     #   connection: postgres # /tmp/pygeoapi-process-manager.db  # connection info to store jobs (e.g. filepath)
-#     #   output_dir: ./tmp/db/  # temporary file area for storing job results (files)
 #       host: 127.0.0.1
 #       port: 3010 # Default 5432 if not provided
 #       dbname: cut_re3
 #       user: postgres
 #       password: postgres
-
-
-# search_path: [osm, public]
-# id_field: osm_id
-# table: hotosm_bdi_waterways
-# geom_field: foo_geom
-
-
 
 logging:
     level: DEBUG # INFO

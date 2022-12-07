@@ -1,9 +1,7 @@
 import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
-from pygeoapi.process.manager.tinydb_ import TinyDBManager
-from pygeoapi.util import DATETIME_FORMAT, JobStatus
-from datetime import datetime
+import time
 
 LOGGER = logging.getLogger(__name__)
 
@@ -66,9 +64,9 @@ PROCESS_METADATA = {
         }
     },
     'outputs': {
-        'job_id': {
-            'title': 'Job ID',
-            'description': 'Job ID of the started simulation',
+        'geojson': {
+            'title': 'Features as geojson',
+            'description': 'geojson result of the simulation',
             'schema': {
                 'type': 'object',
                 'contentMediaType': 'application/json'
@@ -84,7 +82,6 @@ PROCESS_METADATA = {
     }
 }
 
-
 class Model1Processor(BaseProcessor):
     """Processor starts a simulation Energiewende und Gentrifizierung"""
 
@@ -98,9 +95,6 @@ class Model1Processor(BaseProcessor):
         super().__init__(processor_def, PROCESS_METADATA)
 
     def execute(self, data):
-
-        LOGGER.debug(f"**** self.metadata = {self.metadata}")
-
         mimetype = 'application/json'
         simulation_name = data.get('simulation_name', None)
         x = data.get('x', None)
@@ -115,42 +109,13 @@ class Model1Processor(BaseProcessor):
         if y is None:
             raise ProcessorExecuteError('Cannot process without parameter y')
 
+        time.sleep(15)
 
-        # manager_def = {
-        #     "name": "manager_def_name",
-        #     "connection": "bla",
-        #     "output_dir": "foo"
-        # }
-
-        manager_def = {
-            "name": "TinyDB",
-            "connection": "/tmp/pygeoapi-process-manager.db",
-            "output_dir": "/tmp/"
-        } #config['server']['manager']
-
-        tinyDBManager = TinyDBManager(manager_def)
-
-
-        #process_id = p.metadata['id']
-        #current_status = JobStatus.accepted
-
-        job_metadata = {
-            'identifier': 111111,
-            'job_start_datetime': datetime.utcnow().strftime(
-                DATETIME_FORMAT),
-            'process_id': 'model1',
-            'job_end_datetime': None,
-            'status': 'accepted', #JobStatus.accepted,
-            'location': None,
-            'mimetype': None,
-            'message': 'Job accepted and ready for execution',
-            'progress': 5
-        }
-        value = tinyDBManager.add_job(job_metadata=job_metadata)
+        with open("pygeoapi/process/results_XS.geojson") as f:
+          result = f.read()
 
         outputs = {
-            'id': 'job_id',
-            'value': value
+          'geojson': result
         }
 
         return mimetype, outputs
