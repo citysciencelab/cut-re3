@@ -1,6 +1,9 @@
 import logging
 
 from pygeoapi.process.base import BaseProcessor, ProcessorExecuteError
+from pygeoapi.process.manager.tinydb_ import TinyDBManager
+from pygeoapi.util import DATETIME_FORMAT, JobStatus
+from datetime import datetime
 
 LOGGER = logging.getLogger(__name__)
 
@@ -9,18 +12,17 @@ PROCESS_METADATA = {
     'version': '0.2.0',
     'id': 'model1',
     'title': {
-        'en': 'Hello Model1',
-        'fr': 'Bonjour le Monde'
+        'en': 'Simulation Model1',
+        'de': 'Simulation Energiewende und Gentrifizierung'
     },
     'description': {
-        'en': 'An example process that takes a name as input, and echoes '
-              'it back as output. Intended to demonstrate a simple '
-              'process with a single literal input.',
-        'fr': 'Un exemple de processus qui prend un nom en entrée et le '
-              'renvoie en sortie. Destiné à démontrer un processus '
-              'simple avec une seule entrée littérale.',
+        'en': 'Run a Energiewende und Gentrifizierung simulation with input parameters: '
+              'x, y. '
+              'It returns a job ID.',
+        'de': 'Energiewende- und Gentrifizierungssimulation'
+              'mit Dateiname, x, y als input.',
     },
-    'keywords': ['hello world', 'example', 'echo'],
+    'keywords': ['Energiewende', 'Gentrifizierung'],
     'links': [{
         'type': 'text/html',
         'rel': 'about',
@@ -29,35 +31,44 @@ PROCESS_METADATA = {
         'hreflang': 'en-US'
     }],
     'inputs': {
-        'name': {
-            'title': 'Name',
-            'description': 'The name of the person or entity that you wish to'
-                           'be echoed back as an output',
+        'simulation_name': {
+            'title': 'Simulation name',
+            'description': 'Mandatory',
             'schema': {
                 'type': 'string'
             },
             'minOccurs': 1,
             'maxOccurs': 1,
             'metadata': None,  # TODO how to use?
-            'keywords': ['full name', 'personal']
+            'keywords': ['simulation_name', 'name']
         },
-        'message': {
-            'title': 'Message',
-            'description': 'An optional message to echo as well',
+        'x': {
+            'title': 'x',
+            'description': 'Mandatory',
+            'schema': {
+                'type': 'string'
+            },
+            'minOccurs': 1,
+            'maxOccurs': 1,
+            'metadata': None,  # TODO how to use?
+            'keywords': ['x']
+        },
+        'y': {
+            'title': 'y',
+            'description': 'Mandatory',
             'schema': {
                 'type': 'string'
             },
             'minOccurs': 0,
             'maxOccurs': 1,
             'metadata': None,
-            'keywords': ['message']
+            'keywords': ['y']
         }
     },
     'outputs': {
-        'echo': {
-            'title': 'Hello, world',
-            'description': 'A "hello world" echo with the name and (optional)'
-                           ' message submitted for processing',
+        'job_id': {
+            'title': 'Job ID',
+            'description': 'Job ID of the started simulation',
             'schema': {
                 'type': 'object',
                 'contentMediaType': 'application/json'
@@ -66,37 +77,79 @@ PROCESS_METADATA = {
     },
     'example': {
         'inputs': {
-            'name': 'World',
-            'message': 'An optional message.',
+            'simulation_name': 'Umnutzung',
+            'x': '51.8',
+            'y': '9.4',
         }
     }
 }
 
 
 class Model1Processor(BaseProcessor):
-    """Hello Model1 Processor example"""
+    """Processor starts a simulation Energiewende und Gentrifizierung"""
 
     def __init__(self, processor_def):
         """
         Initialize object
         :param processor_def: provider definition
-        :returns: pygeoapi.process.hello_world.HelloWorldProcessor
+        :returns: pygeoapi.process.model1.Model1Processor
         """
 
         super().__init__(processor_def, PROCESS_METADATA)
 
     def execute(self, data):
 
+        LOGGER.debug(f"**** self.metadata = {self.metadata}")
+
         mimetype = 'application/json'
-        name = data.get('name', None)
+        simulation_name = data.get('simulation_name', None)
+        x = data.get('x', None)
+        y = data.get('y', None)
 
-        if name is None:
-            raise ProcessorExecuteError('Cannot process without a name')
+        if simulation_name is None:
+            raise ProcessorExecuteError('Cannot process without parameter simulation_name')
 
-        value = 'Hello {}! {}'.format(name, data.get('message', '')).strip()
+        if x is None:
+            raise ProcessorExecuteError('Cannot process without parameter x')
+
+        if y is None:
+            raise ProcessorExecuteError('Cannot process without parameter y')
+
+
+        # manager_def = {
+        #     "name": "manager_def_name",
+        #     "connection": "bla",
+        #     "output_dir": "foo"
+        # }
+
+        manager_def = {
+            "name": "TinyDB",
+            "connection": "/tmp/pygeoapi-process-manager.db",
+            "output_dir": "/tmp/"
+        } #config['server']['manager']
+
+        tinyDBManager = TinyDBManager(manager_def)
+
+
+        #process_id = p.metadata['id']
+        #current_status = JobStatus.accepted
+
+        job_metadata = {
+            'identifier': 111111,
+            'job_start_datetime': datetime.utcnow().strftime(
+                DATETIME_FORMAT),
+            'process_id': 'model1',
+            'job_end_datetime': None,
+            'status': 'accepted', #JobStatus.accepted,
+            'location': None,
+            'mimetype': None,
+            'message': 'Job accepted and ready for execution',
+            'progress': 5
+        }
+        value = tinyDBManager.add_job(job_metadata=job_metadata)
 
         outputs = {
-            'id': 'echo',
+            'id': 'job_id',
             'value': value
         }
 

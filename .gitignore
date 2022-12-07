@@ -1,0 +1,5 @@
+processes-api/*/__pycache__/*
+processes-api/*/*/__pycache__/*
+processes-api/tmp/*
+*/.DS_Store
+.DS_Store

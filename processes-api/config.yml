@@ -14,14 +14,31 @@ server:
     map:
         url: https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png
         attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia maps</a> | Map data &copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-    # manager:  # optional OGC API - Processes asynchronous job management
-    #   name: PostgreSQL  # plugin name (see pygeoapi.plugin for supported process_manager's)
-    #   connection: postgres # /tmp/pygeoapi-process-manager.db  # connection info to store jobs (e.g. filepath)
-    #   output_dir: ./tmp/db/  # temporary file area for storing job results (files)
+    manager:
+      name: TinyDB
+      connection: /tmp/pygeoapi-process-manager.db
+      output_dir: /tmp/
+# manager:  # optional OGC API - Processes asynchronous job management
+#       name: PostgreSQL  # plugin name (see pygeoapi.plugin for supported process_manager's)
+#     #   connection: postgres # /tmp/pygeoapi-process-manager.db  # connection info to store jobs (e.g. filepath)
+#     #   output_dir: ./tmp/db/  # temporary file area for storing job results (files)
+#       host: 127.0.0.1
+#       port: 3010 # Default 5432 if not provided
+#       dbname: cut_re3
+#       user: postgres
+#       password: postgres
+
+
+# search_path: [osm, public]
+# id_field: osm_id
+# table: hotosm_bdi_waterways
+# geom_field: foo_geom
+
+
 
 logging:
-    level: INFO
-    #logfile: /tmp/pygeoapi.log
+    level: DEBUG # INFO
+    # logfile: /tmp/pygeoapi.log
 
 metadata:
     identification:
@@ -170,6 +187,11 @@ resources:
               data: tests/data/ne_110m_admin_0_countries.sqlite
               id_field: ogc_fid
               table: ne_110m_admin_0_countries
+
+    # hello-world:
+    #     type: process
+    #     processor:
+    #         name: HelloWorld
 
     model1:
         type: process

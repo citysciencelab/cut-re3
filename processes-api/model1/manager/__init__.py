@@ -1,1 +1,1 @@
-print("Loading Model1Manager...")
+print("Loading Model1Manager...", flush=True)
