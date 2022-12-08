@@ -1,0 +1,10 @@
+{
+  "modules": {
+    "tools": {
+      "simulationTool": {
+        "title": "Simulation Tool"
+      }
+    }
+  }
+}
+
