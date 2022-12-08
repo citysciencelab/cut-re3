@@ -33,8 +33,3 @@ services:
       - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
       - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
       - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
-
-  postgres:
-    image: postgres:alpine
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data:delegated
