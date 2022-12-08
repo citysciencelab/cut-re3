@@ -29,7 +29,7 @@ services:
     expose:
       - 80
     volumes:
-      - ./processes-api/cut.config.yml:/pygeoapi/local.config.yml
+      - ./processes-api/config.yml:/pygeoapi/local.config.yml
       - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
       - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
       - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
