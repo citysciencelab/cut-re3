@@ -35,6 +35,7 @@ module.exports = function () {
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
+        host: "0.0.0.0",
         https: false,
         open: false,
         openPage: "portal/master",

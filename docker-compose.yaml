@@ -10,6 +10,8 @@ services:
 
   processes:
     build: processes-api/.
+    depends_on:
+      - nginx
     environment:
       - SCRIPT_NAME=/api
     volumes:
@@ -25,10 +27,5 @@ services:
     command: "npm start"
     depends_on:
       - nginx
-      - processes
-    ports:
-      - "9001:9001"
-    expose:
-      - 9001
     volumes:
       - ./frontend:/home/node/workspace
