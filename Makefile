@@ -1,5 +1,5 @@
 start:
-	docker-compose up nginx processes
+	docker-compose up nginx processes frontend
 
 stop:
 	docker-compose down
@@ -7,4 +7,6 @@ stop:
 restart: stop start
 
 install:
+	docker-compose build frontend
+	docker-compose build processes
 	docker-compose run --rm frontend npm install
