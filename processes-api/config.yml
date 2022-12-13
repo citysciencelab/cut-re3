@@ -2,12 +2,12 @@ server:
     bind:
         host: 0.0.0.0
         port: 80
-    url: http://localhost:5001
+    url: http://localhost:3000/
     mimetype: application/json; charset=UTF-8
     encoding: utf-8
     gzip: false
     language: en-US
-    cors: true
+    cors: false
     pretty_print: true
     limit: 10
     # templates: /path/to/templates
