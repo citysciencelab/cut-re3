@@ -6,7 +6,7 @@ const actions = {
    * @returns {void}
    */
   async fetchProcesses({ state, commit }) {
-    const response = await fetch("http://localhost:5001/processes", {
+    const response = await fetch("http://localhost:3000/api/processes", {
       headers: { "content-type": "application/json" },
     }).then((res) => res.json());
 
@@ -22,7 +22,7 @@ const actions = {
   async fetchProcess({ state, commit }, processIndex) {
     const process = state.processes[processIndex];
     const response = await fetch(
-      `http://localhost:5001/processes/${process.id}`,
+      `http://localhost:3000/api/processes/${process.id}`,
       {
         headers: { "content-type": "application/json" },
       }
