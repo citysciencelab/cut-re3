@@ -44,7 +44,7 @@ PROCESS_METADATA = {
             'title': 'x',
             'description': 'Mandatory',
             'schema': {
-                'type': 'string'
+                'type': 'numeric'
             },
             'minOccurs': 1,
             'maxOccurs': 1,
@@ -55,7 +55,7 @@ PROCESS_METADATA = {
             'title': 'y',
             'description': 'Mandatory',
             'schema': {
-                'type': 'string'
+                'type': 'numeric'
             },
             'minOccurs': 0,
             'maxOccurs': 1,
@@ -76,8 +76,8 @@ PROCESS_METADATA = {
     'example': {
         'inputs': {
             'simulation_name': 'Umnutzung',
-            'x': '51.8',
-            'y': '9.4',
+            'x': 51.8,
+            'y': 9.4,
         }
     }
 }
