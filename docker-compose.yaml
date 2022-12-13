@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   nginx:
@@ -17,3 +17,18 @@ services:
       - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
       - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
       - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
+
+  frontend:
+    build: frontend/.
+    working_dir: /home/node/workspace
+    user: node
+    command: "npm start"
+    depends_on:
+      - nginx
+      - processes
+    ports:
+      - "9001:9001"
+    expose:
+      - 9001
+    volumes:
+      - ./frontend:/home/node/workspace
