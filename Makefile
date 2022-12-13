@@ -1,5 +1,5 @@
 start:
-	docker-compose up nginx frontend
+	docker-compose up nginx processes
 
 stop:
 	docker-compose down
