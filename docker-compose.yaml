@@ -20,6 +20,14 @@ services:
       - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
       - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
 
+  api:
+    build: api/.
+    environment:
+      - LOGLEVEL=DEBUG
+      - FLASK_DEBUG=True
+    ports:
+      - 5001:5001
+
   frontend:
     build: frontend/.
     working_dir: /home/node/workspace
