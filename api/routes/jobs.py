@@ -1,6 +1,5 @@
-from flask import Blueprint
+from flask import Response, Blueprint
 from src.jobs import Job, all_jobs_as_json
-from flask import Response
 import json
 
 jobs = Blueprint('jobs', __name__)

@@ -5,3 +5,4 @@ processes-api/tmp/*
 .DS_Store
 
 */node_modules/
+db/*
