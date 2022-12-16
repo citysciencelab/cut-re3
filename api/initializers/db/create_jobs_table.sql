@@ -11,4 +11,7 @@ CREATE TABLE IF NOT EXISTS jobs (
   job_start_datetime timestamp,
   job_end_datetime   timestamp,
   CONSTRAINT id PRIMARY KEY(id)
-)
+);
+
+GRANT ALL PRIVILEGES ON TABLE jobs TO cut_re3;
+GRANT ALL PRIVILEGES ON SEQUENCE jobs_id_seq to cut_re3;
