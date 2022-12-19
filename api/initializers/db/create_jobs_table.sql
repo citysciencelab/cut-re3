@@ -3,7 +3,7 @@ CREATE TYPE status AS ENUM ('accepted', 'running', 'successful', 'failed', 'dism
 CREATE TABLE IF NOT EXISTS jobs (
   id                 serial,
   job_id             varchar(40),
-  process_id         integer,
+  process_id         varchar(40),
   status             status,
   message            text,
   progress           integer,

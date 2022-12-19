@@ -25,8 +25,15 @@ services:
     environment:
       - LOGLEVEL=DEBUG
       - FLASK_DEBUG=True
+      - POSTGRES_USER=cut_re3
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cut_re3_dev
     ports:
       - 5001:5001
+    volumes:
+      - ./api:/usr/src/app
+    depends_on:
+      - db
 
   frontend:
     build: frontend/.
@@ -37,3 +44,15 @@ services:
       - nginx
     volumes:
       - ./frontend:/home/node/workspace
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data:delegated
+      - ./api/initializers/db:/docker-entrypoint-initdb.d:delegated
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cut_re3_dev

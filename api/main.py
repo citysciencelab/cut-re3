@@ -15,4 +15,6 @@ api.register_blueprint(jobs, url_prefix='/jobs')
 app.register_blueprint(api)
 
 if __name__ == '__main__':
+  # TODO: DO NOT RUN flask with DEBUG in production!!
+  # Use a production WSGI server instead.
   app.run(host='0.0.0.0', port=5001, debug=True)
