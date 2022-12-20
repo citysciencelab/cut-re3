@@ -39,7 +39,6 @@ class DBHandler():
   def __exit__(self, type, value, traceback):
     if (self.connection):
       self.connection.close()
-      print("PostgreSQL connection has been closed")
 
     if type is None and value is None and traceback is None:
       return True

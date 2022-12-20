@@ -26,9 +26,6 @@ class Process():
     job = Job(job_id=None, process_id=self.process_id, params=params)
     logger.info(f"Executing {self.process_id} with params {params}")
 
-    return self._execute_handler_async(job, params)
-
-  def _execute_handler_async(self, job, params={}):
     _process = dummy.Process(
             target=self._execute_in_backend,
             args=([job, params])
@@ -42,13 +39,13 @@ class Process():
     return result
 
   def _execute_in_backend(self, job, params):
-    print(f'******* execute_sync started', flush=True)
+    print(f'******* execute started in backend with params {params}', flush=True)
     time.sleep(3)
     i = 3
-    print(f'******* i = {i}', flush=True)
+    print(f'******* still running', flush=True)
     time.sleep(3)
     i += 3
-    print(f'******* i = {i}', flush=True)
+    print(f'******* still running', flush=True)
 
     with open("data/results_XS.geojson") as f:
       results = f.read()
@@ -61,11 +58,10 @@ class Process():
     print(f'***** execute_sync finished', flush=True)
 
   def validate_params(self, params={}):
-    pass
-#    for input in self.process['inputs'].keys():
-#      if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
+    for input in self.process['inputs'].keys():
+      if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
         # TODO should this be a bad request?
-#        raise InvalidParamsException(f'Cannot process without parameter {input}')
+        raise InvalidParamsException(f'Cannot process without parameter {input}')
 
   def to_json(self):
     return json.dumps(self, default=lambda o: o.__dict__,

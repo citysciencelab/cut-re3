@@ -8,20 +8,22 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
-  processes:
-    build: processes-api/.
-    depends_on:
-      - nginx
-    environment:
-      - SCRIPT_NAME=/api
-    volumes:
-      - ./processes-api/config.yml:/pygeoapi/local.config.yml
-      - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
-      - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
-      - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
+  # processes:
+  #   build: processes-api/.
+  #   depends_on:
+  #     - nginx
+  #   environment:
+  #     - SCRIPT_NAME=/api
+  #   volumes:
+  #     - ./processes-api/config.yml:/pygeoapi/local.config.yml
+  #     - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
+  #     - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
+  #     - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
 
   api:
     build: api/.
+    depends_on:
+      - nginx
     environment:
       - LOGLEVEL=DEBUG
       - FLASK_DEBUG=True
