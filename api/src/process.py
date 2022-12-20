@@ -2,6 +2,7 @@ import json
 import time
 import logging
 from src.job import Job
+from multiprocessing import dummy
 
 logger = logging.getLogger(__name__)
 
@@ -19,30 +20,52 @@ class Process():
 
     raise InvalidParamsException("Process ID unknown!")
 
-  def execute(self, params={}):
+  def execute(self, params):
     self.validate_params(params)
 
     job = Job(job_id=None, process_id=self.process_id, params=params)
-    job_id = job.job_id
-
-    name = params.get('name', None)
-    x = params.get('x', None)
-    y = params.get('y', None)
-
     logger.info(f"Executing {self.process_id} with params {params}")
 
+    return self._execute_handler_async(job, params)
+
+  def _execute_handler_async(self, job, params={}):
+    _process = dummy.Process(
+            target=self._execute_in_backend,
+            args=([job, params])
+        )
+    _process.start()
+
+    result = {
+      "job_id": job.job_id,
+      "status": job.status
+    }
+    return result
+
+  def _execute_in_backend(self, job, params):
+    print(f'******* execute_sync started', flush=True)
     time.sleep(3)
+    i = 3
+    print(f'******* i = {i}', flush=True)
+    time.sleep(3)
+    i += 3
+    print(f'******* i = {i}', flush=True)
 
     with open("data/results_XS.geojson") as f:
       results = f.read()
 
-    return job_id
+    # TODO
+    # write results to geocoder
+    # read the results from there when delivering jobs result in jobs.py
+    # wait and check result: update job.progress
+
+    print(f'***** execute_sync finished', flush=True)
 
   def validate_params(self, params={}):
-    for input in self.process['inputs'].keys():
-      if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
+    pass
+#    for input in self.process['inputs'].keys():
+#      if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
         # TODO should this be a bad request?
-        raise InvalidParamsException(f'Cannot process without parameter {input}')
+#        raise InvalidParamsException(f'Cannot process without parameter {input}')
 
   def to_json(self):
     return json.dumps(self, default=lambda o: o.__dict__,

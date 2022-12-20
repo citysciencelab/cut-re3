@@ -1,6 +1,5 @@
 from flask import Response, Blueprint, request
 from src.process import all_processes_as_json
-from src.job import Job
 from src.process import Process
 import json
 
@@ -19,9 +18,8 @@ def show(process_id=None):
 @processes.route('/<path:process_id>/execution', methods = ['POST'])
 def execute(process_id=None):
   process = Process(process_id)
-  job_id = process.execute(request.args)
-
-  return Response(json.dumps({"job_id": job_id}), status=201, mimetype='application/json')
+  result = process.execute(request.args)
+  return Response(json.dumps(result), status=201, mimetype='application/json')
 
 # TODO: proper error handling
 @processes.errorhandler(404)
