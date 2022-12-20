@@ -22,8 +22,6 @@ services:
 
   api:
     build: api/.
-    depends_on:
-      - nginx
     environment:
       - LOGLEVEL=DEBUG
       - FLASK_DEBUG=True
@@ -36,6 +34,7 @@ services:
       - ./api:/usr/src/app
     depends_on:
       - db
+      - nginx
 
   frontend:
     build: frontend/.

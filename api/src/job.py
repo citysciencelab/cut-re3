@@ -17,42 +17,49 @@ class JobStatus(Enum):
     dismissed = 'dismissed'
 
 class Job:
-  def __init__(self, job_id=None, process_id=None, params={}):
-    self.process_id = process_id
+  def __init__(self, job_id=None, process_id=None, parameters={}):
+    self.job_id             = job_id
+    self.process_id         = process_id
+    self.parameters         = parameters
+    self.status             = None
+    self.message            = None
+    self.progress           = None
+    self.parameters         = {}
+    self.job_start_datetime = None
+    self.job_end_datetime   = None
 
     self.db_handler = DBHandler()
 
     if job_id is not None:
       self._init_from_db(job_id)
-
-    elif params is not None:
-      self.create(params)
+    else:
+      self.create()
 
   def _init_from_db(self, job_id):
     query = """
       SELECT * FROM jobs WHERE job_id = %(job_id)s
     """
-    params = {'job_id': job_id}
 
     with self.db_handler as db:
-      job_details = db.retrieve(query, params)
+      job_details = db.retrieve(query, {'job_id': job_id})
 
-    if len(job_details) == 0:
-      return None
+    if len(job_details) > 0:
+      data = job_details[0]
+      self.process_id =         data['process_id']
+      self.status =             data['status']
+      self.message =            data['message']
+      self.progress =           data['progress']
+      self.parameters =         data['parameters']
+      self.job_start_datetime = data['job_start_datetime']
+      self.job_end_datetime =   data['job_end_datetime']
 
-    self._init_with(job_details[0])
-
-  def create(self, params):
-    data = {}
-    data['parameters'] = params.to_dict(flat=False)
-    data['process_id'] = self.process_id
-    data['job_id']     = str(uuid.uuid4())
-    data['status']     = JobStatus.accepted.value
-    data['progress']   = 0
-    data['message']    = ""
-    data['job_start_datetime'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    data['job_end_datetime']   = None
-    self._init_with(data)
+  def create(self):
+    self.job_id     = str(uuid.uuid4())
+    self.status     = JobStatus.accepted.value
+    self.progress   = 0
+    self.message    = ""
+    self.job_start_datetime = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.job_end_datetime   = None
     self.save()
 
   def save(self):
@@ -77,17 +84,15 @@ class Job:
     with self.db_handler as db:
       db.insert(query, data)
 
-  def _init_with(self, data):
-    self.job_id =             data['job_id']
-    self.process_id =         data['process_id']
-    self.status =             data['status']
-    self.message =            data['message']
-    self.progress =           data['progress']
-    self.parameters =         data['parameters'] #{"x": 123, "y": 456, "name": "my_simulation"}
-    self.job_start_datetime = data['job_start_datetime'] #datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    self.job_end_datetime =   data['job_end_datetime']
-
   def details(self):
+    job_start_datetime = None
+    job_end_datetime = None
+
+    if self.job_start_datetime:
+      job_start_datetime = self.job_start_datetime.strftime('%Y-%m-%dT%H:%M:%S.%fZ'),
+    if self.job_end_datetime:
+      job_end_datetime = self.job_end_datetime.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+
     job_details = {
       'processID':          self.process_id,
       'jobID':              self.job_id,
@@ -95,11 +100,9 @@ class Job:
       'message':            self.message,
       'progress':           self.progress,
       'parameters':         self.parameters,
-      'job_start_datetime': self.job_start_datetime,
-      'job_end_datetime':   self.job_end_datetime
+      'job_start_datetime': job_start_datetime,
+      'job_end_datetime':   job_end_datetime
     }
-
-    print(f'******* self.status = {self.status}', flush=True)
 
     if self.status in (
       JobStatus.successful, JobStatus.running, JobStatus.accepted):
@@ -115,12 +118,11 @@ class Job:
     return job_details
 
   def delete():
-    print(f'******* Deleting job not implemented!', flush=True)
-    pass
+    raise Exception(f'******* Deleting job not implemented!')
 
   def __str__(self):
     return f"""
-      src.job.Job object:
+      ----- src.job.Job -----
       job_id={self.job_id}, process_id={self.process_id},
       status={self.status}, message={self.message},
       progress={self.progress}, parameters={self.parameters},
