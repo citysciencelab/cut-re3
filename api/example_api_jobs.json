@@ -11,12 +11,6 @@
           "job_end_datetime": "2022-12-15T15:50:12.181242Z",
           "links": [
               {
-                  "href": "http://localhost:3000/api/jobs/1fe13ee2-7c90-11ed-b826-0242ac1c0004/results?f=html",
-                  "rel": "about",
-                  "type": "text/html",
-                  "title": "results of job None as HTML"
-              },
-              {
                   "href": "http://localhost:3000/api/jobs/1fe13ee2-7c90-11ed-b826-0242ac1c0004/results?f=json",
                   "rel": "about",
                   "type": "application/json",
@@ -26,12 +20,6 @@
       }
   ],
   "links": [
-      {
-          "href": "http://localhost:3000/api/jobs?f=html",
-          "rel": "alternate",
-          "type": "text/html",
-          "title": "Jobs list as HTML"
-      },
       {
           "href": "http://localhost:3000/api/jobs?f=json",
           "rel": "self",

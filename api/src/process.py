@@ -1,8 +1,9 @@
 import json
 import time
 import logging
-from src.job import Job
+from src.job import Job, JobStatus
 from multiprocessing import dummy
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -20,15 +21,15 @@ class Process():
 
     raise InvalidParamsException("Process ID unknown!")
 
-  def execute(self, params):
-    self.validate_params(params)
+  def execute(self, parameters):
+    self.validate_params(parameters)
 
-    job = Job(job_id=None, process_id=self.process_id, params=params)
-    logger.info(f"Executing {self.process_id} with params {params}")
+    job = Job(job_id=None, process_id=self.process_id, parameters=parameters)
+    logger.info(f"Executing {self.process_id} with params {parameters}")
 
     _process = dummy.Process(
             target=self._execute_in_backend,
-            args=([job, params])
+            args=([job, parameters])
         )
     _process.start()
 
@@ -38,8 +39,12 @@ class Process():
     }
     return result
 
-  def _execute_in_backend(self, job, params):
-    print(f'******* execute started in backend with params {params}', flush=True)
+  def _execute_in_backend(self, job, parameters):
+    job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    job.status = JobStatus.running.value
+    job.save()
+
+    print(f'******* execute started in backend with params {parameters}', flush=True)
     time.sleep(3)
     i = 3
     print(f'******* still running', flush=True)
@@ -50,12 +55,19 @@ class Process():
     with open("data/results_XS.geojson") as f:
       results = f.read()
 
+    time.sleep(3)
+    i += 3
+    print(f'******* finished', flush=True)
+
+    job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    job.status = JobStatus.successful.value
+    job.progress = 100
+    job.save()
+
     # TODO
     # write results to geocoder
     # read the results from there when delivering jobs result in jobs.py
     # wait and check result: update job.progress
-
-    print(f'***** execute_sync finished', flush=True)
 
   def validate_params(self, params={}):
     for input in self.process['inputs'].keys():

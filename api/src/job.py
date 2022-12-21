@@ -1,121 +1,138 @@
-from enum import Enum
 from datetime import datetime
-from src.db_handler import DBHandler
 import uuid
 import json
-
 import config
-
-class JobStatus(Enum):
-    """
-    Enum for the job status options specified in the WPS 2.0 specification
-    """
-    accepted = 'accepted'
-    running = 'running'
-    successful = 'successful'
-    failed = 'failed'
-    dismissed = 'dismissed'
+from src.db_handler import DBHandler
+from src.job_status import JobStatus
 
 class Job:
-  def __init__(self, job_id=None, process_id=None, parameters={}):
-    self.job_id             = job_id
-    self.process_id         = process_id
-    self.parameters         = parameters
-    self.status             = None
-    self.message            = None
-    self.progress           = None
-    self.parameters         = {}
-    self.job_start_datetime = None
-    self.job_end_datetime   = None
+  DISPLAYED_ATTRIBUTES = [
+      "processID", "type", "jobID", "status", "message",
+      "created", "started", "finished", "updated", "progress",
+      "links"
+    ]
 
-    self.db_handler = DBHandler()
+  def __init__(self, job_id=None, process_id=None, parameters={}):
+    self.job_id      = job_id
+    self.process_id  = process_id
+    self.parameters = parameters
+    self.status     = None
+    self.message    = None
+    self.progress   = None
+    self.parameters = {}
+    self.created    = None
+    self.started    = None
+    self.finished   = None
+    self.updated    = None
+    self.errors     = []
 
     if job_id is not None:
       self._init_from_db(job_id)
     else:
-      self.create()
+      self._create()
 
   def _init_from_db(self, job_id):
     query = """
       SELECT * FROM jobs WHERE job_id = %(job_id)s
     """
-
-    with self.db_handler as db:
+    db_handler = DBHandler()
+    with db_handler as db:
       job_details = db.retrieve(query, {'job_id': job_id})
 
     if len(job_details) > 0:
       data = job_details[0]
-      self.process_id =         data['process_id']
-      self.status =             data['status']
-      self.message =            data['message']
-      self.progress =           data['progress']
-      self.parameters =         data['parameters']
-      self.job_start_datetime = data['job_start_datetime']
-      self.job_end_datetime =   data['job_end_datetime']
 
-  def create(self):
+      self._init_from_dict(dict(data))
+    else:
+      self.errors.append(f"Job with ID={job_id} not found.")
+
+  def _init_from_dict(self, data):
+    self.job_id     = data['job_id']
+    self.process_id = data['process_id']
+    self.type       = "process"
+    self.status     = data['status']
+    self.message    = data['message']
+    self.created    = data['created']
+    self.started    = data['started']
+    self.finished   = data['finished']
+    self.updated    = data['updated']
+    self.progress   = data['progress']
+    self.parameters = data['parameters']
+
+  def _create(self):
     self.job_id     = str(uuid.uuid4())
-    self.status     = JobStatus.accepted.value
-    self.progress   = 0
-    self.message    = ""
-    self.job_start_datetime = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    self.job_end_datetime   = None
-    self.save()
+    self.status    = JobStatus.accepted.value
+    self.progress  = 0
+    self.message   = ""
+    self.created   = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.started   = None
+    self.updated   = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.finished  = None
 
-  def save(self):
     query = """
       INSERT INTO jobs
-      (job_id, process_id, status, progress, parameters, message, job_start_datetime, job_end_datetime)
+      (job_id, process_id, status, progress, parameters, message, created, started, finished, updated)
       VALUES
-      (%(job_id)s, %(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(job_start_datetime)s, %(job_end_datetime)s)
+      (%(job_id)s, %(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
     """
+    db_handler = DBHandler()
+    with db_handler as db:
+      db.execute(query, self._to_dict())
 
-    data = {
-      "job_id":             self.job_id,
-      "process_id":         self.process_id,
-      "status":             self.status,
-      "progress":           self.progress,
-      "parameters":         json.dumps(self.parameters),
-      "message":            self.message,
-      "job_start_datetime": self.job_start_datetime,
-      "job_end_datetime":   self.job_end_datetime
+  def _to_dict(self):
+    print(f'******* self.status = {self.status}', flush=True)
+
+    return {
+      "process_id": self.process_id,
+      "job_id":     self.job_id,
+      "status":     self.status,
+      "message":    self.message,
+      "created":    self.created,
+      "started":    self.started,
+      "finished":   self.finished,
+      "updated":    self.updated,
+      "progress":   self.progress,
+      "parameters": json.dumps(self.parameters)
     }
 
-    with self.db_handler as db:
-      db.insert(query, data)
+  def save(self):
+    self.updated = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    query = """
+      UPDATE jobs SET
+      (process_id, status, progress, parameters, message, created, started, finished, updated)
+      =
+      (%(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      WHERE job_id = %(job_id)s
+    """
+    db_handler = DBHandler()
+    with db_handler as db:
+      db.execute(query, self._to_dict())
 
-  def details(self):
-    job_start_datetime = None
-    job_end_datetime = None
+  def display(self):
+    job_dict = self._to_dict()
+    job_dict["type"] = "process"
+    job_dict["jobID"] = job_dict.pop("job_id")
+    job_dict["processID"] = job_dict.pop("process_id")
+    job_dict["links"] = []
 
-    if self.job_start_datetime:
-      job_start_datetime = self.job_start_datetime.strftime('%Y-%m-%dT%H:%M:%S.%fZ'),
-    if self.job_end_datetime:
-      job_end_datetime = self.job_end_datetime.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-
-    job_details = {
-      'processID':          self.process_id,
-      'jobID':              self.job_id,
-      'status':             self.status,
-      'message':            self.message,
-      'progress':           self.progress,
-      'parameters':         self.parameters,
-      'job_start_datetime': job_start_datetime,
-      'job_end_datetime':   job_end_datetime
-    }
+    for attr in job_dict:
+      if isinstance(job_dict[attr], datetime):
+        job_dict[attr] = job_dict[attr].strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
     if self.status in (
-      JobStatus.successful, JobStatus.running, JobStatus.accepted):
+      JobStatus.successful.value, JobStatus.running.value, JobStatus.accepted.value):
         # TODO
         job_result_url = f"{config.server_url}/jobs/{self.job_id}/results.geojson"  # noqa
 
-        job_details['links'] = [{
+        job_dict['links'] = [{
             'href': job_result_url,
-            'rel': 'about',
+            'rel': 'service',
             'type': 'application/json',
+            'hreflang': 'en',
             'title': f'results of job {self.job_id} as JSON'
         }]
-    return job_details
+
+    return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}
 
   def delete():
     raise Exception(f'******* Deleting job not implemented!')
@@ -126,15 +143,24 @@ class Job:
       job_id={self.job_id}, process_id={self.process_id},
       status={self.status}, message={self.message},
       progress={self.progress}, parameters={self.parameters},
-      job_start_datetime={self.job_start_datetime},
-      job_end_datetime={self.job_end_datetime}
+      started={self.started}, created={self.created},
+      finished={self.finished}, updated={self.updated}
     """
 
   def __repr__(self):
     return f'src.job.Job(job_id={self.job_id})'
 
-# TODO: this is only mocked
-def all_jobs_as_json():
-  with open("example_api_jobs.json") as f:
-    result = f.read()
-  return result
+def all_jobs():
+  jobs = []
+  query = """
+    SELECT job_id FROM jobs
+  """
+  db_handler = DBHandler()
+  with db_handler as db:
+    job_ids = db.retrieve(query, {})
+
+  for row in job_ids:
+    job = Job(row['job_id'])
+    jobs.append(job.display())
+
+  return { "jobs": jobs }

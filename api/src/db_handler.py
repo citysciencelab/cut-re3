@@ -27,7 +27,7 @@ class DBHandler():
         cursor.execute(query, params)
         return cursor.fetchall()
 
-  def insert(self, query, params):
+  def execute(self, query, params):
     with self.connection:
       with self.connection.cursor(cursor_factory = RealDictCursor) as cursor:
         cursor.execute(query, params)
