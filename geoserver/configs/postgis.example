@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Schema:
+# ENVIRONMENT_KEY=Value
+#
+# Please copy `./postgis.example` to `./postgis`
+# and fill in the missing information!
+
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASS=

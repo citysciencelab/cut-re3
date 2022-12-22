@@ -22,10 +22,27 @@ services:
 
   frontend:
     build: frontend/.
+    depends_on:
+      - nginx
     working_dir: /home/node/workspace
     user: node
     command: "npm start"
-    depends_on:
-      - nginx
     volumes:
       - ./frontend:/home/node/workspace
+
+  geoserver:
+    image: kartoza/geoserver:2
+    depends_on:
+      - postgis
+    volumes:
+      - ./geoserver/data/geoserver:/opt/geoserver/data_dir
+    env_file:
+      - ./geoserver/configs/geoserver
+
+  postgis:
+    container_name: "postgis"
+    image: postgis:14
+    volumes:
+      - ./geoserver/data/pg_data:/var/lib/postgresql/data
+    env_file:
+      - ./geoserver/configs/postgis

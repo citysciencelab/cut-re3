@@ -1,7 +1,18 @@
-processes-api/*/__pycache__/*
-processes-api/*/*/__pycache__/*
-processes-api/tmp/*
 */.DS_Store
 .DS_Store
 
+processes-api/*/__pycache__/*
+processes-api/*/*/__pycache__/*
+processes-api/tmp/*
+
 */node_modules/
+
+geoserver/data/geoserver/*
+!geoserver/data/geoserver/.keep
+
+geoserver/data/pg_data/*
+!geoserver/data/pg_data/.keep
+
+geoserver/configs/*
+!geoserver/configs/geoserver.example
+!geoserver/configs/postgis.example
