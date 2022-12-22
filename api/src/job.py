@@ -80,8 +80,6 @@ class Job:
       db.execute(query, self._to_dict())
 
   def _to_dict(self):
-    print(f'******* self.status = {self.status}', flush=True)
-
     return {
       "process_id": self.process_id,
       "job_id":     self.job_id,
@@ -96,7 +94,7 @@ class Job:
     }
 
   def save(self):
-    self.updated = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.updated = datetime.utcnow()
     query = """
       UPDATE jobs SET
       (process_id, status, progress, parameters, message, created, started, finished, updated)
