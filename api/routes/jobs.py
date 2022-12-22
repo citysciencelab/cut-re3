@@ -1,8 +1,10 @@
-from flask import Response, Blueprint
-from src.job import Job, all_jobs
+from flask import Response, Blueprint, request
+from src.job import Job
+from src.all_jobs import all_jobs
 import json
 
 jobs = Blueprint('jobs', __name__)
+LIMIT = 10
 
 @jobs.route('/', defaults={'page': 'index'})
 def index(page):
@@ -15,7 +17,7 @@ def index(page):
   # limit
   # type (for us: is always "process", i.e. only jobs created by an OGC processes API shall be returned)
 
-  result = all_jobs()
+  result = all_jobs(request.json)
   return Response(json.dumps(result), mimetype='application/json')
 
 @jobs.route('/<path:job_id>', methods = ['GET'])

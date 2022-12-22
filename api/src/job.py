@@ -147,18 +147,3 @@ class Job:
 
   def __repr__(self):
     return f'src.job.Job(job_id={self.job_id})'
-
-def all_jobs():
-  jobs = []
-  query = """
-    SELECT job_id FROM jobs
-  """
-  db_handler = DBHandler()
-  with db_handler as db:
-    job_ids = db.retrieve(query, {})
-
-  for row in job_ids:
-    job = Job(row['job_id'])
-    jobs.append(job.display())
-
-  return { "jobs": jobs }
