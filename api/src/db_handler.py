@@ -20,19 +20,33 @@ class DBHandler():
       print("Error while connecting to PostgreSQL", error, flush=True)
       raise error
 
-  def retrieve(self, query, params):
-    # wraps a transaction, but does not close the connection:
+  def run_query(self, query, conditions=[], query_params={}, limit=None, page=None):
+    if conditions:
+      query += " WHERE " + " AND ".join(conditions)
+
+    if limit:
+      offset = 0
+      if page:
+        offset = (page - 1) * limit
+
+      query += " LIMIT %(limit)s OFFSET %(offset)s"
+      query_params['limit'] = limit
+      query_params['offset'] = offset
+
     with self.connection:
       with self.connection.cursor(cursor_factory = RealDictCursor) as cursor:
-        cursor.execute(query, params)
-        return cursor.fetchall()
+        cursor.execute(query, query_params)
+        try:
+          results = cursor.fetchall()
+        except db.ProgrammingError as e:
+          if str(e) == "no results to fetch":
+            return
+          else:
+            raise e
 
-  def execute(self, query, params):
-    with self.connection:
-      with self.connection.cursor(cursor_factory = RealDictCursor) as cursor:
-        cursor.execute(query, params)
+    return results
 
-  # so that this class can be used as a context manager
+  # needed so that this class can be used as a context manager
   def __enter__(self):
     return self
 

@@ -19,7 +19,7 @@ class Job:
     self.status     = None
     self.message    = None
     self.progress   = None
-    self.parameters = {}
+    self.parameters = parameters
     self.created    = None
     self.started    = None
     self.finished   = None
@@ -37,7 +37,7 @@ class Job:
     """
     db_handler = DBHandler()
     with db_handler as db:
-      job_details = db.retrieve(query, {'job_id': job_id})
+      job_details = db.run_query(query, query_params={'job_id': job_id})
 
     if len(job_details) > 0:
       data = job_details[0]
@@ -77,7 +77,8 @@ class Job:
     """
     db_handler = DBHandler()
     with db_handler as db:
-      db.execute(query, self._to_dict())
+      # db.execute(query, self._to_dict())
+      db.run_query(query, query_params=self._to_dict())
 
   def _to_dict(self):
     return {
@@ -104,7 +105,7 @@ class Job:
     """
     db_handler = DBHandler()
     with db_handler as db:
-      db.execute(query, self._to_dict())
+      db.run_query(query, query_params=self._to_dict())
 
   def display(self):
     job_dict = self._to_dict()
