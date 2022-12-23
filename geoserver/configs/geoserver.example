@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Schema:
+# ENVIRONMENT_KEY=Value
+#
+# Please copy `./geoserver.example` to `./geoserver`
+# and fill in the missing information!
+
+GEOSERVER_ADMIN_USER=
+GEOSERVER_ADMIN_PASSWORD=
+
+GEOSERVER_DATA_DIR=
+GEOWEBCACHE_CACHE_DIR=
+INITIAL_MEMORY=
+MAXIMUM_MEMORY=
+STABLE_EXTENSIONS=
+COMMUNITY_EXTENSIONS=
