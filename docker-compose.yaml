@@ -8,20 +8,6 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
-  processes:
-    build: processes-api/.
-    depends_on:
-      - nginx
-    environment:
-      - SCRIPT_NAME=/api
-    ports:
-      - 5001:5001
-    volumes:
-      - ./processes-api/config.yml:/pygeoapi/local.config.yml
-      - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
-      - ./processes-api/model1/:/pygeoapi/pygeoapi/process/
-      - ./processes-api/plugin.py:/pygeoapi/pygeoapi/plugin.py
-
   api:
     build: api/.
     environment:
@@ -48,14 +34,16 @@ services:
     volumes:
       - ./frontend:/home/node/workspace
 
-  # geoserver:
-  #   image: kartoza/geoserver:2
-  #   depends_on:
-  #     - postgis
-  #   volumes:
-  #     - ./geoserver/data/geoserver:/opt/geoserver/data_dir
-  #   env_file:
-  #     - ./geoserver/configs/geoserver
+  geoserver:
+    image: kartoza/geoserver
+    depends_on:
+      - postgis
+    ports:
+      - 8080:8080
+    volumes:
+      - ./geoserver/data/geoserver:/opt/geoserver/data_dir
+    env_file:
+      - ./geoserver/configs/geoserver
 
   postgis:
     container_name: "postgis"
