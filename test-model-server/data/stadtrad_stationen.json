@@ -1,0 +1,6533 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564968",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00436799999963,
+          53.54856099998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "698a806c-29a2-403d-9c9d-63444108f7c9",
+        "stand": "20221115105231.3120554",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Steinstraße / Deichtorplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564969",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.993649999999633,
+          53.539579999981896
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "03d14e9c-c624-4470-81fe-6e5ec8b2369f",
+        "stand": "20221115105231.3128868",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Am Strandkai / Großer Grasbrook"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564970",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.996529999999632,
+          53.54021999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 16,
+        "anzahl_pedelec": "0",
+        "uid": "bd4668f5-f78c-4833-8f2c-244ecc67749b",
+        "stand": "20221115105231.3134548",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "16",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Überseequartier / Grasbrookpark"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564971",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.999730999999631,
+          53.54158299998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "d423adc0-e08c-4264-be81-38b054f6ed60",
+        "stand": "20221115105231.3139672",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Osakaallee / Überseequartier"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564972",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00366999999963,
+          53.54397999998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "0c4f6f93-d7bc-4d1b-95ea-d4cdb24b78c0",
+        "stand": "20221115105231.314561",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Stockmeyerstraße / Am Lohsepark"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564973",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.973685299999634,
+          53.545250099981885
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "b042bee3-63e8-4ca0-ac8b-fc96428263ac",
+        "stand": "20221115105231.3150746",
+        "art_der_station": "bike",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Landungsbrücken / Johannisbollwerk"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564974",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.979696999999634,
+          53.55606099998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "a6e18785-8ae2-49a5-9a4a-70865a02e302",
+        "stand": "20221115105231.3155996",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Sievekingplatz / Gorch-Fock-Wall"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564975",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.004149999999628,
+          53.552610999981866
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "06593cd3-116d-4e94-812c-b5fcba6968ff",
+        "stand": "20221115105231.3161087",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Kurze Mühren / Spitalerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564976",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00539999999963,
+          53.55159999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "a6dbce15-6ce3-4a71-8da2-da79a984d16b",
+        "stand": "20221115105231.3166093",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Mönckebergstraße / Steintorwall"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564977",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00455299999963,
+          53.55367599998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "a8e20de4-f1a2-4c89-a9b1-97d0a39414ad",
+        "stand": "20221115105231.3171142",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hauptbahnhof / Glockengießerwall"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564978",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00685999999963,
+          53.544379999981864
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "a58e792c-f2db-4ac5-9133-c8401deb8675",
+        "stand": "20221115105231.3176293",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Oberhafenquartier Nord / Oberhafenbrücke"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564979",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00764299999963,
+          53.545790999981875
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "85c20e89-0a1e-4039-be87-177f21b3a04a",
+        "stand": "20221115105231.3181418",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Stadtdeich / Hammerbrooklyn"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564980",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.970329999999636,
+          53.55099999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "32744c19-92ef-46cf-a6a4-1cdaf25dba7f",
+        "stand": "20221115105231.3187196",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "U St. Pauli / Millerntorplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564981",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.008848999999628,
+          53.55033199998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "d293f2ff-5168-4f13-94a6-0d2a75e4f87b",
+        "stand": "20221115105231.3192777",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Zentralbibliothek / Münzstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564982",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.989629999999632,
+          53.56019999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "13bd8b28-d585-4392-9f2d-5a44ad6cc465",
+        "stand": "20221115105231.3197753",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Dammtor / Dag-Hammarskjöld-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564983",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.006167999999631,
+          53.540781999981895
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 20,
+        "anzahl_pedelec": "0",
+        "uid": "8d7b6243-f4c2-49bd-9830-d3ba6d7657f5",
+        "stand": "20221115105231.3202726",
+        "art_der_station": "bike",
+        "anzahl_bike": "20",
+        "anzahl_cargobike_electric": "0",
+        "name": "U HafenCity Universität / Versmannstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564984",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.007832999999628,
+          53.55406799998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 15,
+        "anzahl_pedelec": "0",
+        "uid": "8571cf2e-2c52-4bce-8bb4-21f2ad9efde6",
+        "stand": "20221115105231.320796",
+        "art_der_station": "bike",
+        "anzahl_bike": "15",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hauptbahnhof / Heidi-Kabel-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564985",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.981838999999635,
+          53.55976199998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "18a851e2-6e3d-4432-b786-d82a52df03c8",
+        "stand": "20221115105231.3213032",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "St. Petersburger Straße / Bei den Kirchhöfen"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564986",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00819999999963,
+          53.55519999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "997dfc34-d555-4081-a8a1-0bbee2615e36",
+        "stand": "20221115105231.3218495",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lange Reihe / Kirchenallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564987",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.990429999999632,
+          53.56139999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "8547df2a-1ff8-4ed2-b334-f03881f0a5dc",
+        "stand": "20221115105231.3224247",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Dammtor / Theodor-Heuss-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564988",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.975345999999634,
+          53.55851799998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "efeeb5b6-81e0-4cb0-b741-faaa1914bda6",
+        "stand": "20221115105231.3230044",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Messehallen / Marktstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564989",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.01236099999963,
+          53.547867999981875
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "86e1c36c-0470-42e9-8d8e-55699ca97323",
+        "stand": "20221115105231.3236248",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Amsinckstraße / Nordkanalbrücke"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564990",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.965668999999636,
+          53.547319999981895
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "2158bb62-4994-4eb8-a5c1-45ecf0545a3f",
+        "stand": "20221115105231.3241437",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bernhard-Nocht-Straße / Zirkusweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564991",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.969177999999635,
+          53.55741399998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "ee2b7be8-890b-4afe-99b3-75c4108d82c7",
+        "stand": "20221115105231.3246425",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "1",
+        "name": "U Feldstraße / Marktstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564992",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.013305999999629,
+          53.554215999981864
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "819747b6-834e-4242-ba79-e31e4b1a57f6",
+        "stand": "20221115105231.3252078",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Steindamm / Stralsunder Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564993",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.987658999999633,
+          53.56375499998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 14,
+        "anzahl_pedelec": "0",
+        "uid": "a32e7f32-b49b-4437-92b1-a311c8581b70",
+        "stand": "20221115105231.3257305",
+        "art_der_station": "bike",
+        "anzahl_bike": "14",
+        "anzahl_cargobike_electric": "0",
+        "name": "Universität / Moorweidenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564994",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.015999999999627,
+          53.551699999981864
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "bc79fda2-2add-4747-b965-afe8beb939a7",
+        "stand": "20221115105231.326251",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Kurt-Schumacher-Allee / Nagelsweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564995",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.013487399999633,
+          53.539991399981886
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 15,
+        "anzahl_pedelec": "0",
+        "uid": "ea0a7070-00bb-45ec-a1f1-074fa72d45db",
+        "stand": "20221115105231.3267741",
+        "art_der_station": "bike",
+        "anzahl_bike": "15",
+        "anzahl_cargobike_electric": "0",
+        "name": "Versmannstraße / Gerda-Gmelin Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564996",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.962459999999636,
+          53.554199999981876
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "fe244547-2531-457d-ba96-15c8141905fc",
+        "stand": "20221115105231.3274986",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Paulinenplatz / Wohlwillstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564997",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.963823999999638,
+          53.558868999981875
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "1a8da086-5e3f-4e1f-8419-52c659decbc7",
+        "stand": "20221115105231.3280373",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Neuer Pferdemarkt / Beim Grünen Jäger"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564998",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.986075999999633,
+          53.566971999981845
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "cabc95aa-2c53-4e23-b746-e61add6c2523",
+        "stand": "20221115105231.3286091",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "1",
+        "name": "Universität / Schlüterstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55564999",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.01489999999963,
+          53.55989999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 18,
+        "anzahl_pedelec": "0",
+        "uid": "b529ee0b-f728-4154-9e4e-416f3ddaebae",
+        "stand": "20221115105231.3291147",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "18",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lange Reihe / Lohmühlenpark"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565000",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.969249999999635,
+          53.564226999981855
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "46b31b5c-434a-4fa1-89c6-2e4b0396cf09",
+        "stand": "20221115105231.3296272",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Sternschanze / Dänenweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565001",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.982299999999633,
+          53.56792999998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "3722f780-c778-40ef-93cd-40c9d528f5a8",
+        "stand": "20221115105231.3301252",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Allende-Platz / Grindelhof"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565002",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.019899999999627,
+          53.55719999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "c7f6eebe-fe31-4a21-81b3-955bbe43dffd",
+        "stand": "20221115105231.3307665",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Lohmühlenstraße / Steindamm"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565003",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00109999999963,
+          53.56719999998183
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "2b7ecd09-692b-4f96-b341-9da55c30fb86",
+        "stand": "20221115105231.3312907",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Harvestehuder Weg / Alte Rabenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565004",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.02346899999963,
+          53.54989199998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "183beb2c-c1bc-44c6-beca-b35e9e3a0fa2",
+        "stand": "20221115105231.3317914",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Stadt Hamburg (1)"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565005",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.02346899999963,
+          53.54989199998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "82e0ae9f-6d0f-4db7-b0df-d858405402f8",
+        "stand": "20221115105231.332264",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Stadt Hamburg (3)"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565006",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.02346899999963,
+          53.54989199998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "d6b0e2a7-9f4f-44c6-877a-b1a3aa01112f",
+        "stand": "20221115105231.3327308",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Stadt Hamburg F-R 9385"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565007",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95493399999964,
+          53.549500999981895
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "8b0c3b1a-7df4-4a19-a895-94c33e7edbf4",
+        "stand": "20221115105231.3332307",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Reeperbahn / Königstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565008",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.024041999999628,
+          53.54601099998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "57de7fc1-4ce4-4c4e-a81b-2e1a361d0f79",
+        "stand": "20221115105231.3337477",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Hammerbrook / Sachsenfeld"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565009",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.024599999999626,
+          53.55329999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "1ffc308c-ce1c-4055-a6eb-aaafab271fd9",
+        "stand": "20221115105231.3344871",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Berliner Tor / Beim Strohhause"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565010",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.960989999999637,
+          53.56270899998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "66699098-75f4-425a-80d5-63a82d21e2d8",
+        "stand": "20221115105231.3350688",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Schulterblatt / Eifflerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565011",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.022188999999626,
+          53.53654099998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "ddb02f4e-3e8c-4831-9cf7-553b3fb774b4",
+        "stand": "20221115105231.3356352",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Amerigo-Vespucci-Platz / Baakenwerder Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565012",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95087999999964,
+          53.5461999999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "d5b08095-1783-4359-bff2-f63c275834f7",
+        "stand": "20221115105231.3362427",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fischmarkt / Breite Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565013",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.969600999999637,
+          53.56799099998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "be2ebfb5-5954-4383-aeaf-a68f2e4049b0",
+        "stand": "20221115105231.3367491",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Schlump / Gustav-Falke-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565014",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.022219999999628,
+          53.56154999998183
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "c5d7c362-8e65-4d5b-bd14-708122bdc7b6",
+        "stand": "20221115105231.3372946",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Alsterschwimmhalle / Ifflandstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565015",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.988800999999631,
+          53.57208099998183
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "d94751c6-d9c1-4c27-a72b-64b73490f7a1",
+        "stand": "20221115105231.3378242",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Hallerstraße / Rothenbaumchaussee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565016",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.977693999999632,
+          53.57119999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "9a32bcc9-a5e0-484b-af44-bd9d34bc41af",
+        "stand": "20221115105231.33838",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bogenstraße / Grindelallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565017",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95070799999964,
+          53.5558269999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "82075968-da1f-4ed0-b183-1cab210b2b34",
+        "stand": "20221115105231.3389472",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Holstenstraße / Thadenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565018",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.02435599999963,
+          53.535201999981886
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "6b5aaf0a-7f24-4bb7-bf9f-597b6a87988a",
+        "stand": "20221115105231.3394764",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Elbbrücken / Versmannstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565019",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.03036399999963,
+          53.55212299998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "5eb753e2-1e49-4e21-a9b8-ca3a65904885",
+        "stand": "20221115105231.3399869",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eiffestraße / Normannenweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565020",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.01914199999963,
+          53.56595199998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "d734388e-2c95-4e50-ad40-2b8680352c2b",
+        "stand": "20221115105231.3405013",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Mundsburger Brücke / Papenhuder Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565021",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.016199999999628,
+          53.56769999998183
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "cf47c1d8-369e-433e-a871-7df9aa613a1d",
+        "stand": "20221115105231.3409974",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eduard-Rhein-Ufer / Schwanenwik"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565022",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.031309999999628,
+          53.54384999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 12,
+        "anzahl_pedelec": "0",
+        "uid": "7662ac72-0547-48b6-b4ba-6605d6bfeabd",
+        "stand": "20221115105231.3415254",
+        "art_der_station": "bike",
+        "anzahl_bike": "12",
+        "anzahl_cargobike_electric": "0",
+        "name": "Heidenkampsweg / R+V Versicherung"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565023",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.028499999999626,
+          53.55969999998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "38afd965-0071-46bb-bbfd-b8badbc1f54a",
+        "stand": "20221115105231.342096",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lübecker Straße / Marienkrankenhaus"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565024",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.94575999999964,
+          53.55119999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "32c644f3-f447-459d-a35f-a1a6ee7e3f09",
+        "stand": "20221115105231.3426172",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bruno-Tesch-Platz / Jessenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565025",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.948729999999639,
+          53.55864999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "7afcd883-889c-445f-bf4b-01f79934b26e",
+        "stand": "20221115105231.3431795",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Holstenstraße / Max-Brauer-Allee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565026",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.963089999999635,
+          53.56949999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "9046ec76-c7e2-45cf-923f-58de55eb81e5",
+        "stand": "20221115105231.3436973",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "12",
+        "anzahl_cargobike_electric": "1",
+        "name": "U Christuskirche / Fruchtallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565027",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.026699999999625,
+          53.564999999981836
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "c8b0de1f-a770-4b2a-a44a-4adf8824cb47",
+        "stand": "20221115105231.3441877",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Uhlandstraße / Eilenau"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565028",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.942409999999642,
+          53.54709999998191
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "71631261-e783-46e1-88db-ec57765fc964",
+        "stand": "20221115105231.3446792",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "1",
+        "name": "S Königstraße / Struenseestraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565029",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.953399999999638,
+          53.56619999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "b5132cc7-c4a3-4900-98a3-937e54846044",
+        "stand": "20221115105231.3452536",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eimsbütteler Straße / Waterloostraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565030",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.008079999999627,
+          53.57391999998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "8373777e-96ff-4969-89ac-ad91e36981ed",
+        "stand": "20221115105231.3458151",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Schöne Aussicht / Karlstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565031",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.977823999999632,
+          53.575407999981834
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "bbec83c5-39b4-48ef-b716-ec381e9a763e",
+        "stand": "20221115105231.3463842",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Grindelberg / Bezirksamt Eimsbüttel"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565032",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.942459999999643,
+          53.54390599998192
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "f0d00432-9313-4ea0-a98f-992214e69192",
+        "stand": "20221115105231.3469187",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Van-der-Smissen-Straße / Große Elbstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565033",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.99312199999963,
+          53.57637799998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "40ecd436-4cfa-41b9-8756-cc0ee5ecd21d",
+        "stand": "20221115105231.3475388",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Mittelweg / Sophienterrasse"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565034",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.036849999999625,
+          53.54497899998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "adc35469-e0da-440c-8454-cb09ca87fe65",
+        "stand": "20221115105231.3480573",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bullerdeich / Stadtreinigung Hamburg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565035",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.94285999999964,
+          53.5552999999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "80e6c153-7c46-468e-ac9d-f56cc70f28a6",
+        "stand": "20221115105231.3485751",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Chemnitzstraße / Max-Brauer-Allee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565036",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.94834499999964,
+          53.56303699998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "fa1cf3d2-8d05-42ab-87ae-8c66b7ca0b97",
+        "stand": "20221115105231.349118",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Holstenstraße / Düppelstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565037",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.982109999999635,
+          53.577247999981836
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "ede46364-0404-4d7b-9e77-694e32b645fa",
+        "stand": "20221115105231.3496913",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Innocentiapark / Oberstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565038",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.014809999999633,
+          53.52279399998191
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "bfbc69a3-1420-47bc-b55c-d54456a33d33",
+        "stand": "20221115105231.3502079",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Veddel / Wilhelmsburger Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565039",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.962394999999637,
+          53.57318299998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "bd1396f5-ebe8-4972-8ef9-9df8c3d3b3d7",
+        "stand": "20221115105231.3507017",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Osterstraße / Bismarckstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565040",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.034099999999626,
+          53.563599999981825
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "821c4d6e-9873-4515-807c-b26814c4b994",
+        "stand": "20221115105231.3512701",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Wartenau / Lübecker Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565041",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.976013999999633,
+          53.57805399998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "4a040ff0-b463-428a-a2e8-ada72ce9b7e4",
+        "stand": "20221115105231.3517897",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "1",
+        "name": "U Hoheluftbrücke / Kaiser-Friedrich-Ufer"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565042",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.027099999999626,
+          53.56959999998183
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "add6cce4-6668-4b2b-a151-91be39150d2c",
+        "stand": "20221115105231.3523018",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "1",
+        "name": "U Mundsburg / Schürbeker Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565043",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.037021999999624,
+          53.561108999981826
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "3d11899d-8118-461e-9616-046fdfc153b2",
+        "stand": "20221115105231.3528021",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Landwehr / Ramazan-Avci-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565044",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.031799999999626,
+          53.56699999998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "3646f120-1e50-4275-99e9-4e2a45b7c8e8",
+        "stand": "20221115105231.3533503",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lerchenfeld / Uferstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565045",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.041297999999625,
+          53.55569299998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "b8689038-8372-4b1e-8033-831d590c326d",
+        "stand": "20221115105231.3538616",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Burgstraße / Hammer Landstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565046",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.953137999999637,
+          53.57168999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "afa1e18b-1040-4247-a905-b4b738665094",
+        "stand": "20221115105231.3543577",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Emilienstraße / Fruchtallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565047",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.936004999999643,
+          53.552120999981895
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "aeabeebc-eaa8-4ff3-9426-676c8b47d5af",
+        "stand": "20221115105231.3548485",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Altona Ost/Max-Brauer-Allee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565048",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.949769999999639,
+          53.56976899998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "9ad07618-f609-41e2-bb45-dcbf80b91db7",
+        "stand": "20221115105231.3553435",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Sandweg / Sophienallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565049",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.934843999999643,
+          53.54790499998191
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "401f6852-ef52-46fe-b5e1-8bbcc8c43fa6",
+        "stand": "20221115105231.3558544",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Ottenser Marktplatz / Platz der Republik"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565050",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.038937999999627,
+          53.534287999981885
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "f387e496-b6c8-42db-84b5-c53e10f8ff90",
+        "stand": "20221115105231.356452",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Rothenburgsorter Marktplatz / Lindleystraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565051",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.939299999999642,
+          53.56152999998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "e182f1df-8042-44fb-9636-dfb53064a49a",
+        "stand": "20221115105231.3569512",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Mariannenruhplatz / Eva-Rühmkorf-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565052",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.937579999999642,
+          53.55940999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "7da3c29a-0d0d-449e-af91-266df9dfc08e",
+        "stand": "20221115105231.3574465",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Felicitas-Kukuck-Straße / Lille Torv"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565053",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.042869999999626,
+          53.54010299998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "714126b6-0c8b-4450-bfe4-7360ac23b2e7",
+        "stand": "20221115105231.3579377",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Rothenburgsort / Billhorner Deich"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565054",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.999403999999627,
+          53.58039099998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "028e5c92-7ff2-42ed-8e34-d7dbad940796",
+        "stand": "20221115105231.3584569",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Leinpfad/Fernsicht"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565055",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.020449999999625,
+          53.575307999981824
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "29a5c570-cda1-43c7-b7b4-532ff390d9d8",
+        "stand": "20221115105231.3589648",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Winterhuder Weg / Zimmerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565056",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.933869999999644,
+          53.551799999981895
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "b3a43837-66e0-419d-a784-651783be39c5",
+        "stand": "20221115105231.3595351",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Altona / Busbahnhof"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565057",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.013994999999625,
+          53.57803499998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "0b049195-8c17-4a71-80e7-a7c1060d675a",
+        "stand": "20221115105231.3600502",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hofweg / Am Langenzug"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565058",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.963062999999636,
+          53.57757899998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "476c50be-414e-42f6-a1dd-39a75f8aa237",
+        "stand": "20221115105231.3605969",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Goebenstraße / Eppendorfer Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565059",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.987297999999633,
+          53.51426499998195
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "9948b927-b161-4072-9539-9f96f9471933",
+        "stand": "20221115105231.3611785",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Veringstraße / Mannesallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565060",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.987612999999632,
+          53.582009299981834
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "c5d01c8b-f1c2-4781-bab6-0ad28b9c234e",
+        "stand": "20221115105231.3617639",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Klosterstern / Eppendorfer Baum"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565061",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.993759999999629,
+          53.58285999998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "1722f183-57ba-4f30-ba50-4c368a696a7b",
+        "stand": "20221115105231.3623368",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Heilwigstraße / St. Benedictstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565062",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.984409999999631,
+          53.58319999998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "67803271-1e32-463c-be38-23f0948e0c64",
+        "stand": "20221115105231.3628444",
+        "art_der_station": "bike",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Eppendorfer Baum / Isestraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565063",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.971241999999632,
+          53.58175399998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "ace53789-c5da-4532-a1df-995b216d941a",
+        "stand": "20221115105231.3633648",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "1",
+        "name": "Eppendorfer Weg / Hoheluftchaussee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565064",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.930343999999643,
+          53.55233899998191
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "6b90939d-ef37-4866-af98-90c76b5eb367",
+        "stand": "20221115105231.3638837",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Große Rainstraße/Ottenser Hauptstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565065",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.952070899999638,
+          53.57598309998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "9147b3c2-77da-4e8d-9709-ae5465110116",
+        "stand": "20221115105231.3643973",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "1",
+        "name": "U Osterstraße / Heußweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565066",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.977915999999633,
+          53.58379499998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "0f6cb2e2-6b0f-4c6e-9242-2a9a20fc0c71",
+        "stand": "20221115105231.3648957",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Löwenstraße / Eppendorfer Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565067",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.029569999999625,
+          53.575651999981794
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "d8b84f95-ab96-44eb-bdfe-4f50da355d8c",
+        "stand": "20221115105231.3654891",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bartholomäusstraße / Beim Alten Schützenhof"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565068",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.953072999999636,
+          53.57779599998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "26e31d0c-35e5-4e65-be5c-cad0a40d25df",
+        "stand": "20221115105231.3660407",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Heußweg / Wiesenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565069",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.032929999999629,
+          53.52190999998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "2093aaf9-dad0-49e0-8315-1edcb580029d",
+        "stand": "20221115105231.3666049",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hovestraße / Aurubis"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565070",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.014789999999627,
+          53.58190999998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "9109ac58-922c-4c65-a3d8-ec7ac7865e8f",
+        "stand": "20221115105231.3671641",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Gertigstraße / Forsmannstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565071",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.045949999999625,
+          53.56393999998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "03596dc5-4098-402f-8e3c-51d753c1024a",
+        "stand": "20221115105231.3676853",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hasselbrookstraße / Ritterstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565072",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.036625999999629,
+          53.52381499998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "bdefc3b2-54c1-4f55-b29c-fd48d2064a3a",
+        "stand": "20221115105231.3681871",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Peutestraße / Hatraco"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565073",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.039740999999623,
+          53.57107799998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "9fdcdb83-27da-4828-a74d-8d241a74ef52",
+        "stand": "20221115105231.3686775",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Uferstraße / Wagnerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565074",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.009999999999629,
+          53.5837999999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "b9128d49-4d3e-418f-bac3-b9522162f668",
+        "stand": "20221115105231.3692337",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Goldbekplatz / Semperstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565075",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.044483999999624,
+          53.567125999981805
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "eede63ae-b49c-47b2-bd60-72aed90ef8f1",
+        "stand": "20221115105231.3697557",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Ritterstraße / Wandsbeker Chaussee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565076",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.925652999999645,
+          53.5508159999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "996bdc9f-fd9e-4b1d-8a44-95ce75f6d149",
+        "stand": "20221115105231.3702544",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eulenstraße / Große Brunnenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565077",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.94448699999964,
+          53.57557299998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "4dd8795d-0c34-43d1-9987-f711a59647da",
+        "stand": "20221115105231.3707981",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "1",
+        "name": "Lappenbergsallee / Bei der Apostelkirche"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565078",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.036607999999624,
+          53.5745179999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "6d521215-f470-4f3d-9d9b-82877daeccde",
+        "stand": "20221115105231.3713143",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Hamburger Straße / Wagnerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565079",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.025847899999627,
+          53.580808699981795
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "170211af-17fd-43a5-976f-55005fd5ca8d",
+        "stand": "20221115105231.3718116",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Weidestraße / Johannes-Prassek-Park"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565080",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957593999999636,
+          53.58279299998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 18,
+        "anzahl_pedelec": "0",
+        "uid": "25868dcf-0f37-4328-ada6-b2b805848165",
+        "stand": "20221115105231.3723103",
+        "art_der_station": "bike",
+        "anzahl_bike": "18",
+        "anzahl_cargobike_electric": "0",
+        "name": "Troplowitzstraße / Beiersdorf  / NXP"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565081",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.052588999999625,
+          53.56083499998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "e93a5c34-df7f-4cde-b3e4-36f81f8d5726",
+        "stand": "20221115105231.3728091",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Sievekingsallee / Sievekingdamm"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565082",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.055074999999624,
+          53.55669899998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "a69e372e-72bc-4ece-a1df-c7357896a784",
+        "stand": "20221115105231.3733166",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Hammer Kirche / Hammer Park"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565083",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.922218834471291,
+          53.55080184098192
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "1914ef7e-d4bc-4673-b2e6-79488eee2a1a",
+        "stand": "20221115105231.3738474",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "1",
+        "name": "Fischersallee / Bleickenallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565084",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.99112499999963,
+          53.5885159999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "4aefbc82-caba-458d-9010-7ad8ea394b25",
+        "stand": "20221115105231.3743378",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Kellinghusenstraße / Loogeplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565085",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.021099999999624,
+          53.58399999998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "a003c3ee-933a-4ae7-93c8-53be86311a74",
+        "stand": "20221115105231.3748784",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Jarrestraße / Rambatzweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565086",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.057612999999623,
+          53.54693199998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 14,
+        "anzahl_pedelec": "0",
+        "uid": "b1804fde-ed41-4116-9a2d-4e168108a8af",
+        "stand": "20221115105231.375395",
+        "art_der_station": "bike",
+        "anzahl_bike": "14",
+        "anzahl_cargobike_electric": "0",
+        "name": "Süderstraße / Osterbrookplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565087",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.946785999999637,
+          53.580059999981856
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "b7732020-fae9-434e-bb6c-40fb00fc5643",
+        "stand": "20221115105231.3758938",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Methfesselstraße / Luruper Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565088",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.033845999999626,
+          53.5800037999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "fdeb5c3c-659e-40cc-a419-d1f1b53f876e",
+        "stand": "20221115105231.3764397",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Weidestraße / Biedermannplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565089",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.97571499999963,
+          53.58891799998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 22,
+        "anzahl_pedelec": "0",
+        "uid": "d5c2654c-80ed-43d6-bc43-1c4a3c797664",
+        "stand": "20221115105231.3769628",
+        "art_der_station": "bike",
+        "anzahl_bike": "22",
+        "anzahl_cargobike_electric": "0",
+        "name": "Martinistraße / Haupteingang Klinikum"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565090",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.986729999999628,
+          53.590236999981805
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "447aaddb-7549-4662-850d-6cf5fb8ac67f",
+        "stand": "20221115105231.3775209",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Kümmellstraße / Robert-Koch-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565091",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.054678999999624,
+          53.56480499998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "fa1888b7-86df-4a5d-8eae-32adb40db8c0",
+        "stand": "20221115105231.3780539",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Hasselbrook / Papenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565092",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.918507999999646,
+          53.55670999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "2e940626-d51f-4297-b64a-bd227ab693c7",
+        "stand": "20221115105231.3785599",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "1",
+        "name": "Hohenzollernring / Friedensallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565093",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.964680999999635,
+          53.58918499998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "6d0464ec-7c15-4d33-802c-49c805c25587",
+        "stand": "20221115105231.3790545",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Grandweg / Veilchenweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565094",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.049567999999624,
+          53.5735879999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "8f572d44-cc84-4e0c-a347-5e9362f0f13d",
+        "stand": "20221115105231.3795483",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lortzingstraße / Friedrichsberger Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565095",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.985614999999635,
+          53.503869999981966
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "92294fc9-7e87-4141-aa8d-83964ee7c247",
+        "stand": "20221115105231.3800999",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Groß-Sand / Wilhelmsburger Krankenhaus"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565096",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.041460999999623,
+          53.5799809999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "80a16dd9-54f7-47fd-a8ba-c58c515f9911",
+        "stand": "20221115105231.3806226",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Dehnhaide / Barmbeker Markt"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565097",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.93841799999964,
+          53.580756999981844
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "fabeda71-9448-4b16-9033-44c94575b661",
+        "stand": "20221115105231.3811206",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Langenfelder Damm / Müggenkampstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565098",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.91473099999965,
+          53.544301999981926
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 12,
+        "anzahl_pedelec": "0",
+        "uid": "ace79804-4e70-4c0b-adf4-13b888d6e8c9",
+        "stand": "20221115105231.3816137",
+        "art_der_station": "bike",
+        "anzahl_bike": "12",
+        "anzahl_cargobike_electric": "0",
+        "name": "Neumühlen / Övelgönne"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565099",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.061702999999621,
+          53.55989299998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "4c52fb24-88d0-4473-a063-aadb4193a72f",
+        "stand": "20221115105231.3821292",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Caspar-Voght-Straße / Sievekingsallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565100",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.033689999999625,
+          53.58458199998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "f5cd3175-1f86-4995-9189-ab92aca53aae",
+        "stand": "20221115105231.3826827",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Schleidenstraße / Osterbekstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565101",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.046069999999624,
+          53.578589999981794
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "b9f860d8-81ae-4fdc-b412-fbe791eac07a",
+        "stand": "20221115105231.3831982",
+        "art_der_station": "bike",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "Von-Essen-Straße / Dehnhaide"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565102",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.912913399999649,
+          53.55128809998192
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "122fec49-1ba9-4663-9ae8-3e70bf0b931c",
+        "stand": "20221115105231.3837118",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bleickenallee / Kinderkrankenhaus Altona"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565103",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.932379999999643,
+          53.57964999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "b5573ae7-f353-44c0-864c-cf1ee2dc9cc3",
+        "stand": "20221115105231.3841923",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Langenfelde / Försterweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565104",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.995749999999632,
+          53.59429999998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "a7aa3033-85cf-4a36-8d5d-161378b808d2",
+        "stand": "20221115105231.3846827",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Hudtwalckerstraße / Bebelallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565105",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.015020999999628,
+          53.592021999981796
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "188b5dee-6ea6-4bba-8c6f-97e2e519b598",
+        "stand": "20221115105231.385229",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Borgweg / Stadtpark"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565106",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.066925999999624,
+          53.55550299998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "3fa92d4d-3227-4e15-844d-9b0c120a918a",
+        "stand": "20221115105231.3857438",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Rauhes Haus / Horner Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565107",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.972999999999633,
+          53.59399999998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 19,
+        "anzahl_pedelec": "0",
+        "uid": "706f3a0e-cb52-44a0-8381-4c86afa2af09",
+        "stand": "20221115105231.3862631",
+        "art_der_station": "bike",
+        "anzahl_bike": "19",
+        "anzahl_cargobike_electric": "0",
+        "name": "Süderfeldstraße / Universitätsklinikum Eppendorf"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565108",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.059527999999622,
+          53.5704699999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "5f3e8fa0-296f-48f7-838f-a165a6e88b0d",
+        "stand": "20221115105231.3868116",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Wandsbeker Chaussee / Börnestraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565109",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.032679999999623,
+          53.588734999981774
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 12,
+        "anzahl_pedelec": "0",
+        "uid": "5af480e2-15a8-49f3-b561-2a832dcecc68",
+        "stand": "20221115105231.3873324",
+        "art_der_station": "bike",
+        "anzahl_bike": "12",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Saarlandstraße / Wiesendamm"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565110",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.065279999999623,
+          53.53059999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "fbf52269-9c02-46c8-90cb-8cb7444501a0",
+        "stand": "20221115105231.3878289",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Tiefstack / Ausschläger Allee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565111",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.046589999999624,
+          53.582719999981784
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "7c90e113-5673-4119-99fd-753b3833b0c7",
+        "stand": "20221115105231.3883254",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bramfelder Straße / Pfenningsbusch"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565112",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.996469999999634,
+          53.499747999981956
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "17a8e30f-668e-4550-8b74-9b810dcd9a03",
+        "stand": "20221115105231.388817",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Ursula-Falke-Terrassen / Mengestraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565113",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.90894599999965,
+          53.5602599999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "7e06cb33-f44d-4021-825a-28784688ca73",
+        "stand": "20221115105231.3893838",
+        "art_der_station": "bike",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Bahrenfeld / Friedensallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565114",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.058236999999622,
+          53.576237999981785
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "b9c82e96-d026-4f76-856f-1741c7135001",
+        "stand": "20221115105231.3899145",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Friedrichsberg / Krausestraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565115",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.030326999999623,
+          53.59144599998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "f63e623a-603e-4f8f-9963-59f8f60b95f3",
+        "stand": "20221115105231.3904182",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Südring / Stadthallenbrücke"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565116",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.952054999999637,
+          53.592849999981816
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "3531b148-770d-4fdb-8fe5-c4867ef977e9",
+        "stand": "20221115105231.3909139",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Emil-Andresen-Straße / Lohkoppelweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565117",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.910869599999646,
+          53.56597289998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "6386785d-c57b-4588-ad02-e44acab5acdf",
+        "stand": "20221115105231.3914701",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahrenfelder Chaussee / Von-Sauer-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565118",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.013649999999627,
+          53.595949999981784
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "94abde98-9eab-46e8-a487-2fd3a04a212d",
+        "stand": "20221115105231.3919924",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Planetarium / Hindenburgstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565119",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.04299299999962,
+          53.58695799998178
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "f7b90c02-968d-4b73-afc5-a00535446033",
+        "stand": "20221115105231.3924897",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Barmbek / Wiesendamm"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565120",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.994016999999628,
+          53.59920299998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "60984b6f-d3ca-4fa5-94cd-c3ba5334a201",
+        "stand": "20221115105231.3929847",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "1",
+        "name": "U Lattenkamp / Bebelallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565121",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.007015999999632,
+          53.497932999981956
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "c612c840-c08d-466e-a2d6-4e6457452047",
+        "stand": "20221115105231.3934789",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Wilhelmsburg / Wilhelm-Strauß-Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565122",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.003842999999634,
+          53.49723199998197
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "3b81d568-0836-4ed1-bdf0-685428d3f927",
+        "stand": "20221115105231.3939708",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Neuenfelder Straße / Kurt-Emmerich-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565123",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.046197799999621,
+          53.58780829998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "bda4b7e5-6dca-4fa0-a44a-87947463e9da",
+        "stand": "20221115105231.394492",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Barmbek / Piazzetta-Ralph-Giordano"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565124",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.068643999999622,
+          53.571663999981794
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "8df157d3-0712-4611-9b56-16d950532e2e",
+        "stand": "20221115105231.395036",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Wandsbek Markt / Schlossgarten"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565125",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.943524999999637,
+          53.593586999981824
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "16104f3b-c0e3-41a2-8464-2dbb795d5a47",
+        "stand": "20221115105231.3955557",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Hagenbecks Tierpark / Koppelstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565126",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.90075199999965,
+          53.554432999981906
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 18,
+        "anzahl_pedelec": "0",
+        "uid": "156ed481-cbc9-42b7-98f4-b76a11f096c9",
+        "stand": "20221115105231.3960564",
+        "art_der_station": "bike",
+        "anzahl_bike": "18",
+        "anzahl_cargobike_electric": "0",
+        "name": "Paul-Ehrlich-Straße / Asklepios-Klinik Altona"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565127",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.068954999999624,
+          53.57243299998178
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "b14f9a93-2ba0-4c49-8646-d418ff68f28b",
+        "stand": "20221115105231.3966095",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Wandsbek Markt / Wandsbeker Marktstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565128",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.963928999999633,
+          53.6000719999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "3e210552-1f7e-468b-b299-50a383ea3cce",
+        "stand": "20221115105231.3971927",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Siemersplatz / Kollaustraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565129",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.989999999999636,
+          53.49399999998198
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "38e3af18-7a5a-4945-990f-880c0097e599",
+        "stand": "20221115105231.3977116",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Georg-Wilhelm-Straße / Mankiewicz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565130",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.064229999999622,
+          53.57928999998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "2bec7ee7-2edd-4330-aefb-1227eaf85ec8",
+        "stand": "20221115105231.3981925",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Elsässer Straße / Stormarner Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565131",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.044507999999622,
+          53.591459999981765
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "31097390-f3ad-455c-a795-9fa7a2b8ce14",
+        "stand": "20221115105231.3986886",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fuhlsbüttler Straße / Hellbrookstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565132",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.056939999999623,
+          53.58682999998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "d0001611-e433-4796-984e-e1ca49f25731",
+        "stand": "20221115105231.3992048",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lämmersieth / Wachtelstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565133",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.97277999999963,
+          53.603419999981796
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "211a2f84-9256-4b23-b934-5cc52438c928",
+        "stand": "20221115105231.3997112",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Gert-Marcus-Straße / Anni-Glissmann-Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565134",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.081859999999624,
+          53.53510999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "51d6224f-a368-44a6-8243-4caa6f5227d1",
+        "stand": "20221115105231.4002305",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Liebigstraße / Wöhlerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565135",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.085076999999623,
+          53.5541929999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "e1421462-8c58-423d-ba6d-0300dff80b23",
+        "stand": "20221115105231.4007475",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Horner Rennbahn / Meurerweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565136",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.982669999999631,
+          53.60523999998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "7ed6206f-69d1-40c5-805e-09e469c3287d",
+        "stand": "20221115105231.4013178",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Borsteler Chaussee / Alphapark"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565137",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.079239999999626,
+          53.526909999981854
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "616e0a29-f9bc-4d55-a9ab-613791e03b28",
+        "stand": "20221115105231.4019047",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bredowstraße / Pinkertweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565138",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.024744999999625,
+          53.601618999981774
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "e5f2f027-5b76-42bf-aad6-746375b35fad",
+        "stand": "20221115105231.4024377",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Überseering / Mexikoring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565139",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.068109999999622,
+          53.58181999998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "3d50f080-5792-4d39-b0df-bcd48ad09873",
+        "stand": "20221115105231.4029445",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Straßburger Straße / Nordschleswiger Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565140",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.050639699999621,
+          53.593725999981764
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "99a48824-923f-40b3-b499-00b7cef85fcd",
+        "stand": "20221115105231.4034406",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Habichtstraße / Steilshooper Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565141",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.019699999999624,
+          53.60372999998176
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "76c189e0-c48e-4dc1-aa83-0dc26c2b9272",
+        "stand": "20221115105231.4039223",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Überseering / New-York-Ring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565142",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.065229999999621,
+          53.58581299998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "14da48a5-b4a3-4f54-b53c-5f7de04418e7",
+        "stand": "20221115105231.4044263",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Alter Teichweg / Nordschleswiger Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565143",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.919355999999645,
+          53.590247999981834
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "1b843ea9-b17f-4be5-bf17-1532a6526beb",
+        "stand": "20221115105231.4049444",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Stellingen / Randstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565144",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.012224999999626,
+          53.60617699998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "11cd3628-b716-4fa9-88d4-7900bac1288c",
+        "stand": "20221115105231.405509",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Alsterdorf / Hindenburgstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565145",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.978629999999631,
+          53.607439999981786
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "ff312de9-82ae-4a71-8d22-11789e45b117",
+        "stand": "20221115105231.406083",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Borsteler Chaussee / Köppenstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565146",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.07176999999962,
+          53.583539999981774
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "5939aa0f-7a7c-42cc-9f4a-bfa234ab339a",
+        "stand": "20221115105231.4065966",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eulenkamp / Straßburger Stieg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565147",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.040999999999624,
+          53.600999999981774
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "65813253-9c3e-4437-b846-a96ad678970e",
+        "stand": "20221115105231.4071018",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "1",
+        "name": "Fuhlsbüttler Straße / Hartzloh"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565148",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.944959999999636,
+          53.603469999981805
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "89d49d0b-e88d-489a-8815-00039e1e3abe",
+        "stand": "20221115105231.4075987",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Hagendeel / Hinter der Lieth"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565149",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.892853999999652,
+          53.57046799998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "6da35eb3-0f69-42bd-b279-48d03c52cffe",
+        "stand": "20221115105231.4081001",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Wichmannstr. /  FSC Hamburg Werkstatt StadtRAD"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565150",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.892851999999651,
+          53.57046499998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "eba763dd-110e-4d93-8313-e0fc42632cdf",
+        "stand": "20221115105231.4085932",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Werkstatt Hamburg / Wichmannstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565151",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.030069999999624,
+          53.604979999981744
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "40479c39-7cbf-45c9-b14c-f2b1cc864a34",
+        "stand": "20221115105231.4090882",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Winterlindenweg / Loki-Schmidt-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565152",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.887158999999654,
+          53.5603949999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 15,
+        "anzahl_pedelec": "0",
+        "uid": "73dd8b39-ae86-406a-b663-80eab5b19728",
+        "stand": "20221115105231.4095881",
+        "art_der_station": "bike",
+        "anzahl_bike": "15",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Othmarschen / Beselerplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565153",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.892809999999653,
+          53.57346999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "8acbbe9f-50ce-4222-9119-21adc9b84b2d",
+        "stand": "20221115105231.4101009",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Luruper Chauseee / Ebertallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565154",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.095514999999622,
+          53.54764299998181
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "a08742f3-5ea6-4e11-82e0-02a69a13feea",
+        "stand": "20221115105231.4106544",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Legienstraße / Riedweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565155",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.022684999999624,
+          53.60916299998176
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "70148996-e31a-4ab6-96a0-042ad150d3ad",
+        "stand": "20221115105231.4112182",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Sengelmannstraße / Djakartaweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565156",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.903889999999649,
+          53.58745999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 16,
+        "anzahl_pedelec": "0",
+        "uid": "c7e07225-39cb-4bec-ab77-2e2a99224262",
+        "stand": "20221115105231.4117808",
+        "art_der_station": "bike",
+        "anzahl_bike": "16",
+        "anzahl_cargobike_electric": "0",
+        "name": "Volksparkstadion / Sylvesterallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565157",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.079637999999619,
+          53.58491899998176
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "991a732c-2934-41f5-b56b-dcf7b75f11d7",
+        "stand": "20221115105231.4123416",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Friedrich-Ebert-Damm / Lomerstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565158",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.092689999999623,
+          53.52635999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "9064acdf-b08f-42f1-81aa-30b231e02d8d",
+        "stand": "20221115105231.4129897",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Moorfleeter Straße / Pinkertweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565159",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.062487999999622,
+          53.59699851998175
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "8be41644-dfee-4596-a31d-7aa4a0208c2e",
+        "stand": "20221115105231.4135596",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hellbrookkamp / Novomind AG"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565160",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.018859999999634,
+          53.48460999998198
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "744330eb-05b7-499b-b7dc-955e0b2f5fdd",
+        "stand": "20221115105231.4140804",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Karl-Arnold-Ring / Dahlgrünring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565161",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.023946199999623,
+          53.612090899981744
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "01fa4957-fc89-4548-8bc9-ba4ec47948c6",
+        "stand": "20221115105231.4145784",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Alsterdorfer Markt / Evangelische Stiftung"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565162",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.877749999999656,
+          53.53619999998195
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "c47cc2c5-dca3-4de3-9d66-a48aee3bb9a3",
+        "stand": "20221115105231.4150753",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fähranleger Finkenwerder/ Butendeichsweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565163",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.075659999999619,
+          53.59205999998174
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "12794afd-1ed2-4d22-8223-d1f25f25a43f",
+        "stand": "20221115105231.4155535",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Wandsbek-Gartenstadt / Ostpreußenplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565164",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.062649999999621,
+          53.60141999998174
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "6c8ac420-af5f-45e0-9daf-29b588cbec4a",
+        "stand": "20221115105231.4160527",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fabriciusstraße / Buschrosenweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565165",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.906079999999646,
+          53.59665999998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "81b048db-16d6-49be-9afc-98261067186e",
+        "stand": "20221115105231.4165796",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "AKN+S Eidelstedt / Reichsbahnstrtaße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565166",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.106105999999624,
+          53.540095999981816
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "34de6c3d-0166-49b7-967f-d474003050ec",
+        "stand": "20221115105231.4170826",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Billstedter Platz / Öjendorfer Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565167",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.882798999999652,
+          53.57860799998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 16,
+        "anzahl_pedelec": "0",
+        "uid": "4b612843-df35-4e3c-895f-d2987889b4fa",
+        "stand": "20221115105231.4176349",
+        "art_der_station": "bike",
+        "anzahl_bike": "16",
+        "anzahl_cargobike_electric": "0",
+        "name": "Notkestraße / DESY Gebäude 25b"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565168",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.07039699999962,
+          53.60025999998174
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "e59bba13-8344-4210-b1c2-cbcb2dd1c6b8",
+        "stand": "20221115105231.418155",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Werner-Otto-Straße / OTTO Group"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565169",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.107446999999622,
+          53.55921499998178
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "223bc0a3-d43b-44a9-8b15-745f4dc1a6c2",
+        "stand": "20221115105231.4186587",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Manshardtstraße / Einkaufszentrum Manshardtstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565170",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.096399999999623,
+          53.516419999981856
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "f85e005c-93fa-4c32-869a-7c9d933c532c",
+        "stand": "20221115105231.4191571",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Billwerder-Moorfleet / Alter Landweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565171",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.106199999999623,
+          53.530829999981826
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "2da620cd-c27d-4b8f-be8d-8e8aa484f41a",
+        "stand": "20221115105231.4196585",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Liebigstraße / Berzeliusstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565172",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.104929999999621,
+          53.570549999981765
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "bb84ce97-01a0-4706-a0eb-5c9fd4e11a77",
+        "stand": "20221115105231.4201706",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Universität der Bundeswehr / Rodigallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565173",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.997089999999627,
+          53.620589999981746
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 15,
+        "anzahl_pedelec": "0",
+        "uid": "cf2ba732-db34-44c2-a9e6-c7c5e7b47e2d",
+        "stand": "20221115105231.4207826",
+        "art_der_station": "bike",
+        "anzahl_bike": "15",
+        "anzahl_cargobike_electric": "0",
+        "name": "Weg beim Jäger / Lufthansa 2"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565174",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.058095999999622,
+          53.610148999981725
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "4ccea9ab-e093-4db6-8e5b-707b3ff40913",
+        "stand": "20221115105231.4213666",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "Gründgensstraße / César-Klein-Ring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565175",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.951311299999634,
+          53.61907219998178
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "3702eede-3f25-4e27-8e67-e7818095ed5e",
+        "stand": "20221115105231.4219403",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Niendorf Markt / Tibarg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565176",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.09566499999962,
+          53.58817199998174
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "20aee48a-da8f-4353-9c86-dce20abd5f62",
+        "stand": "20221115105231.4225178",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "Friedrich-Ebert-Damm / Helbingtwiete"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565177",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.862969999999661,
+          53.539559999981954
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 22,
+        "anzahl_pedelec": "0",
+        "uid": "c0ca7461-b0ee-47db-a36c-7370f50183f2",
+        "stand": "20221115105231.4230492",
+        "art_der_station": "bike",
+        "anzahl_bike": "22",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fähre Rüschpark / Hein-Saß-Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565178",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.86201299999966,
+          53.54742499998192
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "1e664e22-8885-4336-9917-0ebcc9be5511",
+        "stand": "20221115105231.4235537",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Elbchaussee/Teufelsbrück"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565179",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.031999999999622,
+          53.619999999981715
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "110e459f-ec60-4488-aed9-b75f2a17d8be",
+        "stand": "20221115105231.4240642",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Ohlsdorf / Alsterdorfer Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565180",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.862159999999662,
+          53.55858699998191
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "a2145a55-05ba-4f04-9347-026200c3a4bc",
+        "stand": "20221115105231.4245828",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Klein Flottbek / Ohnhorststraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565181",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.012208799999623,
+          53.62348089998174
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 14,
+        "anzahl_pedelec": "0",
+        "uid": "a11139a2-6c3e-4ef3-8950-9d991e1487cd",
+        "stand": "20221115105231.4250957",
+        "art_der_station": "bike",
+        "anzahl_bike": "14",
+        "anzahl_cargobike_electric": "0",
+        "name": "Röntgenstraße / Philips"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565182",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.030739999999621,
+          53.620929999981726
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "70613bbc-480c-4fcf-97f1-ce027b7e72a3",
+        "stand": "20221115105231.4255952",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Ohlsdorf / Im Grünen Grunde"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565183",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.945039999999638,
+          53.620519999981774
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "fb5a5361-6a5b-48fd-a404-2e0d91b1ae22",
+        "stand": "20221115105231.4261624",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Max-Zelck-Straße / Haus der Kirche"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565184",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.903899999999648,
+          53.60654999998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "f411c89f-2812-49b2-ad9d-e1e4c4432764",
+        "stand": "20221115105231.4266801",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eidelstedt-Center / Elbgaustraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565185",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.862422999999657,
+          53.5716289999819
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "b291a021-1330-4e64-a753-63da650fef89",
+        "stand": "20221115105231.4272489",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Osdorfer Landstraße / Elbe-Einkaufszentrum"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565186",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.89345999999965,
+          53.60286999998182
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "9206b60a-f4f7-4a58-9a78-6e6cabad7bbc",
+        "stand": "20221115105231.4277697",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Elbgaustraße / Weidplan"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565187",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.122369999999624,
+          53.538599999981805
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "f882a3b5-3f30-4172-b188-e2a90ba8a4be",
+        "stand": "20221115105231.4283639",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Merkenstraße / Möllner Landstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565188",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.900509999999649,
+          53.609499999981814
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "1e401f80-ab6e-405d-a667-2978a84b81e6",
+        "stand": "20221115105231.4289029",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "AKN Eidelstedt Zentrum / Johann-Schmidt-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565189",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.075912999999618,
+          53.61187799998172
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 12,
+        "anzahl_pedelec": "0",
+        "uid": "61968ef6-c17c-403b-8877-9afbcaebaacc",
+        "stand": "20221115105231.4294135",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "1",
+        "name": "Herthastraße / Bramfelder Chaussee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565190",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.117949999999619,
+          53.577839999981734
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "0e56325d-dfb1-4190-bc28-d9e2ceffc661",
+        "stand": "20221115105231.4299039",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Kuehnstraße / Albert-Schweitzer-Ring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565191",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.106857999999619,
+          53.59144999998172
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "653e67b8-6474-47c0-aa70-b2f0c1d1ebb6",
+        "stand": "20221115105231.4304031",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Friedrich-Ebert-Damm / Charlie-Mills-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565192",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.989229999999637,
+          53.46589999998203
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "2422b1dd-eeab-4b35-bb82-e9c846414373",
+        "stand": "20221115105231.4309045",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Veritaskai / Theodor-Yorck-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565193",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.10145899999962,
+          53.59801699998171
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "1897baaa-23a9-45b0-ad88-b58a318d2622",
+        "stand": "20221115105231.4314204",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Trabrennbahn / Traberweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565194",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.986135999999638,
+          53.46428199998201
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "2da9f852-ae9f-444e-8e13-7d0b9aadf18a",
+        "stand": "20221115105231.431926",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Schellerdamm / Hausnummer 22"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565195",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.963536999999643,
+          53.46527599998204
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "d5418c47-1e3d-4ce6-930e-ad4f15abfd20",
+        "stand": "20221115105231.4324263",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Heimfeld / Alter Postweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565196",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.006059999999625,
+          53.634329999981716
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "89939c1a-903c-4362-8690-1e360999e59d",
+        "stand": "20221115105231.4329722",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hamburg Airport / Terminal 1"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565197",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.004132699999635,
+          53.46165129998202
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "7fceef44-c055-40c2-b0e1-80643260413e",
+        "stand": "20221115105231.433493",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Neuländer Kamp / Eurofins"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565198",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.97757289999964,
+          53.460687399982035
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "5712f562-4240-4288-898f-28d9727fa137",
+        "stand": "20221115105231.4339979",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "1",
+        "name": "Harburger Ring / Neue Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565199",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.98331899999964,
+          53.46040699998204
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 17,
+        "anzahl_pedelec": "0",
+        "uid": "b3fdb749-1813-4d83-a78c-7120b6d08811",
+        "stand": "20221115105231.4345571",
+        "art_der_station": "bike",
+        "anzahl_bike": "17",
+        "anzahl_cargobike_electric": "0",
+        "name": "Herbert-Wehner-Platz / Großer Schippsee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565200",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.969486999999644,
+          53.46062199998204
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "712d1811-98dc-4d90-a536-b2159806de45",
+        "stand": "20221115105231.4350935",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Denickestraße / TUHH"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565201",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.980473099999637,
+          53.459958599982045
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "209f839f-627d-4ee9-85a9-cd8765aa814f",
+        "stand": "20221115105231.4355991",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Harburg Rathaus / Deichhausweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565202",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.12493999999962,
+          53.586399999981715
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 12,
+        "anzahl_pedelec": "0",
+        "uid": "39b8e860-d1b5-4946-8b2b-61f3475e34fe",
+        "stand": "20221115105231.4361013",
+        "art_der_station": "bike",
+        "anzahl_bike": "12",
+        "anzahl_cargobike_electric": "0",
+        "name": "Tonndorfer Hauptstraße / Sonnenweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565203",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.952619141487581,
+          53.634758667782755
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "ac13306e-f299-4b66-a6a3-ab445edd2e58",
+        "stand": "20221115105231.4366004",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Schippelsweg / Paul-Sorge-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565204",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.13606999999962,
+          53.57079999998172
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 14,
+        "anzahl_pedelec": "0",
+        "uid": "9fc7b12e-fefd-40e5-957d-171e53dbdaad",
+        "stand": "20221115105231.4371136",
+        "art_der_station": "bike",
+        "anzahl_bike": "14",
+        "anzahl_cargobike_electric": "0",
+        "name": "Barsbütteler Straße / Öjendorfer Damm"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565205",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.98799399999964,
+          53.45728599998205
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "907b69af-c58e-4c7f-8cf2-5d1f710f9c43",
+        "stand": "20221115105231.4376717",
+        "art_der_station": "bike",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Harburg / Moorstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565206",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.950999999999645,
+          53.45899999998206
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "3915cc34-bd8a-47f0-97c2-82f679bef65e",
+        "stand": "20221115105231.4381872",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Eißendorfer Pferdeweg / Asklepios-Klinik Harburg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565207",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.982274999999639,
+          53.45370399998205
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "533bc583-01b4-4a9e-8412-925258873f62",
+        "stand": "20221115105231.4386594",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Maretstraße / Baererstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565208",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.965409999999643,
+          53.45451999998206
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "0fc66ef3-debd-4fe0-93c5-84e0ba1c0db2",
+        "stand": "20221115105231.4392003",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Göhlbachtal / Berufliche Schule Harburg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565209",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.950095499999634,
+          53.640835199981744
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "1d48caea-b0f7-46bf-b81c-c6363ff8afa2",
+        "stand": "20221115105231.4397238",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Niendorf-Nord / Nordalbingerweg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565210",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.120209999999616,
+          53.606245999981695
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "5ec61cae-3239-4a08-a039-bc60fcbd16a8",
+        "stand": "20221115105231.4402188",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Farmsen / Rahlstedter Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565211",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.085269999999616,
+          53.62679999998169
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "e3fbae91-783f-4f7b-8274-3a15be0e1cb8",
+        "stand": "20221115105231.4407164",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bramfelder Chaussee / Maisredder"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565212",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.150119999999625,
+          53.52838999998178
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "9c87a262-d118-4d67-9604-c9842aea32a8",
+        "stand": "20221115105231.4412122",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Mümmelmannsberg / Kandinskyallee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565213",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.92188999999964,
+          53.637209999981756
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "ad7f1ca0-e9f0-42b6-b378-02c7aacf434b",
+        "stand": "20221115105231.4417086",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Modering / Oldesloer Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565214",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.906429999999643,
+          53.63320999998176
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 5,
+        "anzahl_pedelec": "0",
+        "uid": "b5eddbe0-b878-4cf6-9505-e5072e9b1517",
+        "stand": "20221115105231.4422105",
+        "art_der_station": "bike",
+        "anzahl_bike": "5",
+        "anzahl_cargobike_electric": "0",
+        "name": "AKN Schnelsen / Pinneberger Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565215",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.99030599999964,
+          53.44895999998205
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "a51b02d0-70b9-42b1-b930-fc7fda3ce44c",
+        "stand": "20221115105231.4427229",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Reeseberg / Anzengruberstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565216",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.98067499999964,
+          53.44762499998206
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "399227c4-79ed-4ee4-810d-e50988babe86",
+        "stand": "20221115105231.443238",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Gotthelfweg / Außenmühlenteich"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565217",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.016366299999623,
+          53.64875719998169
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 18,
+        "anzahl_pedelec": "0",
+        "uid": "a52119bd-a741-4078-baf8-80841e1edd48",
+        "stand": "20221115105231.4437379",
+        "art_der_station": "bike",
+        "anzahl_bike": "18",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Langenhorn Markt / Tangstedter Landstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565218",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.985279999999626,
+          53.654289999981714
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 13,
+        "anzahl_pedelec": "0",
+        "uid": "d65fcfd2-e98e-44b6-9047-8a6512242cf1",
+        "stand": "20221115105231.4442367",
+        "art_der_station": "bike",
+        "anzahl_bike": "13",
+        "anzahl_cargobike_electric": "0",
+        "name": "Hugo-Kirchberg-Straße / Tesa"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565219",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.815219999999673,
+          53.57580999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "78a90340-2382-4e3f-a661-dc9159a5fdeb",
+        "stand": "20221115105231.4447286",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Iserbrook / Heidrehmen"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565220",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.126239999999617,
+          53.618379999981656
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "265b55fb-30d7-4314-aeb5-03640faa89e2",
+        "stand": "20221115105231.4452487",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Oldenfelde / Busbrookhöhe"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565221",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.083919999999617,
+          53.64028999998166
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "b0242d4b-c334-48ce-8f1c-1bdd66736819",
+        "stand": "20221115105231.4457486",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Wellingsbüttel / Rolfinckstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565222",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.853689999999668,
+          53.47378999998207
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 17,
+        "anzahl_pedelec": "0",
+        "uid": "78b5f6f6-2668-41d7-9a28-16ee38984b00",
+        "stand": "20221115105231.44625",
+        "art_der_station": "bike",
+        "anzahl_bike": "17",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Neugraben / Am Neugrabener Bahnhof"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565223",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.168629999999627,
+          53.51737999998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "a980a698-4d3b-46e6-b64d-2d136dcc804c",
+        "stand": "20221115105231.4468069",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Heidhorst / Bockhorster Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565224",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.154549999999618,
+          53.604309999981645
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "1dbf1ae1-1956-4cc5-9afd-cfd27a0b762e",
+        "stand": "20221115105231.4473529",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Rahlstedt / Helmut-Steidl-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565225",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.016949999999621,
+          53.66097999998168
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 15,
+        "anzahl_pedelec": "0",
+        "uid": "145b9708-8f38-4e1f-badd-9e1a43e8d804",
+        "stand": "20221115105231.4478566",
+        "art_der_station": "bike",
+        "anzahl_bike": "15",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Langenhorn Nord / Foorthkamp"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565226",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.15838999999963,
+          53.49006999998185
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "3f0c7f7e-1c95-4276-a9db-bfa2cc84fd56",
+        "stand": "20221115105231.4483489",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Allermöhe / Walter-Rudolphi-Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565227",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.180079999999629,
+          53.50788999998179
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "e1f26658-74cf-47cb-aa38-b0934ee77a6f",
+        "stand": "20221115105231.4488446",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lohbrügger Landstraße / BG Klinikum"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565228",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.18304999999963,
+          53.4963799999818
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "b4c420e6-5743-402f-a5a6-382a22288c5e",
+        "stand": "20221115105231.4493517",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Billwerder Billdeich / TSG Sportforum"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565229",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.16925999999963,
+          53.47881999998184
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "9ba05557-21ec-4d0f-9516-907a577153fe",
+        "stand": "20221115105231.4498513",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fanny-Lewald-Ring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565230",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.176559999999633,
+          53.482879999981826
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 10,
+        "anzahl_pedelec": "0",
+        "uid": "9980098f-2acf-4f8d-90ca-411abbc1459a",
+        "stand": "20221115105231.4503995",
+        "art_der_station": "bike",
+        "anzahl_bike": "10",
+        "anzahl_cargobike_electric": "0",
+        "name": "Henriette-Herz-Ring / Grachtenplatz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565231",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.182198999999631,
+          53.488481999981815
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "190ea75d-38be-44c0-8da7-c8c92d597ea5",
+        "stand": "20221115105231.4509229",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Nettelnburg / Friedrich-Frank-Bogen"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565232",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.000729999999624,
+          53.678899999981645
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "353160bc-4a02-428e-84a1-d24d68f31191",
+        "stand": "20221115105231.4514278",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Ochsenzoll / Langenhorner Chaussee"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565233",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.814919999999677,
+          53.46502999998209
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 3,
+        "anzahl_pedelec": "0",
+        "uid": "5673312a-c66e-4001-bbd2-6db51f93def8",
+        "stand": "20221115105231.4519243",
+        "art_der_station": "bike",
+        "anzahl_bike": "3",
+        "anzahl_cargobike_electric": "0",
+        "name": "Fischbeker Heidbrook / Quartiersmitte"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565234",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.20745999999963,
+          53.510219999981736
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "ec39bb91-d723-4c64-b77f-629c2d67530c",
+        "stand": "20221115105231.4523983",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "Korachstraße / Helmuth-Hübener-Weg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565235",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.210909999999632,
+          53.50403999998176
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 6,
+        "anzahl_pedelec": "0",
+        "uid": "40ad6b0b-3c8f-49e4-90ad-18e007918f97",
+        "stand": "20221115105231.4528884",
+        "art_der_station": "bike",
+        "anzahl_bike": "6",
+        "anzahl_cargobike_electric": "0",
+        "name": "Binnenfeldredder / Habermannstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565236",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.206893999999632,
+          53.49467499998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "acc438d5-87f7-49cb-a2f7-4609f772190b",
+        "stand": "20221115105231.4534468",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Lohbrügger Markt / Ludwig-Rosenberg-Ring"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565237",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.206104999999635,
+          53.490495999981775
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 8,
+        "anzahl_pedelec": "0",
+        "uid": "fa340207-4c79-4519-99bb-4ec1f780ced7",
+        "stand": "20221115105231.4539688",
+        "art_der_station": "bike",
+        "anzahl_bike": "8",
+        "anzahl_cargobike_electric": "0",
+        "name": "Bahnhof Bergedorf / Johann-Meyer-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565238",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.210912999999636,
+          53.48844899998177
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 11,
+        "anzahl_pedelec": "0",
+        "uid": "3180ffb5-02f4-4d5d-8020-c1a7c11cbedc",
+        "stand": "20221115105231.4544888",
+        "art_der_station": "bike",
+        "anzahl_bike": "11",
+        "anzahl_cargobike_electric": "0",
+        "name": "Vierlandenstraße / Johann-Adolf-Hasse-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565239",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.219999999999636,
+          53.487426999981764
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 17,
+        "anzahl_pedelec": "0",
+        "uid": "5d79f841-547d-4159-af0e-2252e6f802ea",
+        "stand": "20221115105231.4549899",
+        "art_der_station": "bike",
+        "anzahl_bike": "17",
+        "anzahl_cargobike_electric": "0",
+        "name": "Wentorfer Straße / Bezirksamt Bergedorf"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565240",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.221669999999635,
+          53.48240999998176
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "82593616-c752-4ae4-86cb-ee6bfcd98d84",
+        "stand": "20221115105231.4555396",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Soltaustraße / Arnoldistieg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565241",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.23465999999964,
+          53.48652999998174
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "4ca2d642-a519-4267-af62-cb9992ef5303",
+        "stand": "20221115105231.4560604",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Glindersweg / Bethesda-Krankenhaus"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565242",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.987279999999632,
+          53.54871999998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 23,
+        "anzahl_pedelec": "0",
+        "uid": "37cc28a5-9de0-4ff1-8a5c-990a06cc0a6e",
+        "stand": "20221115105231.4565801",
+        "art_der_station": "bike",
+        "anzahl_bike": "23",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Rödingsmarkt / Großer Burstah"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565243",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.986593999999636,
+          53.54967199998189
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 9,
+        "anzahl_pedelec": "0",
+        "uid": "d8dfbb5a-d17b-4071-9860-3bbbd605f1c3",
+        "stand": "20221115105231.4571606",
+        "art_der_station": "bike",
+        "anzahl_bike": "9",
+        "anzahl_cargobike_electric": "0",
+        "name": "S Stadthausbrücke / Neuer Wall"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565244",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.994056999999634,
+          53.54748599998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 16,
+        "anzahl_pedelec": "0",
+        "uid": "6a2e2809-5926-4c57-a4ad-c0c14ce4c81a",
+        "stand": "20221115105231.4576829",
+        "art_der_station": "bike",
+        "anzahl_bike": "16",
+        "anzahl_cargobike_electric": "0",
+        "name": "Domstraße / Willy-Brandt-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565245",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.989709999999633,
+          53.543730999981896
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 17,
+        "anzahl_pedelec": "0",
+        "uid": "6903af61-1303-4a7a-b927-f05ab31bdcfb",
+        "stand": "20221115105231.4582019",
+        "art_der_station": "bike",
+        "anzahl_bike": "17",
+        "anzahl_cargobike_electric": "0",
+        "name": "Auf dem Sande / Kehrwieder / Miniatur Wunderland"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565246",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.986139999999635,
+          53.552159999981875
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 23,
+        "anzahl_pedelec": "0",
+        "uid": "3b3a2af8-63ea-435e-b7dd-f6c76c98f8e4",
+        "stand": "20221115105231.4587079",
+        "art_der_station": "bike",
+        "anzahl_bike": "23",
+        "anzahl_cargobike_electric": "0",
+        "name": "Axel-Springer-Platz/Wexstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565247",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.997125999999632,
+          53.548702999981884
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 18,
+        "anzahl_pedelec": "0",
+        "uid": "a1ccaa15-a324-4a76-af9e-f3fe53177939",
+        "stand": "20221115105231.4592195",
+        "art_der_station": "bike",
+        "anzahl_bike": "18",
+        "anzahl_cargobike_electric": "0",
+        "name": "Schopenstehl / Alter Fischmarkt"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565248",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.99713999999963,
+          53.550721999981874
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 20,
+        "anzahl_pedelec": "0",
+        "uid": "92b23154-90a0-4632-9588-92283fe1e9fd",
+        "stand": "20221115105231.4597206",
+        "art_der_station": "bike",
+        "anzahl_bike": "20",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Rathaus / Mönckebergstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565249",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.995500999999631,
+          53.55224399998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 0,
+        "anzahl_pedelec": "0",
+        "uid": "efb44165-7b0f-4431-a60e-ba58103213a8",
+        "stand": "20221115105231.4601958",
+        "art_der_station": "bike",
+        "anzahl_bike": "0",
+        "anzahl_cargobike_electric": "0",
+        "name": "S+U Jungfernstieg / Ballindamm"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565250",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.99877399999963,
+          53.54780499998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "13e04f85-f4e0-49bc-a164-c7dcaf068937",
+        "stand": "20221115105231.4606896",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Meßberg / Willy-Brandt-Straße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565251",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.979419999999632,
+          53.547974999981896
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 4,
+        "anzahl_pedelec": "0",
+        "uid": "be56fa9c-c6c3-4eda-8433-978f4fae2640",
+        "stand": "20221115105231.4611808",
+        "art_der_station": "bike",
+        "anzahl_bike": "4",
+        "anzahl_cargobike_electric": "0",
+        "name": "Michaeliskirche / Krayenkamp"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565252",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.980458999999634,
+          53.550976999981884
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "eef7af27-e596-4946-b1da-9ffd951218a1",
+        "stand": "20221115105231.4616701",
+        "art_der_station": "lastenpedelec",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Großneumarkt / Thielbek"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565253",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.980895999999634,
+          53.544278999981884
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 15,
+        "anzahl_pedelec": "0",
+        "uid": "b8624c59-e400-4e7b-a94f-0ebab8c95eb6",
+        "stand": "20221115105231.46223",
+        "art_der_station": "bike",
+        "anzahl_bike": "15",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Baumwall / Elbphilharmonie"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565254",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.998429999999631,
+          53.55159999998186
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 20,
+        "anzahl_pedelec": "0",
+        "uid": "c2980e47-cd6d-4fc1-bd3c-8704faac960a",
+        "stand": "20221115105231.4627505",
+        "art_der_station": "bike",
+        "anzahl_bike": "20",
+        "anzahl_cargobike_electric": "0",
+        "name": "Kleine Rosenstraße / Gerhart-Hauptmann-Platz"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565255",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.992855999999632,
+          53.54183799998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 12,
+        "anzahl_pedelec": "0",
+        "uid": "2c7e22e6-e547-481d-bea6-aa6b26e9dfe2",
+        "stand": "20221115105231.4632994",
+        "art_der_station": "bike",
+        "anzahl_bike": "12",
+        "anzahl_cargobike_electric": "0",
+        "name": "Am Kaiserkai / Großer Grasbrook"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565256",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.991399999999631,
+          53.554999999981874
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 18,
+        "anzahl_pedelec": "0",
+        "uid": "63c44fb8-2ebf-47a6-9176-5e90e29afc90",
+        "stand": "20221115105231.4638172",
+        "art_der_station": "bike",
+        "anzahl_bike": "18",
+        "anzahl_cargobike_electric": "0",
+        "name": "Jungfernstieg / Neuer Jungfernstieg"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565257",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.001499999999632,
+          53.55029999998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 2,
+        "anzahl_pedelec": "0",
+        "uid": "24a089c2-fc83-40fc-8215-42b0ffca18e6",
+        "stand": "20221115105231.4643088",
+        "art_der_station": "bike",
+        "anzahl_bike": "2",
+        "anzahl_cargobike_electric": "0",
+        "name": "Jakobikirchhhof / Steinstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565258",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.990090999999632,
+          53.55628199998188
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 16,
+        "anzahl_pedelec": "0",
+        "uid": "30ecf8d2-c819-4df8-9c42-396b0825a9fc",
+        "stand": "20221115105231.4648178",
+        "art_der_station": "bike",
+        "anzahl_bike": "16",
+        "anzahl_cargobike_electric": "0",
+        "name": "Gustav-Mahler-Platz / Büschstraße"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565259",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.00301999999963,
+          53.545799999981874
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 7,
+        "anzahl_pedelec": "0",
+        "uid": "a1248d41-e505-4bc4-bf47-a737a80655cf",
+        "stand": "20221115105231.4653177",
+        "art_der_station": "bike",
+        "anzahl_bike": "7",
+        "anzahl_cargobike_electric": "0",
+        "name": "Oberbaumbrücke / Ericusspitze"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565260",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.984339999999634,
+          53.55608999998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 16,
+        "anzahl_pedelec": "0",
+        "uid": "539ddec5-682d-4600-b9ac-079ae161f47a",
+        "stand": "20221115105231.4658146",
+        "art_der_station": "bike",
+        "anzahl_bike": "16",
+        "anzahl_cargobike_electric": "0",
+        "name": "U Gänsemarkt / Caffamacherreihe"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    },
+    {
+      "type": "Feature",
+      "id": "DE.HH.UP_STADTRAD_STATIONEN_55565261",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.976949999999634,
+          53.55239999998187
+        ]
+      },
+      "properties": {
+        "anzahl_raeder": 1,
+        "anzahl_pedelec": "0",
+        "uid": "a0fc2a81-960f-4f28-9f7b-9220e54bc439",
+        "stand": "20221115105231.4663415",
+        "art_der_station": "bike",
+        "anzahl_bike": "1",
+        "anzahl_cargobike_electric": "0",
+        "name": "Enckeplatz / Hütten"
+      },
+      "srsName": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+    }
+  ],
+  "links": [
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen/items?bulk\u003dtrue",
+      "rel": "self",
+      "type": "application/geo+json",
+      "title": "this document as JSON"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen/items?bulk\u003dtrue",
+      "rel": "alternate",
+      "type": "text/html",
+      "title": "this document as HTML"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen/items?bulk\u003dtrue",
+      "rel": "alternate",
+      "type": "application/gml+xml",
+      "title": "this document as GML"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen/items?bulk\u003dtrue",
+      "rel": "alternate",
+      "type": "application/gml+xml;version\u003d3.2",
+      "title": "this document as GML"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen/items?bulk\u003dtrue",
+      "rel": "alternate",
+      "type": "application/gml+xml;version\u003d3.2;profile\u003d\"http://www.opengis.net/def/profile/ogc/2.0/gml-sf0\"",
+      "title": "this document as GML"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen/items?bulk\u003dtrue",
+      "rel": "alternate",
+      "type": "application/gml+xml;version\u003d3.2;profile\u003d\"http://www.opengis.net/def/profile/ogc/2.0/gml-sf2\"",
+      "title": "this document as GML"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen",
+      "rel": "collection",
+      "type": "application/json",
+      "title": "Collection as JSON"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen",
+      "rel": "collection",
+      "type": "text/html",
+      "title": "Collection as HTML"
+    },
+    {
+      "href": "https://api.hamburg.de/datasets/v1/stadtrad/collections/stadtrad_stationen",
+      "rel": "collection",
+      "type": "application/xml",
+      "title": "Collection as XML"
+    }
+  ],
+  "numberMatched": 294,
+  "numberReturned": 294,
+  "timeStamp": "2022-11-15T09:58:27.429Z",
+  "crs": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+}

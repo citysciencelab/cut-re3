@@ -46,3 +46,9 @@ services:
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
       - ./geoserver/configs/postgis
+
+  test-model-server:
+    container_name: "test-model-server"
+    build: test-model-server/.
+    ports:
+      - "5001:5000"

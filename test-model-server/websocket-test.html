@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Websocket Model Server Demo</title>
+  </head>
+  <body>
+    <h1>Websocket Model Server Demo</h1>
+    
+    <br>
+    <form id="form">
+      <label for="agents">Agents per 10000 inhabitants </label>
+      <input type="number" id="agents" ><br>
+      <label for="iterations">Number iterations </label>
+      <input type="number" id="iterations" ><br>
+      <label for="steps">Number steps </label>
+      <input type="number" id="steps" ><br>
+      <input type="submit">
+    </form>
+    <div id="log"></div>
+    <script>
+      const log = (text, color) => {
+        document.getElementById('log').innerHTML += `<span style="color: ${color}">${text}</span><br>`;
+      };
+
+      const socket = new WebSocket('ws://localhost:5001/socket');
+      socket.addEventListener('message', ev => {
+        log('<<< ' + ev.data, 'blue');
+      });
+      document.getElementById('form').onsubmit = ev => {
+        ev.preventDefault();
+        const textField = document.getElementById('text');
+
+        parameters = JSON.stringify({
+            "agents_per_10000_inhabitants" : document.getElementById('agents').value,
+            "number_iterations" : document.getElementById('iterations').value,
+            "number_steps" : document.getElementById('steps').value
+        })
+
+        log('>>> ' + parameters, 'red');
+
+        socket.send(parameters);
+        textField.value = '';
+      };
+    </script>
+  </body>
+</html>
