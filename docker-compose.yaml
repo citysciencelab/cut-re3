@@ -13,9 +13,9 @@ services:
     environment:
       - LOGLEVEL=DEBUG
       - FLASK_DEBUG=True
-      - POSTGRES_USER=cut_re3
+      - POSTGRES_USER=cut_dev
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=cut_re3_dev
+      - POSTGRES_DB=cut_dev
     ports:
       - 5002:5002
     volumes:
@@ -44,12 +44,21 @@ services:
       - ./geoserver/data/geoserver:/opt/geoserver/data_dir
     env_file:
       - ./geoserver/configs/geoserver
+    networks:
+      - backend
 
   postgis:
     container_name: "postgis"
     image: postgis/postgis
+    ports:
+      - 5432:5432
     volumes:
       - ./api/initializers/db:/docker-entrypoint-initdb.d:delegated
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
       - ./geoserver/configs/postgis
+    networks:
+      - backend
+
+networks:
+  backend:

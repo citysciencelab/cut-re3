@@ -13,4 +13,4 @@ CREATE TABLE IF NOT EXISTS jobs (
   parameters json
 );
 
-GRANT ALL PRIVILEGES ON TABLE jobs TO cut_re3;
+GRANT ALL PRIVILEGES ON TABLE jobs TO cut_dev;

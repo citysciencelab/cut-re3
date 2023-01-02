@@ -24,4 +24,4 @@ Payload may also be empty.
 
 ## Access DB
 docker-compose exec db bash
-psql -U cut_re3 -d cut_re3_dev
+psql -U cut_dev -d cut_dev

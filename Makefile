@@ -8,5 +8,5 @@ restart: stop start
 
 install:
 	docker-compose build frontend
-	docker-compose build processes
+	docker-compose build api
 	docker-compose run --rm frontend npm install
