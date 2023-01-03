@@ -56,7 +56,7 @@ class Process():
     print(f'******* still running', flush=True)
 
     geoserver = Geoserver()
-    with open("data/results_XS.geojson") as f:
+    with open("data/job_id_123456/results_XS.geojson") as f:
       results = f.read()
       geoserver.save(
         data=results,

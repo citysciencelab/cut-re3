@@ -3,6 +3,7 @@ import requests
 import config
 import re
 from zipfile import ZipFile
+import os
 
 class Geoserver:
 
@@ -27,41 +28,62 @@ class Geoserver:
     )
     return response.ok
 
-  def create_store(self, store_name: str, filename: str, workspace: str):
-    gdf = gpd.read_file(filename)
+  def create_store(self, store_name: str, path: str, filename: str, workspace: str):
+    gdf = gpd.read_file(f"{path}/{filename}")
 
-    base_filename = re.match('data/(.*)\.geojson', filename).group(1)
-    shapefile = f"data/{base_filename}.shp"
-    gdf.to_file(shapefile)
+    shapefile = f"{path}/{store_name}.shp"
+    gdf.to_file(shapefile, driver='ESRI Shapefile')
+    appendices = ["cpg", "dbf", "prj", "shx", "shp"]
 
-    with ZipFile(f"{base_filename}.zip", mode="x") as archive:
-      archive.write(shapefile)
+    with ZipFile(f"{path}/{store_name}.zip", mode="x") as archive:
+      for appendix in appendices:
+        archive.write(
+          f"{path}/{store_name}.{appendix}",
+          arcname=f"{store_name}.{appendix}"
+        )
 
-    file = open(f"data/{base_filename}.zip", 'rb')
+    file = open(f"{path}/{store_name}.zip", 'rb')
 
     response = requests.put(
-      f"http://geoserver:8080/geoserver/rest/workspaces/{workspace}/datastores/{base_filename}/file.shp",
+      f"http://geoserver:8080/geoserver/rest/workspaces/{workspace}/datastores/{store_name}/file.shp",
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
       files   = {'file': file},
       headers = {'Content-type': 'application/zip'}
     )
+    appendices.append('zip')
+    for appendix in appendices:
+      os.remove(f"{path}/{store_name}.{appendix}")
 
     return response.ok
 
+  def create_layer(self):
+    pass
+
   def save(self, data, workspace):
     print(f"Storing data to geoserver", flush=True)
+    job_id = "job_id_123456"
+    # path = os.path.join('data', base_filename)
+    # os.mkdir(path)
 
-    workspace = "Blabla3t43t"
+    # workspace could be the process name/id
+    workspace = "my_workspace"
     success = self.create_workspace(workspace)
     if success == False:
       raise f"Could not create workspace {workspace}!"
 
     success = self.create_store(
-      store_name = "process_id",
-      filename =   "data/results_XS.geojson",
+      store_name = "results_XS",
+      path       = f"data/{job_id}",
+      filename =   "results_XS.geojson",
       workspace =  workspace
     )
 
+    if success == False:
+      raise f"Could not create store."
+
+    success = self.create_layer(
+
+    )
     # for each process we need to create an own workspace
     # or even for each job (not sure)
     # 1. create a workspace
