@@ -2,8 +2,11 @@ import json
 import time
 import logging
 from src.job import Job, JobStatus
+from src.geoserver import Geoserver
 from multiprocessing import dummy
 from datetime import datetime
+from src.processes import all_processes
+import config
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +16,7 @@ class Process():
     self.process = self.set_details()
 
   def set_details(self):
-    processes = _all_processes()
+    processes = all_processes()
 
     for process in processes["processes"]:
       if process['id'] == self.process_id:
@@ -52,8 +55,13 @@ class Process():
     i += 3
     print(f'******* still running', flush=True)
 
+    geoserver = Geoserver()
     with open("data/results_XS.geojson") as f:
       results = f.read()
+      geoserver.save(
+        data=results,
+        workspace=config.geoserver_workspace
+      )
 
     time.sleep(3)
     i += 3
@@ -84,15 +92,6 @@ class Process():
 
   def __repr__(self):
     return f'src.process.Process(process_id={self.process_id})'
-
-def _all_processes():
-  with open("example_processes_list.json") as f:
-    result = f.read()
-  return json.loads(result)
-
-def all_processes_as_json():
-  result = _all_processes()
-  return json.dumps(result)
 
 class InvalidParamsException(Exception):
   pass

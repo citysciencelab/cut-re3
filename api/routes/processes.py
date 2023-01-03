@@ -1,5 +1,5 @@
 from flask import Response, Blueprint, request
-from src.process import all_processes_as_json
+from src.processes import all_processes_as_json
 from src.process import Process
 import json
 
