@@ -14,8 +14,6 @@ services:
       - nginx
     environment:
       - SCRIPT_NAME=/api
-    ports:
-      - 5001:5001
     volumes:
       - ./processes-api/config.yml:/pygeoapi/local.config.yml
       - ./processes-api/data/test.geojson:/pygeoapi/data/test.geojson
@@ -47,6 +45,7 @@ services:
     command: "npm start"
     volumes:
       - ./frontend:/home/node/workspace
+
   db:
     image: postgres
     restart: always
