@@ -31,7 +31,7 @@ services:
       - ./frontend:/home/node/workspace
 
   geoserver:
-    image: kartoza/geoserver:2
+    image: kartoza/geoserver:2.22.0
     depends_on:
       - postgis
     volumes:
@@ -40,8 +40,7 @@ services:
       - ./geoserver/configs/geoserver
 
   postgis:
-    container_name: "postgis"
-    image: postgis:14
+    image: postgis/postgis:14-3.3
     volumes:
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
