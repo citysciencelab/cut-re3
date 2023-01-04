@@ -33,7 +33,7 @@ services:
     depends_on:
       - geoserver
       - nginx
-  
+
   frontend:
     build: frontend/.
     depends_on:
@@ -44,19 +44,6 @@ services:
     volumes:
       - ./frontend:/home/node/workspace
 
-  db:
-    image: postgres
-    restart: always
-    ports:
-      - 5432:5432
-    volumes:
-      - ./db:/var/lib/postgresql/data:delegated
-      - ./api/initializers/db:/docker-entrypoint-initdb.d:delegated
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=cut_re3_dev
-
   geoserver:
     image: kartoza/geoserver:2.22.0
     depends_on:
@@ -65,7 +52,7 @@ services:
       - ./geoserver/data/geoserver:/opt/geoserver/data_dir
     env_file:
       - ./geoserver/configs/geoserver
- 
+
   postgis:
     image: postgis/postgis:14-3.3
     volumes:
