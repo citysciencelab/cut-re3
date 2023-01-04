@@ -21,7 +21,7 @@ services:
     volumes:
       - ./api:/usr/src/app
     depends_on:
-      - postgis
+      - geoserver
       - nginx
     networks:
       - backend
