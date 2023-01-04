@@ -1,5 +1,5 @@
 start:
-	docker-compose up nginx frontend api postgis geoserver
+	docker-compose up nginx frontend geoserver api
 
 stop:
 	docker-compose down

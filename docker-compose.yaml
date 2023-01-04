@@ -16,16 +16,12 @@ services:
       - POSTGRES_USER=cut_dev
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=cut_dev
-    ports:
-      - 5002:5002
     volumes:
       - ./api:/usr/src/app
     depends_on:
       - geoserver
       - nginx
-    networks:
-      - backend
-
+  
   frontend:
     build: frontend/.
     depends_on:
@@ -37,30 +33,18 @@ services:
       - ./frontend:/home/node/workspace
 
   geoserver:
-    image: kartoza/geoserver
+    image: kartoza/geoserver:2.22.0
     depends_on:
       - postgis
-    ports:
-      - 8080:8080
     volumes:
       - ./geoserver/data/geoserver:/opt/geoserver/data_dir
     env_file:
       - ./geoserver/configs/geoserver
-    networks:
-      - backend
-
+ 
   postgis:
-    container_name: "postgis"
-    image: postgis/postgis
-    ports:
-      - 5432:5432
+    image: postgis/postgis:14-3.3
     volumes:
       - ./api/initializers/db:/docker-entrypoint-initdb.d:delegated
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
       - ./geoserver/configs/postgis
-    networks:
-      - backend
-
-networks:
-  backend:
