@@ -16,9 +16,10 @@
  */
 const state = {
   id: "simulationTool",
-  mode: "processes", // 'processes' | 'process' | 'map'
+  mode: "processes", // 'processes' | 'process' | 'job'
   processes: null,
   selectedProcessId: null,
+  selectedJobId: null,
   // defaults for config.json parameters
   active: false,
   name: "Sim Tool",

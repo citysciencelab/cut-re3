@@ -2,7 +2,7 @@
 export default {
   name: "SimulationProcess",
   props: ["processId"],
-  emits: ["close"],
+  emits: ["close", "selected"],
   data() {
     return { process: null, jobs: null, inputs: {}, loadingJobs: false };
   },
@@ -70,7 +70,13 @@ export default {
         <span style="color: salmon" v-if="job.status === 'failed'">{{
           job.message
         }}</span>
-        <a v-if="job.status === 'successful'" href="#">view results</a>
+
+        <a
+          v-if="job.status === 'successful'"
+          href="#"
+          @click="$emit('selected', job.jobID)"
+          >view results</a
+        >
       </li>
       <div v-if="loadingJobs">Updating Jobs...</div>
     </ul>

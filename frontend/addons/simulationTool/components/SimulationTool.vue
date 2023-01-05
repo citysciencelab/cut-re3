@@ -3,6 +3,7 @@ import { mapGetters, mapActions, mapMutations } from "vuex";
 import ToolTemplate from "../../../src/modules/tools/ToolTemplate.vue";
 import SimulationProcesses from "./SimulationProcesses.vue";
 import SimulationProcess from "./SimulationProcess.vue";
+import SimulationVisualizer from "./SimulationVisualizer.vue";
 import actions from "../store/actionsSimulationTool";
 import getters from "../store/gettersSimulationTool";
 import mutations from "../store/mutationsSimulationTool";
@@ -13,6 +14,7 @@ export default {
     ToolTemplate,
     SimulationProcess,
     SimulationProcesses,
+    SimulationVisualizer,
   },
   data() {
     return {};
@@ -53,6 +55,20 @@ export default {
         this.setSelectedProcessId(null);
         this.setMode("processes");
       }
+    },
+
+    selectJob(id) {
+      if (typeof id === "string") {
+        this.setSelectedJobId(id);
+        this.setMode("job");
+      } else {
+        this.setSelectedJobId(null);
+        this.setMode("process");
+      }
+    },
+
+    addLayer() {
+      this.addLayerToStore();
     },
 
     /**
@@ -96,7 +112,15 @@ export default {
         <SimulationProcess
           v-if="mode === 'process'"
           :process-id="selectedProcessId"
+          @selected="selectJob"
           @close="selectProcess"
+        />
+
+        <SimulationVisualizer
+          v-if="mode === 'job'"
+          :job-id="selectedJobId"
+          @addLayer="addLayer"
+          @close="selectJob"
         />
 
         <!-- <pre>{{ JSON.stringify(processes, null, 2) }}</pre> -->
