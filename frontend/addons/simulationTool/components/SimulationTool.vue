@@ -88,7 +88,7 @@ export default {
     <template #toolBody>
       <div v-if="active" id="tool-simulationTool">
         <SimulationProcesses
-          v-if="mode === 'processes' && processes"
+          v-if="mode === 'processes'"
           :processes="processes"
           @selected="selectProcess"
         />
@@ -98,8 +98,6 @@ export default {
           :process-id="selectedProcessId"
           @close="selectProcess"
         />
-
-        <!-- <pre>{{ JSON.stringify(processes, null, 2) }}</pre> -->
       </div>
     </template>
   </ToolTemplate>
