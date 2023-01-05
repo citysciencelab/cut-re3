@@ -54,28 +54,28 @@ export default {
 
 <template>
   <div>
-    <div :class="{ 'process-header': true, 'placeholder-glow': !process }">
-      <a class="bootstrap-icon" href="#" @click="$emit('close')" title="Back">
-        <i class="bi-chevron-left"></i>
-      </a>
+    <div class="process-details">
+      <div :class="{ 'process-header': true, 'placeholder-glow': !process }">
+        <a class="bootstrap-icon" href="#" @click="$emit('close')" title="Back">
+          <i class="bi-chevron-left"></i>
+        </a>
 
-      <h3 :class="{ placeholder: !process }" :aria-hidden="!process">
-        {{ process?.title || "Loading process name" }}
-      </h3>
+        <h3 :class="{ placeholder: !process }" :aria-hidden="!process">
+          {{ process?.title || "Loading process name" }}
+        </h3>
+      </div>
+
+      <p v-if="process">{{ process.description }}</p>
+      <p v-else class="placeholder-glow" aria-hidden>
+        <span class="placeholder col-3" />
+        <span class="placeholder col-4" />
+        <span class="placeholder col-4" />
+        <span class="placeholder col-6" />
+        <span class="placeholder col-3" />
+      </p>
     </div>
 
-    <p v-if="process">{{ process.description }}</p>
-    <p v-else class="placeholder-glow" aria-hidden>
-      <span class="placeholder col-3" />
-      <span class="placeholder col-4" />
-      <span class="placeholder col-4" />
-      <span class="placeholder col-6" />
-      <span class="placeholder col-3" />
-    </p>
-
     <template v-if="process">
-      <hr />
-
       <section>
         <h4>Jobs</h4>
 
@@ -257,6 +257,20 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.process-details {
+  position: sticky;
+  top: -1.25rem;
+  margin: -1.25rem -1.25rem 1rem;
+  padding: 1.25rem 1.25rem 0;
+  background: white;
+}
+
+.process-details::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
 .process-header {
   display: flex;
   align-items: center;
