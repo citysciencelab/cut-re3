@@ -44,9 +44,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.loader {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5em;
+h3 {
+  position: sticky;
+  top: -1.25rem;
+  margin: -1.25rem -1.25rem 0;
+  padding: 1.25rem 1.25rem 0.5rem;
+  background: white;
 }
 </style>
