@@ -26,9 +26,8 @@ export default {
 
 <template>
   <div v-if="job">
-    <h1>{{ job.jobID }}</h1>
-
     <a href="#" @click="$emit('close')">Back</a>
+    <h1>{{ job.jobID }}</h1>
 
     <p>{{ job.job_start_datetime }}</p>
 

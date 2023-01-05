@@ -53,46 +53,110 @@ export default {
 </script>
 
 <template>
-  <div v-if="process">
-    <h1>{{ process.title }}</h1>
+  <div>
+    <div :class="{ 'process-header': true, 'placeholder-glow': !process }">
+      <a class="bootstrap-icon" href="#" @click="$emit('close')" title="Back">
+        <i class="bi-chevron-left"></i>
+      </a>
 
-    <a href="#" @click="$emit('close')">Back</a>
+      <h3 :class="{ placeholder: !process }" :aria-hidden="!process">
+        {{ process?.title || "Loading process name" }}
+      </h3>
+    </div>
 
-    <p>{{ process.description }}</p>
+    <p v-if="process">{{ process.description }}</p>
+    <p v-else class="placeholder-glow" aria-hidden>
+      <span class="placeholder col-3" />
+      <span class="placeholder col-4" />
+      <span class="placeholder col-4" />
+      <span class="placeholder col-6" />
+      <span class="placeholder col-3" />
+    </p>
 
-    <h2>Jobs</h2>
-    <ul v-if="jobs">
-      <div v-if="jobs.length === 0">No jobs yet</div>
-      <li v-for="job in jobs">
-        {{ new Date(job.job_start_datetime).toLocaleString() }}:
-        <b>{{ job.status }}</b
-        >{{ " " }}
-        <span style="color: salmon" v-if="job.status === 'failed'">{{
-          job.message
-        }}</span>
+    <template v-if="process">
+      <hr />
 
-        <a
-          v-if="job.status === 'successful'"
-          href="#"
-          @click="$emit('selected', job.jobID)"
-          >view results</a
-        >
-      </li>
-      <div v-if="loadingJobs">Updating Jobs...</div>
-    </ul>
+      <section>
+        <h4>Jobs</h4>
 
-    <h2>Execute</h2>
-    <form>
-      <div v-for="(input, key) in process.inputs" class="inputs">
-        <label :title="input.description" :for="`input_${key}`"
-          >{{ input.title }}:</label
-        >
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="col-4">Start Time</th>
+              <th scope="col" class="col-3">Status</th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-if="jobs?.length">
+              <tr v-for="job in jobs" :key="job.jobID">
+                <td class="time">
+                  {{ new Date(job.job_start_datetime).toLocaleString() }}
+                </td>
+                <td>
+                  <span
+                    :class="{
+                      status: true,
+                      'text-bg-info':
+                        job.status !== 'successful' && job.status !== 'failed',
+                      'text-bg-success': job.status === 'successful',
+                      'text-bg-danger': job.status === 'failed',
+                    }"
+                  >
+                    {{ job.status }}
+                  </span>
+                </td>
+                <td>
+                  <span v-if="job.status === 'failed'" class="text-danger">
+                    {{ job.message }}
+                  </span>
+                  <a
+                    v-if="job.status === 'successful'"
+                    href="#"
+                    @click="$emit('selected', job.jobID)"
+                  >
+                    View results
+                  </a>
+                </td>
+              </tr>
+            </template>
 
-        <!-- 
+            <tr v-else-if="loadingJobs" class="placeholder-glow" aria-hidden>
+              <td><span class="placeholder d-block" /></td>
+              <td><span class="placeholder d-block" /></td>
+              <td><span class="placeholder d-block" /></td>
+            </tr>
+
+            <tr v-else>
+              <td colspan="3" class="text-black-50">No jobs yet</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div v-if="jobs?.length && loadingJobs" class="loader text-black-50">
+          <span class="spinner-border spinner-border-sm"></span>
+          Updating Jobs...
+        </div>
+      </section>
+
+      <section v-if="process?.inputs">
+        <h4>Execute Job</h4>
+
+        <form class="execution-form">
+          <template v-for="(input, key) in process.inputs">
+            <label
+              :title="input.description"
+              :for="`input_${key}`"
+              :key="`label_${key}`"
+            >
+              {{ input.title }}:
+            </label>
+
+            <!-- 
 
           [
             {
-              "title": "String",
+              "title": "a",
               "description": "A string parameter",
               "schema": {
                 "type": "string", // array | boolean | integer | number | object | string
@@ -156,35 +220,91 @@ export default {
 
 
          -->
-        <input
-          v-if="input.schema.type === 'string'"
-          :id="`input_${key}`"
-          :name="`input_${key}`"
-          type="text"
-          v-model="inputs[key]"
-        />
 
-        <input
-          v-if="input.schema.type !== 'string'"
-          :id="`input_${key}`"
-          :name="`input_${key}`"
-          type="number"
-          min="3"
-          v-model.number="inputs[key]"
-        />
-      </div>
-      <br />
-      <button type="submit" @click="execute">Run job</button>
-    </form>
+            <input
+              v-if="input.schema.type === 'string'"
+              class="form-control"
+              :id="`input_${key}`"
+              :name="`input_${key}`"
+              type="text"
+              v-model="inputs[key]"
+              required
+              :key="`input_${key}`"
+            />
+            <input
+              v-else
+              class="form-control"
+              :id="`input_${key}`"
+              :name="`input_${key}`"
+              type="number"
+              min="3"
+              v-model.number="inputs[key]"
+              required
+              :key="`input_${key}`"
+            />
+          </template>
+
+          <button
+            class="btn btn-primary btn-sm"
+            type="submit"
+            @click="execute"
+            :disabled="
+              !Object.entries(inputs).filter(([, value]) => Boolean(value))
+                .length
+            "
+          >
+            Run job
+          </button>
+        </form>
+      </section>
+    </template>
   </div>
-
-  <div v-else>Loading...</div>
 </template>
 
 <style lang="scss" scoped>
-.inputs label {
-  min-width: 9em;
+.process-header {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.process-header > * {
+  margin: 0;
+}
+
+section:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.execution-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.execution-form label {
   text-align: right;
-  margin-bottom: 1em;
+}
+
+.execution-form button {
+  grid-column: 2;
+}
+
+.time {
+  white-space: nowrap;
+}
+
+.status {
+  padding: 0.1em 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
 }
 </style>

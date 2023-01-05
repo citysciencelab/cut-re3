@@ -33,18 +33,12 @@ const actions = {
     commit("setProcess", response);
   },
 
-  // http://localhost:3000/geoserver/wtf/ows?service=WFS&version=1.0.0&request=GetFeature&srsName=EPSG:25832&bbox=536167.2010231115,5910666.053510997,586252.7989768885,5954533.946489003,EPSG:25832&typeName=wtf:results_XS
-
-  // works http://localhost:3000/geoserver/wtf/ows?service=WFS&version=1.0.0&request=GetFeature&srsName=EPSG:25832&bbox=536167.2010231115,5910666.053510997,586252.7989768885,5954533.946489003,EPSG:25832&typeName=wtf:results_XS
-  //   not http://localhost:3000/geoserver/wtf/ows?service=WFS?service=WFS&version=1.0.0&request=GetFeature&srsName=EPSG:25832&bbox=536167.2010231115,5910666.053510997,586252.7989768885,5954533.946489003,EPSG:25832&typeName=wtf:results_XS
-
   async addLayerToStore({ dispatch }) {
     const wfsLayer = new WFSLayer({
       styleId: "defaultMapMarkerPoint",
       id: "999999",
       name: "TestLayer",
       url: "http://localhost:3000/geoserver/wtf/ows",
-      // url: "http://localhost:3000/geoserver/wtf/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=wtf%3Aresults_XS&maxFeatures=50&outputFormat=application%2Fjson",
       typ: "WFS",
       featureType: "wtf:results_XS",
       format: "application/json",
