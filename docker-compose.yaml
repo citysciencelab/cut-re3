@@ -52,3 +52,5 @@ services:
     build: test-model-server/.
     ports:
       - "5001:5000"
+    platform:
+      "linux/amd64"

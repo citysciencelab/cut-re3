@@ -1,4 +1,9 @@
-FROM python:3.8-slim-buster
+# FROM python:3.8-slim-buster
+FROM osgeo/gdal
+
+RUN apt update && apt upgrade -y
+RUN apt install -qq -y --no-install-recommends python3-pip
+RUN apt clean
 
 WORKDIR /app
 
