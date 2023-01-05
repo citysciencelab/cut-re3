@@ -1,7 +1,6 @@
 import geopandas as gpd
 import requests
 import config
-import re
 from zipfile import ZipFile
 import os
 
@@ -12,7 +11,7 @@ class Geoserver:
 
   def create_workspace(self, workspace):
     response = requests.get(
-      f"http://geoserver:8080/geoserver/rest/workspaces/{workspace}.json?quietOnNotFound=True",
+      f"{config.geoserver_workspaces_url}/{workspace}.json?quietOnNotFound=True",
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
       headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
     )
@@ -21,7 +20,7 @@ class Geoserver:
       return
 
     response = requests.post(
-      "http://geoserver:8080/geoserver/rest/workspaces",
+      config.geoserver_workspaces_url,
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
       data    = f"<workspace><name>{workspace}</name></workspace>",
       headers = {'Content-type': 'text/xml', 'Accept': '*/*'}
@@ -41,23 +40,20 @@ class Geoserver:
           f"{path}/{store_name}.{appendix}",
           arcname=f"{store_name}.{appendix}"
         )
-
     file = open(f"{path}/{store_name}.zip", 'rb')
 
     response = requests.put(
-      f"http://geoserver:8080/geoserver/rest/workspaces/{workspace}/datastores/{store_name}/file.shp",
+      f"{config.geoserver_workspaces_url}/{workspace}/datastores/{store_name}/file.shp",
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
       files   = {'file': file},
       headers = {'Content-type': 'application/zip'}
     )
+
     appendices.append('zip')
     for appendix in appendices:
       os.remove(f"{path}/{store_name}.{appendix}")
 
     return response.ok
-
-  def create_layer(self):
-    pass
 
   def save(self, data, workspace):
     print(f"Storing data to geoserver", flush=True)
@@ -81,9 +77,6 @@ class Geoserver:
     if success == False:
       raise f"Could not create store."
 
-    success = self.create_layer(
-
-    )
     # for each process we need to create an own workspace
     # or even for each job (not sure)
     # 1. create a workspace
@@ -95,11 +88,3 @@ class Geoserver:
     # .   - Basic resource info (name, title, abstract)
     # - plus some Layer Settings like WMS (e.g. polygon)
 
-  def layers(self):
-    username = "admin"
-    password = "password"
-    url = "http://geoserver:8080/geoserver/rest/layers.json"
-    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
-    response = requests.get(url, auth=(username, password), headers=headers)
-    return response.json()

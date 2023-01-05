@@ -16,7 +16,8 @@ def index(page):
 
 @jobs.route('/<path:job_id>/results', methods = ['GET'])
 def results(job_id=None):
-  with open("data/results_XS.geojson") as f:
+  # TODO
+  with open("data/job_id_123456/results_XS.geojson") as f:
       results = f.read()
   return Response(results, mimetype='application/json')
 
@@ -35,7 +36,6 @@ def show(job_id=None):
 def delete(job_id=None):
   job = Job(job_id)
   job.delete()
-  result = {"error": "not implemented"}
   return Response(json.dumps(result), mimetype='application/json')
 
 @jobs.errorhandler(404)

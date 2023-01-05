@@ -12,12 +12,14 @@ For convenience there is still some documentation below.
 
 ### GET api/jobs
 Example payload:
+```
 {
-    "limit": 15,
-    "page": 2,
-    "processID": ["model1", "model2"],
-    "status": ["running", "successful"]
+    "limit"     : 15,
+    "page"      : 2,
+    "processID" : ["model1", "model2"],
+    "status"    : ["running", "successful"]
 }
+```
 
 Default limit = 10
 Payload may also be empty.
@@ -27,8 +29,10 @@ We have two DB users:
 - the privileged POSTGRES_USER user configured in geoserver/configs/geoserver
 - the user used by the API with privileges on the jobs table (e.g. see api/initializers/db/create_db_user.sh). Its credentials are configured in docker-compose.yml.
 
+```
 docker-compose exec postgis bash
 psql -U <username> -d <db_name>
+```
 
 ## Environment Variables
 |   Variable    | Default value | Description |
