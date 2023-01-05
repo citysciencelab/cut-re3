@@ -52,6 +52,8 @@ services:
       - ./geoserver/data/geoserver:/opt/geoserver/data_dir
     env_file:
       - ./geoserver/configs/geoserver
+    platform:
+      "linux/amd64"
 
   postgis:
     image: postgis/postgis:14-3.3
@@ -60,3 +62,5 @@ services:
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
       - ./geoserver/configs/postgis
+    platform:
+      "linux/amd64"
