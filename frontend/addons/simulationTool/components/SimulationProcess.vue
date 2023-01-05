@@ -220,7 +220,6 @@ export default {
 
 
          -->
-
             <input
               v-if="input.schema.type === 'string'"
               class="form-control"
