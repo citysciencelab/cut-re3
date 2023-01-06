@@ -25,7 +25,7 @@ export default {
     updateExecutionValue(key, value) {
       Vue.set(this.executionValues, key, value);
     },
-    resetExecutionValues(newInputsConfig) {
+    resetExecutionValues(newInputsConfig = this.inputsConfig) {
       this.executionValues = {};
       Object.entries(newInputsConfig).forEach(([key, input]) => {
         if (input.schema.type === "array") {
@@ -51,6 +51,7 @@ export default {
           }
         ).then((res) => res.json());
 
+        this.resetExecutionValues();
         this.$emit("executed");
       }
     },
