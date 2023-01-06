@@ -4,6 +4,7 @@ import SimulationPagination from "./SimulationPagination.vue";
 export default {
   name: "SimulationProcessJobsTable",
   props: ["processId", "jobs", "loadingJobs"],
+  emits: ["selected"],
   components: { SimulationPagination },
   data() {
     return {
@@ -59,7 +60,13 @@ export default {
               <span v-if="job.status === 'failed'" class="text-danger">
                 {{ job.message }}
               </span>
-              <a v-if="job.status === 'successful'" href="#"> View results </a>
+              <a
+                v-if="job.status === 'successful'"
+                href="#"
+                @click="$emit('selected', job.jobID)"
+              >
+                View results
+              </a>
             </td>
           </tr>
         </template>

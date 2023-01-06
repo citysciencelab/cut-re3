@@ -3,6 +3,7 @@ import { mapGetters, mapActions, mapMutations } from "vuex";
 import ToolTemplate from "../../../src/modules/tools/ToolTemplate.vue";
 import SimulationProcesses from "./SimulationProcesses.vue";
 import SimulationProcess from "./SimulationProcess.vue";
+import SimulationProcessJob from "./SimulationProcessJob.vue";
 import actions from "../store/actionsSimulationTool";
 import getters from "../store/gettersSimulationTool";
 import mutations from "../store/mutationsSimulationTool";
@@ -11,8 +12,9 @@ export default {
   name: "SimulationTool",
   components: {
     ToolTemplate,
-    SimulationProcess,
     SimulationProcesses,
+    SimulationProcess,
+    SimulationProcessJob,
   },
   data() {
     return {};
@@ -44,7 +46,10 @@ export default {
   methods: {
     ...mapMutations("Tools/SimulationTool", Object.keys(mutations)),
     ...mapActions("Tools/SimulationTool", Object.keys(actions)),
-
+    /**
+     * Selects a process by id
+     * @returns {void}
+     */
     selectProcess(id) {
       if (typeof id === "string") {
         this.setSelectedProcessId(id);
@@ -54,7 +59,21 @@ export default {
         this.setMode("processes");
       }
     },
+    /**
+     * Selects a job by id
+     * @returns {void}
+     */
+    selectJob(id) {
+      this.setSelectedJobId(typeof id === "string" ? id : null);
 
+      if (typeof id === "string") {
+        this.setMode("job");
+      } else if (this.selectedProcessId) {
+        this.setMode("process");
+      } else {
+        this.setMode("processes");
+      }
+    },
     /**
      * Closes this tool window by setting active to false
      * @returns {void}
@@ -96,7 +115,14 @@ export default {
         <SimulationProcess
           v-if="mode === 'process'"
           :process-id="selectedProcessId"
+          @selected="selectJob"
           @close="selectProcess"
+        />
+
+        <SimulationProcessJob
+          v-if="mode === 'job'"
+          :job-id="selectedJobId"
+          @close="selectJob"
         />
       </div>
     </template>

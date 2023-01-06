@@ -2,7 +2,9 @@
  * User type definition
  * @typedef {object} StoryTellingToolState
  * @property {string} id the ID of the story telling tool
+ * @property {string} mode the current view: 'processes', 'process', 'job' or 'map'
  * @property {number} count A test count
+ * @property {string} selectedJobId the selected job id
  * @property {boolean} active if true, the story telling tool will be rendered
  * @property {string} name displayed as title (config-param)
  * @property {string} glyphicon icon next to title (config-param)
@@ -16,9 +18,10 @@
  */
 const state = {
   id: "simulationTool",
-  mode: "processes", // 'processes' | 'process' | 'map'
+  mode: "processes", // 'processes' | 'process' | 'job' | 'map'
   processes: null,
   selectedProcessId: null,
+  selectedJobId: null,
   // defaults for config.json parameters
   active: false,
   name: "Sim Tool",

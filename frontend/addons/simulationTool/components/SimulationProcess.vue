@@ -5,7 +5,7 @@ import SimulationProcessJobExecution from "./SimulationProcessJobExecution.vue";
 export default {
   name: "SimulationProcess",
   props: ["processId"],
-  emits: ["close"],
+  emits: ["selected", "close"],
   components: { SimulationProcessJobsTable, SimulationProcessJobExecution },
   data() {
     return {
@@ -145,6 +145,7 @@ export default {
         :processId="processId"
         :jobs="jobs"
         :loadingJobs="loadingJobs"
+        v-on="$listeners"
       />
 
       <SimulationProcessJobExecution
