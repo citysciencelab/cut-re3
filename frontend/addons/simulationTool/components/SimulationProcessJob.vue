@@ -1,4 +1,6 @@
 <script>
+import Chart from "chart.js";
+
 export default {
   name: "SimulationProcessJob",
   props: ["jobId"],
@@ -7,7 +9,16 @@ export default {
     return {
       job: null,
       jobDetails: null,
+      chart: null,
+      chartType: "line",
+      // prettier-ignore
+      colors: ["red", "pink", "magenta", "purple", "lavender", "blue", "teal", "turquoise", "green", "olive", "greenyellow", "yellow", "orange", "brown"],
     };
+  },
+  watch: {
+    chartType() {
+      this.renderChart();
+    },
   },
   methods: {
     async fetchJob(jobId) {
@@ -32,6 +43,69 @@ export default {
       this.jobDetails = jobGeoJSON?.features.map(
         ({ properties }) => properties
       );
+
+      this.renderChart();
+    },
+    renderChart() {
+      const labels = new Set();
+      const speedPerAgent = {};
+
+      for (const data of this.jobDetails) {
+        if (this.chartType === "bar") {
+          // Get the average speed of the agents
+          labels.add(data.AgentID);
+
+          const agentSpeed = speedPerAgent[data.AgentID] || [];
+          speedPerAgent[data.AgentID] = [...agentSpeed, data.Geschwindigkeit];
+        } else {
+          // Get the speed of agents per timestep
+          labels.add(data.Step);
+
+          const agentSpeed = speedPerAgent[data.AgentID] || [];
+          agentSpeed[data.Step] = data.Geschwindigkeit;
+          speedPerAgent[data.AgentID] = agentSpeed;
+        }
+      }
+
+      const datasets =
+        this.chartType === "bar"
+          ? [
+              {
+                label: "Average Agent Speed",
+                data: Object.values(speedPerAgent).map(
+                  (data) =>
+                    data.reduce((sum, value) => sum + value, 0) / data.length
+                ),
+                backgroundColor: this.colors[0],
+              },
+            ]
+          : Object.entries(speedPerAgent).map(([label, data], index) => ({
+              label,
+              data,
+              fill: false,
+              borderColor: this.colors[index % this.colors.length],
+            }));
+
+      // Remove previous chart
+      if (this.chart) {
+        this.chart.destroy();
+      }
+
+      // Render the new chart
+      const context = this.$refs.chart.getContext("2d");
+      this.chart = new Chart(context, {
+        type: this.chartType,
+        data: {
+          labels: [...labels],
+          datasets,
+        },
+        options: {
+          legend: {
+            display: false,
+          },
+        },
+      });
+    },
   },
   mounted() {
     this.fetchJob(this.jobId);
@@ -86,6 +160,24 @@ export default {
     </div>
 
     <div class="job-content" v-if="job">
+      <ul class="nav nav-pills nav-fill">
+        <li
+          class="nav-item"
+          v-for="type in ['line', 'radar', 'bar']"
+          :key="type"
+        >
+          <a
+            :class="{ 'nav-link': true, active: chartType === type }"
+            :aria-current="chartType === type ? 'page' : false"
+            href="#"
+            @click.prevent="chartType = type"
+          >
+            {{ type.charAt(0).toUpperCase() + type.slice(1) }} Chart
+          </a>
+        </li>
+      </ul>
+
+      <canvas ref="chart" width="400" height="300"></canvas>
     </div>
   </div>
 </template>
