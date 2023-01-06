@@ -1,10 +1,18 @@
 <script>
+import SimulationProcessJobsTable from "./SimulationProcessJobsTable.vue";
+
 export default {
   name: "SimulationProcess",
   props: ["processId"],
   emits: ["close"],
+  components: { SimulationProcessJobsTable },
   data() {
-    return { process: null, jobs: null, inputs: {}, loadingJobs: false };
+    return {
+      process: null,
+      jobs: null,
+      loadingJobs: false,
+      inputs: {},
+    };
   },
   methods: {
     async fetchProcess(processId) {
@@ -75,65 +83,12 @@ export default {
       </p>
     </div>
 
-    <template v-if="process">
-      <section>
-        <h4>Jobs</h4>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col" class="col-4">Start Time</th>
-              <th scope="col" class="col-3">Status</th>
-              <th scope="col">Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-if="jobs?.length">
-              <tr v-for="job in jobs" :key="job.jobID">
-                <td class="time">
-                  {{ new Date(job.job_start_datetime).toLocaleString() }}
-                </td>
-                <td>
-                  <span
-                    :class="{
-                      status: true,
-                      'text-bg-info':
-                        job.status !== 'successful' && job.status !== 'failed',
-                      'text-bg-success': job.status === 'successful',
-                      'text-bg-danger': job.status === 'failed',
-                    }"
-                  >
-                    {{ job.status }}
-                  </span>
-                </td>
-                <td>
-                  <span v-if="job.status === 'failed'" class="text-danger">
-                    {{ job.message }}
-                  </span>
-                  <a v-if="job.status === 'successful'" href="#">
-                    View results
-                  </a>
-                </td>
-              </tr>
-            </template>
-
-            <tr v-else-if="loadingJobs" class="placeholder-glow" aria-hidden>
-              <td><span class="placeholder d-block" /></td>
-              <td><span class="placeholder d-block" /></td>
-              <td><span class="placeholder d-block" /></td>
-            </tr>
-
-            <tr v-else>
-              <td colspan="3" class="text-black-50">No jobs yet</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div v-if="jobs?.length && loadingJobs" class="loader text-black-50">
-          <span class="spinner-border spinner-border-sm"></span>
-          Updating Jobs...
-        </div>
-      </section>
+    <div class="process-content" v-if="process">
+      <SimulationProcessJobsTable
+        :processId="processId"
+        :jobs="jobs"
+        :loadingJobs="loadingJobs"
+      />
 
       <section v-if="process?.inputs">
         <h4>Execute Job</h4>
@@ -252,7 +207,7 @@ export default {
           </button>
         </form>
       </section>
-    </template>
+    </div>
   </div>
 </template>
 
@@ -282,8 +237,9 @@ export default {
   margin: 0;
 }
 
-section:not(:last-child) {
-  margin-bottom: 2rem;
+.process-content {
+  display: grid;
+  gap: 2rem;
 }
 
 .execution-form {
@@ -299,21 +255,5 @@ section:not(:last-child) {
 
 .execution-form button {
   grid-column: 2;
-}
-
-.time {
-  white-space: nowrap;
-}
-
-.status {
-  padding: 0.1em 0.5em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.loader {
-  display: flex;
-  align-items: center;
-  column-gap: 0.5em;
 }
 </style>
