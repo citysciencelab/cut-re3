@@ -1,18 +1,89 @@
 <script>
 import SimulationProcessJobsTable from "./SimulationProcessJobsTable.vue";
+import SimulationProcessJobExecution from "./SimulationProcessJobExecution.vue";
 
 export default {
   name: "SimulationProcess",
   props: ["processId"],
   emits: ["close"],
-  components: { SimulationProcessJobsTable },
+  components: { SimulationProcessJobsTable, SimulationProcessJobExecution },
   data() {
     return {
       process: null,
       jobs: null,
       loadingJobs: false,
-      inputs: {},
     };
+  },
+  computed: {
+    inputsConfig() {
+      // TODO: remove dummy data
+      /**
+      return {
+        string: {
+          title: "String",
+          description: "A string parameter",
+          schema: {
+            type: "string", // array | boolean | integer | number | object | string
+            minLength: 1,
+            maxLength: 10,
+            pattern: "[A-Za-z]",
+            default: "hello",
+          },
+          minOccurs: 0,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+        boolean: {
+          title: "Boolean",
+          description: "A boolean parameter",
+          schema: {
+            type: "boolean",
+            default: 456,
+          },
+          minOccurs: 1,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+        number: {
+          title: "Number",
+          description: "A number parameter",
+          schema: {
+            type: "numeric",
+            minimum: 2,
+            maximum: 3,
+            default: 456,
+          },
+          minOccurs: 1,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+        array: {
+          title: "Array of numbers",
+          description: "An array parameter",
+          schema: {
+            type: "array",
+            minItems: 0,
+            maxItems: 3,
+            items: {
+              type: "numeric",
+            },
+          },
+          minOccurs: 1,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+      };
+      */
+      return this.process?.inputs || {};
+    },
   },
   methods: {
     async fetchProcess(processId) {
@@ -37,20 +108,6 @@ export default {
       ) {
         setTimeout(() => this.fetchJobs(processId), 5000);
       }
-    },
-    async execute(event) {
-      event.preventDefault();
-      const processId = this.process.id;
-      const body = { mode: "async", inputs: this.inputs };
-      await fetch(
-        `http://localhost:3000/api/processes/${processId}/execution`,
-        {
-          method: "POST",
-          body: JSON.stringify(body),
-          headers: { "Content-Type": "application/json" },
-        }
-      ).then((res) => res.json());
-      this.fetchJobs(processId);
     },
   },
   mounted() {
@@ -90,123 +147,11 @@ export default {
         :loadingJobs="loadingJobs"
       />
 
-      <section v-if="process?.inputs">
-        <h4>Execute Job</h4>
-
-        <form class="execution-form">
-          <template v-for="(input, key) in process.inputs">
-            <label
-              :title="input.description"
-              :for="`input_${key}`"
-              :key="`label_${key}`"
-            >
-              {{ input.title }}:
-            </label>
-
-            <!-- 
-
-          [
-            {
-              "title": "String",
-              "description": "A string parameter",
-              "schema": {
-                "type": "string", // array | boolean | integer | number | object | string
-                "maxLength": 1,
-                "minLength": 2,
-                "pattern": "",
-                "default": "hello"
-              },
-              "minOccurs": 0,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            },
-            {
-              "title": "Boolean",
-              "description": "A boolean parameter",
-              "schema": {
-                "type": "boolean",
-                "default": 456
-              },
-              "minOccurs": 1,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            },
-            {
-              "title": "Number",
-              "description": "A number parameter",
-              "schema": {
-                "type": "number",
-                "minimum": 2,
-                "maximum": 3,
-                "default": 456
-              },
-              "minOccurs": 1,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            },
-            {
-              "title": "Array of numbers",
-              "description": "An array parameter",
-              "schema": {
-                "type": "array",
-                "minItems": 0,
-                "maxItems": 3,
-                "items": {
-                  "type": "number"
-                }
-              },
-              "minOccurs": 1,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            }
-          ]
-
-
-         -->
-            <input
-              v-if="input.schema.type === 'string'"
-              class="form-control"
-              :id="`input_${key}`"
-              :name="`input_${key}`"
-              type="text"
-              v-model="inputs[key]"
-              required
-              :key="`input_${key}`"
-            />
-            <input
-              v-else
-              class="form-control"
-              :id="`input_${key}`"
-              :name="`input_${key}`"
-              type="number"
-              min="3"
-              v-model.number="inputs[key]"
-              required
-              :key="`input_${key}`"
-            />
-          </template>
-
-          <button
-            class="btn btn-primary btn-sm"
-            type="submit"
-            @click="execute"
-            :disabled="
-              !Object.entries(inputs).filter(([, value]) => Boolean(value))
-                .length
-            "
-          >
-            Run job
-          </button>
-        </form>
-      </section>
+      <SimulationProcessJobExecution
+        :processId="processId"
+        :inputsConfig="inputsConfig"
+        @executed="fetchJobs(processId)"
+      />
     </div>
   </div>
 </template>
@@ -240,20 +185,5 @@ export default {
 .process-content {
   display: grid;
   gap: 2rem;
-}
-
-.execution-form {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.execution-form label {
-  text-align: right;
-}
-
-.execution-form button {
-  grid-column: 2;
 }
 </style>
