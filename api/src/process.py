@@ -6,6 +6,8 @@ from src.geoserver import Geoserver
 from multiprocessing import dummy
 from datetime import datetime
 from src.processes import all_processes
+from src.errors import InvalidUsage
+
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -22,7 +24,7 @@ class Process():
       if process['id'] == self.process_id:
         return process
 
-    raise InvalidParamsException("Process ID unknown!")
+    raise InvalidUsage("Process ID unknown! Please choose a valid model name as process ID.")
 
   def execute(self, parameters):
     self.validate_params(parameters)
@@ -74,19 +76,17 @@ class Process():
     geoserver.cleanup()
 
     job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    job.status = JobStatus.successful.value
+    if geoserver.errors:
+      job.status = JobStatus.failed.value
+    else:
+      job.status = JobStatus.successful.value
     job.progress = 100
     job.save()
-
-    # TODO
-    # read the results from there when delivering jobs result in jobs.py
-    # wait and check result: update job.progress
 
   def validate_params(self, params={}):
     for input in self.process['inputs'].keys():
       if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
-        # TODO should this be a bad request?
-        raise InvalidParamsException(f'Cannot process without parameter {input}')
+        raise InvalidUsage(f'Cannot process without parameter {input}')
 
   def to_json(self):
     return json.dumps(self, default=lambda o: o.__dict__,
@@ -97,6 +97,3 @@ class Process():
 
   def __repr__(self):
     return f'src.process.Process(process_id={self.process_id})'
-
-class InvalidParamsException(Exception):
-  pass
