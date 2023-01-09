@@ -14,13 +14,6 @@ def index(page):
   result = get_jobs(args)
   return Response(json.dumps(result), mimetype='application/json')
 
-@jobs.route('/<path:job_id>/results', methods = ['GET'])
-def results(job_id=None):
-  # TODO
-  with open("data/job_id_123456/results_XS.geojson") as f:
-      results = f.read()
-  return Response(results, mimetype='application/json')
-
 @jobs.route('/<path:job_id>', methods = ['GET'])
 def show(job_id=None):
   job = Job(job_id)

@@ -12,7 +12,6 @@ def convert_data_to_shapefile(path: str, filename: str, shapefile_name: str):
   gdf.to_file(shapefile, driver='ESRI Shapefile')
 
 def archive_data(path: str, store_name: str):
-
   with ZipFile(f"{path}/{store_name}.zip", mode="x") as archive:
     for appendix in APPENDICES:
       archive.write(
