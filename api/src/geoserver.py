@@ -1,6 +1,6 @@
 import requests
 import config
-from src.data_helper import convert_data_to_shapefile, archive_data
+from src.data_helper import RESULTS_FILENAME, convert_data_to_shapefile, archive_data, cleanup_unused_files
 import os
 import json
 import logging
@@ -12,6 +12,8 @@ class Geoserver:
   def __init__(self):
     self.workspace = config.geoserver_workspace
     self.errors = []
+    self.path = None
+    self.job_id = None
 
   def create_workspace(self):
     response = requests.get(
@@ -99,11 +101,13 @@ class Geoserver:
     return False
 
   def save_results(self, job_id: str, data: json):
-    path = os.path.join('data', 'geoserver', job_id)
-    os.mkdir(path)
+    self.job_id = job_id
+
+    self.path = os.path.join('data', 'geoserver', job_id)
+    os.mkdir(self.path)
 
     # write geojson data to file path/results.geojson
-    with open(os.path.join(path, "results.geojson"), "x") as file:
+    with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
       file.write(data)
 
     success = self.create_workspace()
@@ -111,8 +115,8 @@ class Geoserver:
       return False
 
     convert_data_to_shapefile(
-      path = path,
-      filename = "results.geojson",
+      path = self.path,
+      filename = RESULTS_FILENAME,
       shapefile_name = job_id
     )
 
@@ -125,7 +129,7 @@ class Geoserver:
       return False
 
     path_to_archive = archive_data(
-      path = path,
+      path = self.path,
       store_name = store_name
     )
 
@@ -136,4 +140,7 @@ class Geoserver:
     return success
 
   def cleanup(self):
-    pass
+    cleanup_unused_files(
+      path          = self.path,
+      base_filename = self.job_id
+    )
