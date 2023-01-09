@@ -46,6 +46,45 @@ class Geoserver:
 
     return response.ok
 
+  def save_results(self, job_id: str, data: json):
+    self.job_id = job_id
+
+    self.path = os.path.join('data', 'geoserver', job_id)
+    os.mkdir(self.path)
+
+    # write geojson data to file path/results.geojson
+    with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
+      file.write(data)
+
+    success = self.create_workspace()
+    if not success:
+      return False
+
+    convert_data_to_shapefile(
+      path = self.path,
+      filename = RESULTS_FILENAME,
+      shapefile_name = job_id
+    )
+
+    store_name = job_id
+
+    success = self.push_shapefile_directory(
+      store_name = store_name
+    )
+    if not success:
+      return False
+
+    path_to_archive = archive_data(
+      path = self.path,
+      store_name = store_name
+    )
+
+    success = self.push_data_to_store(
+      store_name = store_name,
+      path_to_archive = path_to_archive
+    )
+    return success
+
   def push_shapefile_directory(self, store_name: str):
     xml_config = f"""
     <dataStore>
@@ -99,45 +138,6 @@ class Geoserver:
 
     logging.error(f" --> Could not add data to store {store_name}! {response.status_code}: {response.reason}")
     return False
-
-  def save_results(self, job_id: str, data: json):
-    self.job_id = job_id
-
-    self.path = os.path.join('data', 'geoserver', job_id)
-    os.mkdir(self.path)
-
-    # write geojson data to file path/results.geojson
-    with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
-      file.write(data)
-
-    success = self.create_workspace()
-    if not success:
-      return False
-
-    convert_data_to_shapefile(
-      path = self.path,
-      filename = RESULTS_FILENAME,
-      shapefile_name = job_id
-    )
-
-    store_name = job_id
-
-    success = self.push_shapefile_directory(
-      store_name = store_name
-    )
-    if not success:
-      return False
-
-    path_to_archive = archive_data(
-      path = self.path,
-      store_name = store_name
-    )
-
-    success = self.push_data_to_store(
-      store_name = store_name,
-      path_to_archive = path_to_archive
-    )
-    return success
 
   def cleanup(self):
     cleanup_unused_files(
