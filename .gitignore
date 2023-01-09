@@ -9,6 +9,7 @@ processes-api/tmp/*
 api/__pycache__/*
 api/*/__pycache__/*
 api/*/*/__pycache__/*
+api/data/geoserver/*
 
 */node_modules/
 db/*

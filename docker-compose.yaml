@@ -49,7 +49,7 @@ services:
     depends_on:
       - postgis
     volumes:
-      - ./geoserver/data/geoserver:/opt/geoserver/data_dir
+      - ./api/data/geoserver:/opt/geoserver/data_dir
     env_file:
       - ./geoserver/configs/geoserver
     platform:
