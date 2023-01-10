@@ -24,13 +24,16 @@ class Process():
       if process['id'] == self.process_id:
         return process
 
-    raise InvalidUsage("Process ID unknown! Please choose a valid model name as process ID.")
+    raise InvalidUsage("Process ID unknown! Please choose a valid model name as process ID. Check /api/processes endpoint.")
 
   def execute(self, parameters):
     self.validate_params(parameters)
 
+    logging.info(f" --> Executing {self.process_id} with params {parameters}")
+
     job = Job(job_id=None, process_id=self.process_id, parameters=parameters)
-    logging.info(f"Executing {self.process_id} with params {parameters}")
+    job.status = JobStatus.accepted.value
+    job.save()
 
     _process = dummy.Process(
             target=self._execute_in_backend,
@@ -49,10 +52,8 @@ class Process():
     job.status = JobStatus.running.value
     job.save()
 
-    logging.info(f' --> Execution started in backend with params {parameters}')
     time.sleep(3)
-    i = 3
-    print(f'******* still running', flush=True)
+    logging.info(f' --> Job {job.job_id} started running at {job.started}')
 
     # response = requests.get(
     #   config.dummy_model_url,
@@ -69,9 +70,9 @@ class Process():
       )
 
     if geoserver.errors:
-      logging.error(f" --> Could not store data to geoserver: {', '.join(geoserver.errors)}")
+      logging.error(f" --> Could not store results for job {job.job_id} to geoserver: {', '.join(geoserver.errors)}")
     else:
-      logging.info(f" --> Successfully stored results to geoserver.")
+      logging.info(f" --> Successfully stored results for job {job.job_id} to geoserver.")
 
     geoserver.cleanup()
 

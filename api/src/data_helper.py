@@ -23,4 +23,3 @@ def archive_data(path: str, store_name: str):
 def cleanup_unused_files(path, base_filename):
   for appendix in APPENDICES:
     os.remove(os.path.join(path, f"{base_filename}.{appendix}"))
-  os.remove(os.path.join(path, RESULTS_FILENAME))

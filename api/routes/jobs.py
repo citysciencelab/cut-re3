@@ -25,11 +25,17 @@ def show(job_id=None):
 
   return Response(json.dumps(result), mimetype='application/json')
 
-@jobs.route('/<path:job_id>', methods = ['DELETE'])
-def delete(job_id=None):
+@jobs.route('/<path:job_id>/results', methods = ['GET'])
+def results(job_id=None):
   job = Job(job_id)
-  job.delete()
-  return Response(json.dumps(result), mimetype='application/json')
+
+  if job.errors:
+    # TODO: like this?
+    result = {"errors": job.errors}
+  else:
+    result = job.results_as_geojson()
+
+  return Response(result, mimetype='application/json')
 
 @jobs.errorhandler(404)
 def page_not_found(e):

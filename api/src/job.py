@@ -4,6 +4,7 @@ import json
 import config
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
+import logging
 
 class Job:
   DISPLAYED_ATTRIBUTES = [
@@ -49,7 +50,6 @@ class Job:
   def _init_from_dict(self, data):
     self.job_id     = data['job_id']
     self.process_id = data['process_id']
-    self.type       = "process"
     self.status     = data['status']
     self.message    = data['message']
     self.created    = data['created']
@@ -64,9 +64,9 @@ class Job:
     self.status    = JobStatus.accepted.value
     self.progress  = 0
     self.message   = ""
-    self.created   = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.created   = datetime.utcnow()
     self.started   = None
-    self.updated   = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.updated   = datetime.utcnow()
     self.finished  = None
 
     query = """
@@ -77,8 +77,9 @@ class Job:
     """
     db_handler = DBHandler()
     with db_handler as db:
-      # db.execute(query, self._to_dict())
       db.run_query(query, query_params=self._to_dict())
+
+    logging.info(f" --> Job {self.job_id} for {self.process_id} created.")
 
   def _to_dict(self):
     return {
@@ -119,22 +120,27 @@ class Job:
         job_dict[attr] = job_dict[attr].strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
     if self.status in (
-      JobStatus.successful.value, JobStatus.running.value, JobStatus.accepted.value):
-        # TODO
-        job_result_url = f"{config.server_url}/jobs/{self.job_id}/results.geojson"  # noqa
+      JobStatus.successful.value,
+      JobStatus.running.value,
+      JobStatus.accepted.value
+    ):
+
+        job_result_url = f"{config.server_url}/api/jobs/{self.job_id}/results"
 
         job_dict['links'] = [{
             'href': job_result_url,
             'rel': 'service',
             'type': 'application/json',
             'hreflang': 'en',
-            'title': f'results of job {self.job_id} as JSON'
+            'title': f'Results of job {self.job_id} as geojson'
         }]
 
     return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}
 
-  def delete():
-    raise Exception(f'******* Deleting job not implemented!')
+  def results_as_geojson(self):
+    with open(f"data/geoserver/{self.job_id}/results.geojson") as f:
+      results = f.read()
+    return results
 
   def __str__(self):
     return f"""
