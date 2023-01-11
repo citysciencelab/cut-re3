@@ -6,9 +6,9 @@ from src.geoserver import Geoserver
 from multiprocessing import dummy
 from datetime import datetime
 from src.processes import all_processes
-import config
+import logging
 
-logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 class Process():
   def __init__(self, process_id=None):
@@ -28,7 +28,7 @@ class Process():
     self.validate_params(parameters)
 
     job = Job(job_id=None, process_id=self.process_id, parameters=parameters)
-    logger.info(f"Executing {self.process_id} with params {parameters}")
+    logging.info(f"Executing {self.process_id} with params {parameters}")
 
     _process = dummy.Process(
             target=self._execute_in_backend,
@@ -47,25 +47,31 @@ class Process():
     job.status = JobStatus.running.value
     job.save()
 
-    print(f'******* execute started in backend with params {parameters}', flush=True)
+    logging.info(f' --> Execution started in backend with params {parameters}')
     time.sleep(3)
     i = 3
     print(f'******* still running', flush=True)
-    time.sleep(3)
-    i += 3
-    print(f'******* still running', flush=True)
+
+    # response = requests.get(
+    #   config.dummy_model_url,
+    #   headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    # )
 
     geoserver = Geoserver()
     with open("data/job_id_123456/results_XS.geojson") as f:
       results = f.read()
-      geoserver.save(
-        data=results,
-        workspace=config.geoserver_workspace
+
+      geoserver.save_results(
+        job_id    = job.job_id,
+        data      = results
       )
 
-    time.sleep(3)
-    i += 3
-    print(f'******* finished', flush=True)
+    if geoserver.errors:
+      logging.error(f" --> Could not store data to geoserver: {', '.join(geoserver.errors)}")
+    else:
+      logging.info(f" --> Successfully stored results to geoserver.")
+
+    geoserver.cleanup()
 
     job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
     job.status = JobStatus.successful.value
@@ -73,7 +79,6 @@ class Process():
     job.save()
 
     # TODO
-    # write results to geocoder
     # read the results from there when delivering jobs result in jobs.py
     # wait and check result: update job.progress
 

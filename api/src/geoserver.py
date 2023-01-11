@@ -1,90 +1,146 @@
-import geopandas as gpd
 import requests
 import config
-from zipfile import ZipFile
+from src.data_helper import RESULTS_FILENAME, convert_data_to_shapefile, archive_data, cleanup_unused_files
 import os
+import json
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 class Geoserver:
 
   def __init__(self):
-    pass
+    self.workspace = config.geoserver_workspace
+    self.errors = []
+    self.path = None
+    self.job_id = None
 
-  def create_workspace(self, workspace):
+  def create_workspace(self):
     response = requests.get(
-      f"{config.geoserver_workspaces_url}/{workspace}.json?quietOnNotFound=True",
+      f"{config.geoserver_workspaces_url}/{self.workspace}.json?quietOnNotFound=True",
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-      headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+      headers = {'Content-type': 'application/json', 'Accept': 'application/json'},
+      timeout = 60
     )
-    if response:
-      print(f"Workspace {workspace} already exists.", flush=True)
-      return
+
+    if response.status_code == 200:
+      logging.info(f" --> Workspace {self.workspace} already exists.")
+      return True
+
+    if response.status_code == 404:
+      logging.info(f" --> Workspace {self.workspace} not found - creating....")
+    else:
+      self.errors.append(f"There was an error retrieving workspace {self.workspace}: {response.status_code}: {response.reason} - {response.url}")
 
     response = requests.post(
       config.geoserver_workspaces_url,
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-      data    = f"<workspace><name>{workspace}</name></workspace>",
+      data    = f"<workspace><name>{self.workspace}</name></workspace>",
       headers = {'Content-type': 'text/xml', 'Accept': '*/*'}
     )
-    return response.ok
 
-  def create_store(self, store_name: str, path: str, filename: str, workspace: str):
-    gdf = gpd.read_file(f"{path}/{filename}")
-
-    shapefile = f"{path}/{store_name}.shp"
-    gdf.to_file(shapefile, driver='ESRI Shapefile')
-    appendices = ["cpg", "dbf", "prj", "shx", "shp"]
-
-    with ZipFile(f"{path}/{store_name}.zip", mode="x") as archive:
-      for appendix in appendices:
-        archive.write(
-          f"{path}/{store_name}.{appendix}",
-          arcname=f"{store_name}.{appendix}"
-        )
-    file = open(f"{path}/{store_name}.zip", 'rb')
-
-    response = requests.put(
-      f"{config.geoserver_workspaces_url}/{workspace}/datastores/{store_name}/file.shp",
-      auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-      files   = {'file': file},
-      headers = {'Content-type': 'application/zip'}
-    )
-
-    appendices.append('zip')
-    for appendix in appendices:
-      os.remove(f"{path}/{store_name}.{appendix}")
+    if response.ok:
+      logging.info(f' --> Created new workspace {self.workspace}.')
+    else:
+      self.errors.append(f"Workspace {self.workspace} could not be created: {response.status_code}: {response.reason}")
 
     return response.ok
 
-  def save(self, data, workspace):
-    print(f"Storing data to geoserver", flush=True)
-    job_id = "job_id_123456"
-    # path = os.path.join('data', base_filename)
-    # os.mkdir(path)
+  def save_results(self, job_id: str, data: json):
+    self.job_id = job_id
 
-    # workspace could be the process name/id
-    workspace = "my_workspace"
-    success = self.create_workspace(workspace)
-    if success == False:
-      raise f"Could not create workspace {workspace}!"
+    self.path = os.path.join('data', 'geoserver', job_id)
+    os.mkdir(self.path)
 
-    success = self.create_store(
-      store_name = "results_XS",
-      path       = f"data/{job_id}",
-      filename =   "results_XS.geojson",
-      workspace =  workspace
+    # write geojson data to file path/results.geojson
+    with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
+      file.write(data)
+
+    success = self.create_workspace()
+    if not success:
+      return False
+
+    convert_data_to_shapefile(
+      path = self.path,
+      filename = RESULTS_FILENAME,
+      shapefile_name = job_id
     )
 
-    if success == False:
-      raise f"Could not create store."
+    store_name = job_id
 
-    # for each process we need to create an own workspace
-    # or even for each job (not sure)
-    # 1. create a workspace
-    # 2. create a store with read_only = True (to avoid Geoserver to use locks on the data)
-    # 3. on the new layer page click publish
-    # 4. For the new layer some settings are mandatory:
+    success = self.push_shapefile_directory(
+      store_name = store_name
+    )
+    if not success:
+      return False
+
+    path_to_archive = archive_data(
+      path = self.path,
+      store_name = store_name
+    )
+
+    success = self.push_data_to_store(
+      store_name = store_name,
+      path_to_archive = path_to_archive
+    )
+    return success
+
+  def push_shapefile_directory(self, store_name: str):
+    xml_config = f"""
+    <dataStore>
+      <name>{store_name}</name>
+      <type>Directory of spatial files (shapefiles)</type>
+      <connectionParameters>
+        <entry key="charset">ISO-8859-1</entry>
+        <entry key="filetype">shapefile</entry>
+        <entry key="create spatial index">true</entry>
+        <entry key="memory mapped buffer">false</entry>
+        <entry key="timezone">America/New_York</entry>
+        <entry key="enable spatial index">true</entry>
+        <entry key="namespace">http://www.opengeospatial.net/cite</entry>
+        <entry key="cache and reuse memory maps">true</entry>
+        <entry key="url">file:/opt/geoserver/data_dir/{store_name}</entry>
+        <entry key="fstype">shape</entry>
+      </connectionParameters>
+    </dataStore>
+"""
+
+    # TODO: Check the settings, e.g.
     # .   - Coordinate Reference System, e.g. EPSG:4326
     # .   - Bounding Boxes (in UI can be computed automatically from the data)
     # .   - Basic resource info (name, title, abstract)
     # - plus some Layer Settings like WMS (e.g. polygon)
 
+    response = requests.post(
+        f"{config.geoserver_workspaces_url}/{self.workspace}/datastores",
+        auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
+        data   = xml_config,
+        headers = {'Content-type': 'text/xml', 'Accept': '*/*'},
+        timeout = 60 * 1
+      )
+
+    logging.info(f' --> created shapefile directory {store_name}')
+    return response.ok
+
+  def push_data_to_store(self, store_name: str, path_to_archive: str):
+    logging.info(f" --> Storing data {path_to_archive} to geoserver store {store_name}")
+
+    with open(path_to_archive, 'rb') as archive:
+      response = requests.put(
+        f"{config.geoserver_workspaces_url}/{self.workspace}/datastores/{store_name}/file.shp",
+        auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
+        files   = {'file': archive},
+        headers = {'Content-type': 'application/zip'}
+      )
+
+    if response.ok:
+      return True
+
+    logging.error(f" --> Could not add data to store {store_name}! {response.status_code}: {response.reason}")
+    return False
+
+  def cleanup(self):
+    cleanup_unused_files(
+      path          = self.path,
+      base_filename = self.job_id
+    )
