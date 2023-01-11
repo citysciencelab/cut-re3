@@ -1,0 +1,30 @@
+{
+  "jobs": [
+      {
+          "processID": "model1",
+          "jobID": "1fe13ee2-7c90-11ed-b826-0242ac1c0004",
+          "status": "successful",
+          "message": "Job complete",
+          "progress": 100,
+          "parameters": null,
+          "job_start_datetime": "2022-12-15T15:49:57.035869Z",
+          "job_end_datetime": "2022-12-15T15:50:12.181242Z",
+          "links": [
+              {
+                  "href": "http://localhost:3000/api/jobs/1fe13ee2-7c90-11ed-b826-0242ac1c0004/results?f=json",
+                  "rel": "about",
+                  "type": "application/json",
+                  "title": "results of job None as JSON"
+              }
+          ]
+      }
+  ],
+  "links": [
+      {
+          "href": "http://localhost:3000/api/jobs?f=json",
+          "rel": "self",
+          "type": "application/json",
+          "title": "Jobs list as JSON"
+      }
+  ]
+}
