@@ -1,6 +1,7 @@
 import config
 import psycopg2 as db
 from psycopg2.extras import RealDictCursor
+from src.errors import CustomException
 
 import logging
 
@@ -8,17 +9,13 @@ logger = logging.getLogger(__name__)
 
 class DBHandler():
   def __init__(self):
-    try:
-      self.connection = db.connect(
-        database = config.postgres_db,
-        host     = config.postgres_host,
-        user     = config.postgres_user,
-        password = config.postgres_password,
-        port     = config.postgres_port
-      )
-    except (Exception, db.Error) as error:
-      print("Error while connecting to PostgreSQL", error, flush=True)
-      raise error
+    self.connection = db.connect(
+      database = config.postgres_db,
+      host     = config.postgres_host,
+      user     = config.postgres_user,
+      password = config.postgres_password,
+      port     = config.postgres_port
+    )
 
   def run_query(self, query, conditions=[], query_params={}, limit=None, page=None):
     if conditions:

@@ -4,6 +4,7 @@ import json
 import config
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
+from src.errors import InvalidUsage
 import logging
 
 class Job:
@@ -25,7 +26,6 @@ class Job:
     self.started    = None
     self.finished   = None
     self.updated    = None
-    self.errors     = []
 
     if job_id is not None:
       self._init_from_db(job_id)
@@ -45,7 +45,7 @@ class Job:
 
       self._init_from_dict(dict(data))
     else:
-      self.errors.append(f"Job with ID={job_id} not found.")
+      raise InvalidUsage(f"Job with ID={job_id} not found.")
 
   def _init_from_dict(self, data):
     self.job_id     = data['job_id']

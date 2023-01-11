@@ -3,7 +3,6 @@ import geopandas as gpd
 import os
 
 APPENDICES = ["cpg", "dbf", "prj", "shx", "shp"]
-RESULTS_FILENAME = "results.geojson"
 
 def convert_data_to_shapefile(path: str, filename: str, shapefile_name: str):
   gdf = gpd.read_file(f"{path}/{filename}")

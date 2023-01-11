@@ -1,6 +1,7 @@
 import requests
 import config
-from src.data_helper import RESULTS_FILENAME, convert_data_to_shapefile, archive_data, cleanup_unused_files
+from src.data_helper import convert_data_to_shapefile, archive_data, cleanup_unused_files
+from src.errors import GeoserverException
 import os
 import json
 import logging
@@ -8,6 +9,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 class Geoserver:
+
+  RESULTS_FILENAME = "results.geojson"
 
   def __init__(self):
     self.workspace = config.geoserver_workspace
@@ -30,7 +33,9 @@ class Geoserver:
     if response.status_code == 404:
       logging.info(f" --> Workspace {self.workspace} not found - creating....")
     else:
-      self.errors.append(f"There was an error retrieving workspace {self.workspace}: {response.status_code}: {response.reason} - {response.url}")
+      raise GeoserverException(
+        f"There was an error retrieving workspace {self.workspace}: {response.status_code}: {response.reason} - {response.url}"
+      )
 
     response = requests.post(
       config.geoserver_workspaces_url,
@@ -42,31 +47,35 @@ class Geoserver:
     if response.ok:
       logging.info(f' --> Created new workspace {self.workspace}.')
     else:
-      self.errors.append(f"Workspace {self.workspace} could not be created: {response.status_code}: {response.reason}")
-
-    return response.ok
+      raise GeoserverException(f"Workspace {self.workspace} could not be created: {response.status_code}: {response.reason}")
 
   def save_results(self, job_id: str, data: json):
     self.job_id = job_id
+    store_name = job_id
 
     self.path = os.path.join('data', 'geoserver', job_id)
     os.mkdir(self.path)
 
     # write geojson data to file path/results.geojson
-    with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
+    with open(os.path.join(self.path, self.RESULTS_FILENAME), "x") as file:
       file.write(data)
 
-    success = self.create_workspace()
-    if not success:
-      return False
+    self.create_workspace()
 
-    convert_data_to_shapefile(
-      path = self.path,
-      filename = RESULTS_FILENAME,
-      shapefile_name = job_id
-    )
-
-    store_name = job_id
+    try:
+      convert_data_to_shapefile(
+        path = self.path,
+        filename = self.RESULTS_FILENAME,
+        shapefile_name = job_id
+      )
+    except Exception as e:
+      raise GeoserverException(
+        f"Received geojson result file could not be converted to shapefile.",
+        payload={
+          "error": type(e).__name__,
+          "message": e
+        }
+      )
 
     success = self.push_shapefile_directory(
       store_name = store_name

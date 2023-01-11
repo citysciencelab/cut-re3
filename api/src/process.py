@@ -6,7 +6,7 @@ from src.geoserver import Geoserver
 from multiprocessing import dummy
 from datetime import datetime
 from src.processes import all_processes
-from src.errors import InvalidUsage
+from src.errors import InvalidUsage, CustomException
 
 import logging
 
@@ -32,13 +32,12 @@ class Process():
     logging.info(f" --> Executing {self.process_id} with params {parameters}")
 
     job = Job(job_id=None, process_id=self.process_id, parameters=parameters)
-    job.status = JobStatus.accepted.value
     job.save()
 
     _process = dummy.Process(
-            target=self._execute_in_backend,
-            args=([job, parameters])
-        )
+      target=self._execute_in_backend,
+      args=([job, parameters])
+    )
     _process.start()
 
     result = {
@@ -63,25 +62,31 @@ class Process():
     with open("data/job_id_123456/results_XS.geojson") as f:
       results = f.read()
 
-      geoserver.save_results(
-        job_id    = job.job_id,
-        data      = results
-      )
+      # TODO if errors happen at this point when running the process
+      # then job.failed but no exception
+      # But if it failed to store to geoserver then raise (?)
+      # But in that case the results are still available as geojson!
+      # So i don't want to raise, do I?
 
-    if geoserver.errors:
-      logging.error(f" --> Could not store results for job {job.job_id} to geoserver: {', '.join(geoserver.errors)}")
-    else:
-      logging.info(f" --> Successfully stored results for job {job.job_id} to geoserver.")
+      try:
+        geoserver.save_results(
+          job_id    = job.job_id,
+          data      = results
+        )
 
-    geoserver.cleanup()
+        logging.info(f" --> Successfully stored results for job {job.job_id} to geoserver.")
+        job.status = JobStatus.successful.value
+
+      except CustomException as e:
+        logging.error(f" --> Could not store results for job {job.job_id} to geoserver: {e}")
+        job.status = JobStatus.failed.value
+        job.message = str(e)
 
     job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    if geoserver.errors:
-      job.status = JobStatus.failed.value
-    else:
-      job.status = JobStatus.successful.value
     job.progress = 100
     job.save()
+
+    geoserver.cleanup()
 
   def validate_params(self, params={}):
     for input in self.process['inputs'].keys():

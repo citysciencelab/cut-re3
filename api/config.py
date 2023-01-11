@@ -19,5 +19,7 @@ geoserver_workspace = os.environ.get("GEOSERVER_WORKSPACE", "CUT")
 geoserver_admin_user = os.environ.get("GEOSERVER_ADMIN_USER", "admin")
 geoserver_admin_password = os.environ.get("GEOSERVER_ADMIN_PASSWORD", "geoserver")
 
+geoserver_timeout = 60
+
 # MODEL
 dummy_model_url = "http://localhost:3000/test-model-server"
