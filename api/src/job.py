@@ -120,18 +120,22 @@ class Job:
 
     if self.status in (
       JobStatus.successful.value, JobStatus.running.value, JobStatus.accepted.value):
-        # TODO
-        job_result_url = f"{config.server_url}/jobs/{self.job_id}/results.geojson"  # noqa
+        job_result_url = f"http://{config.server_url}/jobs/{self.job_id}/results"
 
         job_dict['links'] = [{
             'href': job_result_url,
             'rel': 'service',
             'type': 'application/json',
             'hreflang': 'en',
-            'title': f'results of job {self.job_id} as JSON'
+            'title': f'Results of job {self.job_id} as geojson - available when job is finished.'
         }]
 
     return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}
+
+  def results_as_geojson(self):
+    with open(f"data/geoserver/{self.job_id}/results.geojson") as f:
+      results = f.read()
+    return results
 
   def delete():
     raise Exception(f'******* Deleting job not implemented!')
