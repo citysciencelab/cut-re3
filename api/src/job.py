@@ -120,7 +120,7 @@ class Job:
 
     if self.status in (
       JobStatus.successful.value, JobStatus.running.value, JobStatus.accepted.value):
-        job_result_url = f"http://{config.server_url}/jobs/{self.job_id}/results"
+        job_result_url = f"http://{config.server_url}/api/jobs/{self.job_id}/results"
 
         job_dict['links'] = [{
             'href': job_result_url,
