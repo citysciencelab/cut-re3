@@ -2,9 +2,10 @@
  * User type definition
  * @typedef {Object} SimulationToolState
  * @property {string} id the ID of the simulation tool
- * @property {string} mode the current view: 'processes', 'process' or 'map'
+ * @property {string} mode the current view: 'processes', 'process', 'job' or 'map'
  * @property {Array.<Object>} processes a list of processes
  * @property {string} selectedProcessId the selected process id
+ * @property {string} selectedJobId the selected job id
  * @property {boolean} active if true, the simulation tool will be rendered
  * @property {string} name displayed as title (config-param)
  * @property {string} icon icon next to title (config-param)
@@ -17,9 +18,10 @@
  */
 const state = {
   id: "simulationTool",
-  mode: "processes", // 'processes' | 'process' | 'map'
+  mode: "processes", // 'processes' | 'process' | 'job' | 'map'
   processes: null,
   selectedProcessId: null,
+  selectedJobId: null,
   // defaults for config.json parameters
   active: false,
   name: "Sim Tool",
