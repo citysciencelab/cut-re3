@@ -132,7 +132,7 @@ class Job:
             'rel': 'service',
             'type': 'application/json',
             'hreflang': 'en',
-            'title': f'Results of job {self.job_id} as geojson'
+            'title': f'Results of job {self.job_id} as geojson - available when job is finished.'
         }]
 
     return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}

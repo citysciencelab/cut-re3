@@ -52,7 +52,6 @@ class Process():
     job.status = JobStatus.running.value
     job.save()
 
-    time.sleep(3)
     logging.info(f' --> Job {job.job_id} started running at {job.started}')
 
     # response = requests.get(
