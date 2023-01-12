@@ -1,7 +1,6 @@
 import config
 import psycopg2 as db
 from psycopg2.extras import RealDictCursor
-from src.errors import CustomException
 
 import logging
 

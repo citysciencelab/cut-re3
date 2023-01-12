@@ -38,14 +38,11 @@ class Job:
     query = """
       SELECT * FROM jobs WHERE job_id = %(job_id)s
     """
-    db_handler = DBHandler()
-    with db_handler as db:
+    with DBHandler() as db:
       job_details = db.run_query(query, query_params={'job_id': job_id})
 
     if len(job_details) > 0:
-      data = job_details[0]
-
-      self._init_from_dict(dict(data))
+      self._init_from_dict(dict(job_details[0]))
     else:
       raise InvalidUsage(f"Job with ID={job_id} not found.")
 
@@ -77,8 +74,7 @@ class Job:
       VALUES
       (%(job_id)s, %(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
     """
-    db_handler = DBHandler()
-    with db_handler as db:
+    with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
 
     logging.info(f" --> Job {self.job_id} for {self.process_id} created.")
@@ -106,8 +102,7 @@ class Job:
       (%(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
       WHERE job_id = %(job_id)s
     """
-    db_handler = DBHandler()
-    with db_handler as db:
+    with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
 
   def display(self):
