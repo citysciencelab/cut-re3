@@ -14,6 +14,8 @@ class Job:
       "links"
     ]
 
+  SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
+
   def __init__(self, job_id=None, process_id=None, parameters={}):
     self.job_id      = job_id
     self.process_id  = process_id
