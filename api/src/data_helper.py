@@ -1,6 +1,7 @@
 from zipfile import ZipFile
 import geopandas as gpd
 import os
+import os.path
 
 APPENDICES = ["cpg", "dbf", "prj", "shx", "shp"]
 
@@ -21,4 +22,6 @@ def archive_data(path: str, store_name: str):
 
 def cleanup_unused_files(path, base_filename):
   for appendix in APPENDICES:
-    os.remove(os.path.join(path, f"{base_filename}.{appendix}"))
+    filename = os.path.join(path, f"{base_filename}.{appendix}")
+    if os.path.exists(filename):
+      os.remove(filename)

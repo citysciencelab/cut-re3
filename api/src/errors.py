@@ -9,14 +9,14 @@ class CustomException(Exception):
         self.message = message
         if status_code is not None:
             self.status_code = status_code
+
         self.payload = payload
         logging.error(f"{type(self).__name__}: {self.message}")
         traceback.print_exc()
 
     def to_dict(self):
         rv = dict(self.payload or ())
-        rv['error'] = type(self).__name__
-        rv['message'] = self.message
+        rv['error_message'] = self.message
         return rv
 
     def __str__(self) -> str:
@@ -26,7 +26,4 @@ class InvalidUsage(CustomException):
   pass
 
 class GeoserverException(CustomException):
-  pass
-
-class ShapefileConversionException(CustomException):
   pass

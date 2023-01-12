@@ -1,7 +1,7 @@
 import requests
 import config
 from src.data_helper import convert_data_to_shapefile, archive_data, cleanup_unused_files
-from src.errors import GeoserverException
+from src.errors import CustomException, GeoserverException
 import os
 import json
 import logging
@@ -33,9 +33,7 @@ class Geoserver:
     if response.status_code == 404:
       logging.info(f" --> Workspace {self.workspace} not found - creating....")
     else:
-      raise GeoserverException(
-        f"There was an error retrieving workspace {self.workspace}: {response.status_code}: {response.reason} - {response.url}"
-      )
+      raise GeoserverException(f"Geoserver workspace {self.workspace} was not found")
 
     response = requests.post(
       config.geoserver_workspaces_url,
@@ -47,51 +45,50 @@ class Geoserver:
     if response.ok:
       logging.info(f' --> Created new workspace {self.workspace}.')
     else:
-      raise GeoserverException(f"Workspace {self.workspace} could not be created: {response.status_code}: {response.reason}")
+      raise GeoserverException(f"Workspace could not be created")
 
   def save_results(self, job_id: str, data: json):
     self.job_id = job_id
     store_name = job_id
 
-    self.path = os.path.join('data', 'geoserver', job_id)
-    os.mkdir(self.path)
-
-    # write geojson data to file path/results.geojson
-    with open(os.path.join(self.path, self.RESULTS_FILENAME), "x") as file:
-      file.write(data)
-
-    self.create_workspace()
-
     try:
+      self.path = os.path.join('data', 'geoserver', job_id)
+      os.mkdir(self.path)
+
+      # write geojson data to file path/results.geojson
+      with open(os.path.join(self.path, self.RESULTS_FILENAME), "x") as file:
+        file.write(data)
+
+      self.create_workspace()
+
       convert_data_to_shapefile(
         path = self.path,
         filename = self.RESULTS_FILENAME,
         shapefile_name = job_id
       )
+
+      self.push_shapefile_directory(
+        store_name = store_name
+      )
+
+      path_to_archive = archive_data(
+        path = self.path,
+        store_name = store_name
+      )
+
+      success = self.push_data_to_store(
+        store_name = store_name,
+        path_to_archive = path_to_archive
+      )
+
     except Exception as e:
       raise GeoserverException(
-        f"Received geojson result file could not be converted to shapefile.",
-        payload={
+        f"Result could not be uploaded to the geoserver.",
+        payload = {
           "error": type(e).__name__,
           "message": e
         }
       )
-
-    success = self.push_shapefile_directory(
-      store_name = store_name
-    )
-    if not success:
-      return False
-
-    path_to_archive = archive_data(
-      path = self.path,
-      store_name = store_name
-    )
-
-    success = self.push_data_to_store(
-      store_name = store_name,
-      path_to_archive = path_to_archive
-    )
     return success
 
   def push_shapefile_directory(self, store_name: str):
@@ -142,11 +139,15 @@ class Geoserver:
         headers = {'Content-type': 'application/zip'}
       )
 
-    if response.ok:
-      return True
-
-    logging.error(f" --> Could not add data to store {store_name}! {response.status_code}: {response.reason}")
-    return False
+    if not response or not response.ok:
+      raise GeoserverException(
+        f"Could not store shapefile {path_to_archive} to geoserver store {store_name}",
+        payload={
+          "status_code": response.status_code,
+          "message":     response.reason
+          }
+      )
+    return response.ok
 
   def cleanup(self):
     cleanup_unused_files(

@@ -1,5 +1,4 @@
 import json
-import time
 import logging
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
@@ -62,23 +61,17 @@ class Process():
     with open("data/job_id_123456/results_XS.geojson") as f:
       results = f.read()
 
-      # TODO if errors happen at this point when running the process
-      # then job.failed but no exception
-      # But if it failed to store to geoserver then raise (?)
-      # But in that case the results are still available as geojson!
-      # So i don't want to raise, do I?
-
       try:
         geoserver.save_results(
           job_id    = job.job_id,
           data      = results
         )
 
-        logging.info(f" --> Successfully stored results for job {job.job_id} to geoserver.")
+        logging.info(f" --> Successfully stored results for job {self.process_id}/{job.job_id} to geoserver.")
         job.status = JobStatus.successful.value
 
       except CustomException as e:
-        logging.error(f" --> Could not store results for job {job.job_id} to geoserver: {e}")
+        logging.error(f" --> Could not store results for job {self.process_id}/{job.job_id} to geoserver: {e}")
         job.status = JobStatus.failed.value
         job.message = str(e)
 
