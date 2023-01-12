@@ -1,10 +1,89 @@
 <script>
+import SimulationProcessJobsTable from "./SimulationProcessJobsTable.vue";
+import SimulationProcessJobExecution from "./SimulationProcessJobExecution.vue";
+
 export default {
   name: "SimulationProcess",
   props: ["processId"],
-  emits: ["close"],
+  emits: ["selected", "close"],
+  components: { SimulationProcessJobsTable, SimulationProcessJobExecution },
   data() {
-    return { process: null, jobs: null, inputs: {}, loadingJobs: false };
+    return {
+      process: null,
+      jobs: null,
+      loadingJobs: false,
+    };
+  },
+  computed: {
+    inputsConfig() {
+      // TODO: remove dummy data
+      /**
+      return {
+        string: {
+          title: "String",
+          description: "A string parameter",
+          schema: {
+            type: "string", // array | boolean | integer | number | object | string
+            minLength: 1,
+            maxLength: 10,
+            pattern: "[A-Za-z]",
+            default: "hello",
+          },
+          minOccurs: 0,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+        boolean: {
+          title: "Boolean",
+          description: "A boolean parameter",
+          schema: {
+            type: "boolean",
+            default: 456,
+          },
+          minOccurs: 1,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+        number: {
+          title: "Number",
+          description: "A number parameter",
+          schema: {
+            type: "numeric",
+            minimum: 2,
+            maximum: 3,
+            default: 456,
+          },
+          minOccurs: 1,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+        array: {
+          title: "Array of numbers",
+          description: "An array parameter",
+          schema: {
+            type: "array",
+            minItems: 0,
+            maxItems: 3,
+            items: {
+              type: "numeric",
+            },
+          },
+          minOccurs: 1,
+          maxOccurs: 1,
+          metadata: {
+            display: "range",
+          },
+        },
+      };
+      */
+      return this.process?.inputs || {};
+    },
   },
   methods: {
     async fetchProcess(processId) {
@@ -30,20 +109,6 @@ export default {
         setTimeout(() => this.fetchJobs(processId), 5000);
       }
     },
-    async execute(event) {
-      event.preventDefault();
-      const processId = this.process.id;
-      const body = { mode: "async", inputs: this.inputs };
-      await fetch(
-        `http://localhost:3000/api/processes/${processId}/execution`,
-        {
-          method: "POST",
-          body: JSON.stringify(body),
-          headers: { "Content-Type": "application/json" },
-        }
-      ).then((res) => res.json());
-      this.fetchJobs(processId);
-    },
   },
   mounted() {
     this.fetchProcess(this.processId);
@@ -53,132 +118,73 @@ export default {
 </script>
 
 <template>
-  <div v-if="process">
-    <h1>{{ process.title }}</h1>
+  <div>
+    <div class="process-details">
+      <div :class="{ 'process-header': true, 'placeholder-glow': !process }">
+        <a class="bootstrap-icon" href="#" @click="$emit('close')" title="Back">
+          <i class="bi-chevron-left"></i>
+        </a>
 
-    <a href="#" @click="$emit('close')">Back</a>
-
-    <p>{{ process.description }}</p>
-
-    <h2>Jobs</h2>
-    <ul v-if="jobs">
-      <div v-if="jobs.length === 0">No jobs yet</div>
-      <li v-for="job in jobs">
-        {{ new Date(job.job_start_datetime).toLocaleString() }}:
-        <b>{{ job.status }}</b
-        >{{ " " }}
-        <span style="color: salmon" v-if="job.status === 'failed'">{{
-          job.message
-        }}</span>
-        <a v-if="job.status === 'successful'" href="#">view results</a>
-      </li>
-      <div v-if="loadingJobs">Updating Jobs...</div>
-    </ul>
-
-    <h2>Execute</h2>
-    <form>
-      <div v-for="(input, key) in process.inputs" class="inputs">
-        <label :title="input.description" :for="`input_${key}`"
-          >{{ input.title }}:</label
-        >
-
-        <!-- 
-
-          [
-            {
-              "title": "String",
-              "description": "A string parameter",
-              "schema": {
-                "type": "string", // array | boolean | integer | number | object | string
-                "maxLength": 1,
-                "minLength": 2,
-                "pattern": "",
-                "default": "hello"
-              },
-              "minOccurs": 0,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            },
-            {
-              "title": "Boolean",
-              "description": "A boolean parameter",
-              "schema": {
-                "type": "boolean",
-                "default": 456
-              },
-              "minOccurs": 1,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            },
-            {
-              "title": "Number",
-              "description": "A number parameter",
-              "schema": {
-                "type": "number",
-                "minimum": 2,
-                "maximum": 3,
-                "default": 456
-              },
-              "minOccurs": 1,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            },
-            {
-              "title": "Array of numbers",
-              "description": "An array parameter",
-              "schema": {
-                "type": "array",
-                "minItems": 0,
-                "maxItems": 3,
-                "items": {
-                  "type": "number"
-                }
-              },
-              "minOccurs": 1,
-              "maxOccurs": 1,
-              "metadata": {
-                "display": "range"
-              }
-            }
-          ]
-
-
-         -->
-        <input
-          v-if="input.schema.type === 'string'"
-          :id="`input_${key}`"
-          :name="`input_${key}`"
-          type="text"
-          v-model="inputs[key]"
-        />
-
-        <input
-          v-if="input.schema.type !== 'string'"
-          :id="`input_${key}`"
-          :name="`input_${key}`"
-          type="number"
-          min="3"
-          v-model.number="inputs[key]"
-        />
+        <h3 :class="{ placeholder: !process }" :aria-hidden="!process">
+          {{ process?.title || "Loading process name" }}
+        </h3>
       </div>
-      <br />
-      <button type="submit" @click="execute">Run job</button>
-    </form>
-  </div>
 
-  <div v-else>Loading...</div>
+      <p v-if="process">{{ process.description }}</p>
+      <p v-else class="placeholder-glow" aria-hidden>
+        <span class="placeholder col-3" />
+        <span class="placeholder col-4" />
+        <span class="placeholder col-4" />
+        <span class="placeholder col-6" />
+        <span class="placeholder col-3" />
+      </p>
+    </div>
+
+    <div class="process-content" v-if="process">
+      <SimulationProcessJobsTable
+        :processId="processId"
+        :jobs="jobs"
+        :loadingJobs="loadingJobs"
+        v-on="$listeners"
+      />
+
+      <SimulationProcessJobExecution
+        :processId="processId"
+        :inputsConfig="inputsConfig"
+        @executed="fetchJobs(processId)"
+      />
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.inputs label {
-  min-width: 9em;
-  text-align: right;
-  margin-bottom: 1em;
+.process-details {
+  position: sticky;
+  top: -1.25rem;
+  margin: -1.25rem -1.25rem 1rem;
+  padding: 1.25rem 1.25rem 0;
+  background: white;
+}
+
+.process-details::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.process-header {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.process-header > * {
+  margin: 0;
+}
+
+.process-content {
+  display: grid;
+  gap: 2rem;
 }
 </style>

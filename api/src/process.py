@@ -87,7 +87,7 @@ class Process():
         raise InvalidUsage(f'Cannot process without parameter {input}')
 
   def to_json(self):
-    return json.dumps(self, default=lambda o: o.__dict__,
+    return json.dumps(self.process, default=lambda o: o.__dict__,
       sort_keys=True, indent=2)
 
   def __str__(self):
