@@ -20,4 +20,4 @@ geoserver_admin_user = os.environ.get("GEOSERVER_ADMIN_USER", "admin")
 geoserver_admin_password = os.environ.get("GEOSERVER_ADMIN_PASSWORD", "geoserver")
 
 # MODEL
-dummy_model_url = "http://localhost:3000/test-model-server"
+model_platform_url = "https://api-processes.cut.hcu-hamburg.de"

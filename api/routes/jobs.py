@@ -52,4 +52,4 @@ def page_not_found(e):
     "detail": str(e),
     "instance": ""
   }
-  return Response(json.dump(result), mimetype='application/json')
+  return Response(json.dumps(result), mimetype='application/json')

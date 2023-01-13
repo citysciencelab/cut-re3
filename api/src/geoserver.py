@@ -46,7 +46,7 @@ class Geoserver:
 
     return response.ok
 
-  def save_results(self, job_id: str, data: json):
+  def save_results(self, job_id: str, data: dict):
     self.job_id = job_id
 
     self.path = os.path.join('data', 'geoserver', job_id)
@@ -54,7 +54,7 @@ class Geoserver:
 
     # write geojson data to file path/results.geojson
     with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
-      file.write(data)
+      file.write(json.dumps(data))
 
     success = self.create_workspace()
     if not success:

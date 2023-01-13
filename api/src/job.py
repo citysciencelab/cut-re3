@@ -26,9 +26,7 @@ class Job:
     self.updated    = None
     self.errors     = []
 
-    if job_id is not None:
-      self._init_from_db(job_id)
-    else:
+    if not self._init_from_db(job_id):
       self._create()
 
   def _init_from_db(self, job_id):
@@ -41,10 +39,10 @@ class Job:
 
     if len(job_details) > 0:
       data = job_details[0]
-
       self._init_from_dict(dict(data))
+      return True
     else:
-      self.errors.append(f"Job with ID={job_id} not found.")
+      return False
 
   def _init_from_dict(self, data):
     self.job_id     = data['job_id']
@@ -60,7 +58,7 @@ class Job:
     self.parameters = data['parameters']
 
   def _create(self):
-    self.job_id     = str(uuid.uuid4())
+    self.job_id    = self.job_id if self.job_id else str(uuid.uuid4())
     self.status    = JobStatus.accepted.value
     self.progress  = 0
     self.message   = ""
