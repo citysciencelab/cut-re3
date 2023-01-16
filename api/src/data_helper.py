@@ -1,9 +1,9 @@
 from zipfile import ZipFile
 import geopandas as gpd
 import os
+import os.path
 
 APPENDICES = ["cpg", "dbf", "prj", "shx", "shp"]
-RESULTS_FILENAME = "results.geojson"
 
 def convert_data_to_shapefile(path: str, filename: str, shapefile_name: str):
   gdf = gpd.read_file(f"{path}/{filename}")
@@ -22,5 +22,6 @@ def archive_data(path: str, store_name: str):
 
 def cleanup_unused_files(path, base_filename):
   for appendix in APPENDICES:
-    os.remove(os.path.join(path, f"{base_filename}.{appendix}"))
-  os.remove(os.path.join(path, RESULTS_FILENAME))
+    filename = os.path.join(path, f"{base_filename}.{appendix}")
+    if os.path.exists(filename):
+      os.remove(filename)

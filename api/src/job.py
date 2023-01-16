@@ -5,6 +5,8 @@ import configs.config as config
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests
+from src.errors import InvalidUsage
+import logging
 
 class Job:
   DISPLAYED_ATTRIBUTES = [
@@ -12,6 +14,8 @@ class Job:
       "created", "started", "finished", "updated", "progress",
       "links"
     ]
+
+  SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
   def __init__(self, job_id=None, process_id=None, parameters={}):
     self.job_id      = job_id
@@ -25,7 +29,6 @@ class Job:
     self.started    = None
     self.finished   = None
     self.updated    = None
-    self.errors     = []
 
     if not self._init_from_db(job_id):
       self._create()
@@ -34,21 +37,17 @@ class Job:
     query = """
       SELECT * FROM jobs WHERE job_id = %(job_id)s
     """
-    db_handler = DBHandler()
-    with db_handler as db:
+    with DBHandler() as db:
       job_details = db.run_query(query, query_params={'job_id': job_id})
 
     if len(job_details) > 0:
-      data = job_details[0]
-      self._init_from_dict(dict(data))
-      return True
+      self._init_from_dict(dict(job_details[0]))
     else:
-      return False
+      raise InvalidUsage(f"Job with ID={job_id} not found.")
 
   def _init_from_dict(self, data):
     self.job_id     = data['job_id']
     self.process_id = data['process_id']
-    self.type       = "process"
     self.status     = data['status']
     self.message    = data['message']
     self.created    = data['created']
@@ -63,9 +62,9 @@ class Job:
     self.status    = JobStatus.accepted.value
     self.progress  = 0
     self.message   = ""
-    self.created   = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.created   = datetime.utcnow()
     self.started   = None
-    self.updated   = datetime.utcnow() #.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    self.updated   = datetime.utcnow()
     self.finished  = None
 
     query = """
@@ -74,10 +73,10 @@ class Job:
       VALUES
       (%(job_id)s, %(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
     """
-    db_handler = DBHandler()
-    with db_handler as db:
-      # db.execute(query, self._to_dict())
+    with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
+
+    logging.info(f" --> Job {self.job_id} for {self.process_id} created.")
 
   def _to_dict(self):
     return {
@@ -102,8 +101,7 @@ class Job:
       (%(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
       WHERE job_id = %(job_id)s
     """
-    db_handler = DBHandler()
-    with db_handler as db:
+    with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
 
   def display(self):
@@ -118,8 +116,12 @@ class Job:
         job_dict[attr] = job_dict[attr].strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
     if self.status in (
-      JobStatus.successful.value, JobStatus.running.value, JobStatus.accepted.value):
-        job_result_url = f"http://{config.server_url}/api/jobs/{self.job_id}/results"
+      JobStatus.successful.value,
+      JobStatus.running.value,
+      JobStatus.accepted.value
+    ):
+
+        job_result_url = f"{config.server_url}/api/jobs/{self.job_id}/results"
 
         job_dict['links'] = [{
             'href': job_result_url,
@@ -143,9 +145,6 @@ class Job:
       return response.json()
     else:
       return { "error": "No result available" }
-
-  def delete():
-    raise Exception(f'******* Deleting job not implemented!')
 
   def __str__(self):
     return f"""

@@ -4,9 +4,9 @@ from datetime import datetime
 import re
 from multiprocessing import dummy
 import requests
-
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
+from src.errors import InvalidUsage, CustomException
 import configs.config as config
 
 import logging
@@ -30,9 +30,14 @@ class Process():
       process_details = response.json()
       for key in process_details:
         setattr(self, key, process_details[key])
+    else:
+      # TODO: not InvalidUsage!
+      raise InvalidUsage("Process ID unknown! Please choose a valid model name as process ID. Check /api/processes endpoint.")
 
   def execute(self, parameters):
     self.validate_params(parameters)
+
+    logging.info(f" --> Executing {self.process_id} with params {parameters}")
 
     job = self.start_process_execution(parameters)
 
@@ -118,30 +123,25 @@ class Process():
 
     results = response.json()
 
-    geoserver.save_results(
-      job_id    = job.job_id,
-      data      = results
-    )
+    try:
+      geoserver.save_results(
+        job_id    = job.job_id,
+        data      = results
+      )
 
-    if geoserver.errors:
-      logging.error(f" --> Could not store data to geoserver: {', '.join(geoserver.errors)}")
-    else:
-      logging.info(f" --> Successfully stored results to geoserver.")
+      logging.info(f" --> Successfully stored results for job {self.process_id}/{job.job_id} to geoserver.")
+      job.status = JobStatus.successful.value
 
-    geoserver.cleanup()
+    except CustomException as e:
+      logging.error(f" --> Could not store results for job {self.process_id}/{job.job_id} to geoserver: {e}")
+      job.status = JobStatus.failed.value
+      job.message = str(e)
 
     job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    job.status = JobStatus.successful.value
     job.progress = 100
     job.save()
 
-  def validate_params(self, params={}):
-    pass
-    # TODO: ticket #40
-    # for input in self.process['inputs'].keys():
-    #   if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
-    #     # TODO should this be a bad request?
-    #     raise InvalidParamsException(f'Cannot process without parameter {input}')
+    geoserver.cleanup()
 
   def to_json(self):
     return json.dumps(self, default=lambda o: o.__dict__,
@@ -152,6 +152,3 @@ class Process():
 
   def __repr__(self):
     return f'src.process.Process(process_id={self.process_id})'
-
-class InvalidParamsException(Exception):
-  pass

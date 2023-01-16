@@ -20,8 +20,3 @@ def execute(process_id=None):
   process = Process(process_id)
   result = process.execute(request.json)
   return Response(json.dumps(result), status=201, mimetype='application/json')
-
-# TODO: proper error handling
-@processes.errorhandler(404)
-def page_not_found(e):
-    return Response(json.dumps({"error": e}), mimetype='application/json')
