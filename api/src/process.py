@@ -74,10 +74,9 @@ class Process():
 
   def _wait_for_results(self, job):
     finished = False
-    timeout = 60 * 3
+    timeout = config.model_platform_timeout
     start = time.time()
 
-    # TODO: credentials
     while not finished:
       response = requests.get(
           f"{config.model_platform_url}/jobs/{job.job_id}",
@@ -138,6 +137,7 @@ class Process():
 
   def validate_params(self, params={}):
     pass
+    # TODO: ticket #40
     # for input in self.process['inputs'].keys():
     #   if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
     #     # TODO should this be a bad request?
