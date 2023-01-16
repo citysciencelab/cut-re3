@@ -135,7 +135,7 @@ class Job:
     if self.status == JobStatus.successful.value:
       response = requests.get(
           f"{config.model_platform_url}/jobs/{self.job_id}/results?f=json",
-          auth    = ('cut', 'modelplatform'),
+          auth    = (config.model_platform_user, config.model_platform_password),
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
       # TODO: manage error

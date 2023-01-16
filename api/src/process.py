@@ -21,7 +21,7 @@ class Process():
   def set_details(self):
     response = requests.get(
       f"{config.model_platform_url}/processes/{self.process_id}",
-      auth    = ('cut', 'modelplatform'),
+      auth    = (config.model_platform_user, config.model_platform_password),
       headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
     )
     response.raise_for_status()
@@ -56,7 +56,7 @@ class Process():
     response = requests.post(
         f"{config.model_platform_url}/processes/{self.process_id}/execution",
         json    = params,
-        auth    = ('cut', 'modelplatform'),
+        auth    = (config.model_platform_user, config.model_platform_password),
         headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
       )
 
@@ -81,7 +81,7 @@ class Process():
     while not finished:
       response = requests.get(
           f"{config.model_platform_url}/jobs/{job.job_id}",
-          auth    = ('cut', 'modelplatform'),
+          auth    = (config.model_platform_user, config.model_platform_password),
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
       response.raise_for_status()
@@ -112,7 +112,7 @@ class Process():
 
     response = requests.get(
         f"{config.model_platform_url}/jobs/{job.job_id}/results?f=json",
-        auth    = ('cut', 'modelplatform'),
+        auth    = (config.model_platform_user, config.model_platform_password),
         headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
       )
     response.raise_for_status()
