@@ -1,34 +1,36 @@
 import json
 import time
+from datetime import datetime
 import re
-import logging
+from multiprocessing import dummy
+import requests
+
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
-from multiprocessing import dummy
-from datetime import datetime
 from src.processes import all_processes
-import logging
 import config
-import requests
-from werkzeug.exceptions import HTTPException
+
+import logging
 
 logging.basicConfig(level=logging.INFO)
 
 class Process():
   def __init__(self, process_id=None):
     self.process_id = process_id
-    self.process = self.set_details()
-    for key in self.process:
-      setattr(self, key, self.process[key])
+    self.set_details()
 
   def set_details(self):
-    processes = all_processes()
+    response = requests.get(
+      f"{config.model_platform_url}/processes/{self.process_id}",
+      auth    = ('cut', 'modelplatform'),
+      headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    )
+    response.raise_for_status()
 
-    for process in processes["processes"]:
-      if process['id'] == self.process_id:
-        return process
-
-    raise InvalidParamsException("Process ID unknown!")
+    if response.ok:
+      process_details = response.json()
+      for key in process_details:
+        setattr(self, key, process_details[key])
 
   def execute(self, parameters):
     self.validate_params(parameters)
@@ -52,8 +54,6 @@ class Process():
     params["mode"] = "async"
     logging.info(f" --> Executing {self.process_id} with params {params}")
 
-    # TODO model_platform_url has to come from the list of processes
-    # maybe process.url ?
     response = requests.post(
         f"{config.model_platform_url}/processes/{self.process_id}/execution",
         json    = params,
@@ -137,10 +137,6 @@ class Process():
     job.progress = 100
     job.save()
 
-    # TODO
-    # read the results from there when delivering jobs result in jobs.py
-    # wait and check result: update job.progress
-
   def validate_params(self, params={}):
     pass
     # for input in self.process['inputs'].keys():
@@ -149,7 +145,7 @@ class Process():
     #     raise InvalidParamsException(f'Cannot process without parameter {input}')
 
   def to_json(self):
-    return json.dumps(self.process, default=lambda o: o.__dict__,
+    return json.dumps(self, default=lambda o: o.__dict__,
       sort_keys=True, indent=2)
 
   def __str__(self):
