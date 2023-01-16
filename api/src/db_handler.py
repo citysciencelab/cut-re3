@@ -1,4 +1,4 @@
-import config
+import configs.config as config
 import psycopg2 as db
 from psycopg2.extras import RealDictCursor
 

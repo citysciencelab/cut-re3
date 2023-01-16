@@ -1,5 +1,5 @@
 import requests
-import config
+import configs.config as config
 
 def all_processes_as_json():
   response = requests.get(

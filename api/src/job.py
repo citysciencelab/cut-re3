@@ -1,7 +1,7 @@
 from datetime import datetime
 import uuid
 import json
-import config
+import configs.config as config
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests

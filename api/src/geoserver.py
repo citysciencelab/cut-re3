@@ -1,5 +1,5 @@
 import requests
-import config
+import configs.config as config
 from src.data_helper import RESULTS_FILENAME, convert_data_to_shapefile, archive_data, cleanup_unused_files
 import os
 import json
