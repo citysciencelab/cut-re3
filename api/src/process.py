@@ -7,7 +7,6 @@ import requests
 
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
-from src.processes import all_processes
 import config
 
 import logging
