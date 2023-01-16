@@ -7,9 +7,6 @@ jobs = Blueprint('jobs', __name__)
 
 @jobs.route('/', defaults={'page': 'index'})
 def index(page):
-  # OGC API standard: support the following parameters:
-  # https://docs.ogc.org/is/18-062r2/18-062r2.html#rc_job-list
-  # still missing: minDuration, maxDuration, datetime
   args = request.json if request.is_json else {}
   result = get_jobs(args)
   return Response(json.dumps(result), mimetype='application/json')
@@ -17,39 +14,9 @@ def index(page):
 @jobs.route('/<path:job_id>', methods = ['GET'])
 def show(job_id=None):
   job = Job(job_id)
-
-  if job.errors:
-    result = {"errors": job.errors}
-  else:
-    result = job.display()
-
-  return Response(json.dumps(result), mimetype='application/json')
+  return Response(json.dumps(job.display()), mimetype='application/json')
 
 @jobs.route('/<path:job_id>/results', methods = ['GET'])
 def results(job_id=None):
   job = Job(job_id)
-
-  if job.errors:
-    # TODO: like this?
-    result = {"errors": job.errors}
-  else:
-    result = job.results_as_geojson()
-
-  return Response(result, mimetype='application/json')
-
-@jobs.route('/<path:job_id>', methods = ['DELETE'])
-def delete(job_id=None):
-  job = Job(job_id)
-  job.delete()
-  return Response(json.dumps(result), mimetype='application/json')
-
-@jobs.errorhandler(404)
-def page_not_found(e):
-  result = {
-    "type": type(e),
-    "title": str(e),
-    "status": 0,
-    "detail": str(e),
-    "instance": ""
-  }
-  return Response(json.dump(result), mimetype='application/json')
+  return Response(job.results_as_geojson(), mimetype='application/json')

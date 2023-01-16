@@ -8,21 +8,26 @@ logger = logging.getLogger(__name__)
 
 class DBHandler():
   def __init__(self):
-    try:
-      self.connection = db.connect(
-        database = config.postgres_db,
-        host     = config.postgres_host,
-        user     = config.postgres_user,
-        password = config.postgres_password,
-        port     = config.postgres_port
-      )
-    except (Exception, db.Error) as error:
-      print("Error while connecting to PostgreSQL", error, flush=True)
-      raise error
+    self.connection = db.connect(
+      database = config.postgres_db,
+      host     = config.postgres_host,
+      user     = config.postgres_user,
+      password = config.postgres_password,
+      port     = config.postgres_port
+    )
+    self.sortable_columns = []
 
-  def run_query(self, query, conditions=[], query_params={}, limit=None, page=None):
+  def set_sortable_columns(self, sortable_columns):
+    self.sortable_columns = sortable_columns
+
+  def run_query(self, query, conditions=[], query_params={}, order=[], limit=None, page=None):
     if conditions:
       query += " WHERE " + " AND ".join(conditions)
+
+    if order and set(order).issubset(set(self.sortable_columns)):
+      query += f" ORDER BY {', '.join(order)} DESC"
+    elif order:
+      logging.debug(f" --> Could not order by {order} since sortable_columns hasn't been set! Please call set_sortable_columns!")
 
     if limit:
       offset = 0
@@ -32,6 +37,8 @@ class DBHandler():
       query += " LIMIT %(limit)s OFFSET %(offset)s"
       query_params['limit'] = limit
       query_params['offset'] = offset
+
+    logging.debug(f" --> SQL query = {query}")
 
     with self.connection:
       with self.connection.cursor(cursor_factory = RealDictCursor) as cursor:

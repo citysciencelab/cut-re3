@@ -29,8 +29,16 @@ def get_jobs(args):
   conditions.append("status IN %(status)s")
 
   db_handler = DBHandler()
+  db_handler.set_sortable_columns(Job.SORTABLE_COLUMNS)
+
   with db_handler as db:
-    job_ids = db.run_query(query, conditions, query_params, limit, page)
+    job_ids = db.run_query(query,
+      conditions   = conditions,
+      query_params = query_params,
+      order        = ['created'],
+      limit        = limit,
+      page         = page
+    )
 
   for row in job_ids:
     job = Job(row['job_id'])
@@ -70,8 +78,7 @@ def count(conditions, query_params):
   count_query = """
     SELECT count(*) FROM jobs
   """
-  db_handler = DBHandler()
-  with db_handler as db:
+  with DBHandler() as db:
     count_jobs = db.run_query(
       count_query,
       conditions=conditions,
