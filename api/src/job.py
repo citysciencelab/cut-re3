@@ -4,6 +4,7 @@ import json
 import config
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
+import requests
 
 class Job:
   DISPLAYED_ATTRIBUTES = [
@@ -130,10 +131,18 @@ class Job:
 
     return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}
 
-  def results_as_geojson(self):
-    with open(f"data/geoserver/{self.job_id}/results.geojson") as f:
-      results = f.read()
-    return results
+  def results(self):
+    if self.status == JobStatus.successful.value:
+      response = requests.get(
+          f"{config.model_platform_url}/jobs/{self.job_id}/results?f=json",
+          auth    = ('cut', 'modelplatform'),
+          headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        )
+      # TODO: manage error
+      response.raise_for_status()
+      return response.json()
+    else:
+      return { "error": "No result available" }
 
   def delete():
     raise Exception(f'******* Deleting job not implemented!')

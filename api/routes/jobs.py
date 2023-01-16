@@ -33,9 +33,9 @@ def results(job_id=None):
     # TODO: like this?
     result = {"errors": job.errors}
   else:
-    result = job.results_as_geojson()
+    result = job.results()
 
-  return Response(result, mimetype='application/json')
+  return Response(json.dumps(result), mimetype='application/json')
 
 @jobs.route('/<path:job_id>', methods = ['DELETE'])
 def delete(job_id=None):
