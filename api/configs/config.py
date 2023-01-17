@@ -20,9 +20,3 @@ geoserver_admin_user = os.environ.get("GEOSERVER_ADMIN_USER", "admin")
 geoserver_admin_password = os.environ.get("GEOSERVER_ADMIN_PASSWORD", "geoserver")
 
 geoserver_timeout = 60
-
-# MODEL
-model_platform_url = os.environ.get("MODEL_PLATFORM_URL", "https://api-processes.cut.hcu-hamburg.de")
-model_platform_user = os.environ.get("MODEL_PLATFORM_USER", "cut")
-model_platform_password = os.environ.get("MODEL_PLATFORM_PASSWORD", "cut")
-model_platform_timeout = os.environ.get("MODEL_PLATFORM_TIMEOUT", 60 * 30)

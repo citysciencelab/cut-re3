@@ -1,5 +1,5 @@
 from flask import Response, Blueprint, request
-from src.processes import all_processes_as_json
+from src.processes import all_processes
 from src.process import Process
 import json
 
@@ -7,8 +7,8 @@ processes = Blueprint('processes', __name__)
 
 @processes.route('/', defaults={'page': 'index'})
 def index(page):
-  result = all_processes_as_json()
-  return Response(result, mimetype='application/json')
+  result = all_processes()
+  return Response(json.dumps(result), mimetype='application/json')
 
 @processes.route('/<path:process_id>', methods = ['GET'])
 def show(process_id=None):

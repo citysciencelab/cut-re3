@@ -2,6 +2,8 @@ from datetime import datetime
 import uuid
 import json
 import configs.config as config
+from configs.platforms import platforms
+import base64
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests
@@ -17,18 +19,25 @@ class Job:
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
-  def __init__(self, job_id=None, process_id=None, parameters={}):
-    self.job_id      = job_id
-    self.process_id  = process_id
-    self.parameters = parameters
-    self.status     = None
-    self.message    = None
-    self.progress   = None
-    self.parameters = parameters
-    self.created    = None
-    self.started    = None
-    self.finished   = None
-    self.updated    = None
+  def __init__(self, job_id=None, process_id_base64=None, parameters={}):
+    self.job_id = job_id
+    self.process_id_base64 = process_id_base64
+    if process_id_base64:
+      data = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
+      self.process_id      = data['process_id']
+      self.platform_prefix = data['platform_prefix']
+      p = platforms[self.platform_prefix]
+      self.platform_url    = p['url']
+
+    self.parameters      = parameters
+    self.status          = None
+    self.message         = None
+    self.progress        = None
+    self.parameters      = parameters
+    self.created         = None
+    self.started         = None
+    self.finished        = None
+    self.updated         = None
 
     if not self._init_from_db(job_id):
       self._create()
@@ -47,16 +56,18 @@ class Job:
       return False
 
   def _init_from_dict(self, data):
-    self.job_id     = data['job_id']
-    self.process_id = data['process_id']
-    self.status     = data['status']
-    self.message    = data['message']
-    self.created    = data['created']
-    self.started    = data['started']
-    self.finished   = data['finished']
-    self.updated    = data['updated']
-    self.progress   = data['progress']
-    self.parameters = data['parameters']
+    self.job_id          = data['job_id']
+    self.process_id      = data['process_id']
+    self.platform_prefix = data['platform_prefix']
+    self.platform_url    = data['platform_url']
+    self.status          = data['status']
+    self.message         = data['message']
+    self.created         = data['created']
+    self.started         = data['started']
+    self.finished        = data['finished']
+    self.updated         = data['updated']
+    self.progress        = data['progress']
+    self.parameters      = data['parameters']
 
   def _create(self):
     self.job_id    = self.job_id if self.job_id else str(uuid.uuid4())
@@ -70,9 +81,9 @@ class Job:
 
     query = """
       INSERT INTO jobs
-      (job_id, process_id, status, progress, parameters, message, created, started, finished, updated)
+      (job_id, process_id, platform_prefix, platform_url, status, progress, parameters, message, created, started, finished, updated)
       VALUES
-      (%(job_id)s, %(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(job_id)s, %(process_id)s, %(platform_prefix)s, %(platform_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
     """
     with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
@@ -83,6 +94,8 @@ class Job:
     return {
       "process_id": self.process_id,
       "job_id":     self.job_id,
+      "platform_prefix": self.platform_prefix,
+      "platform_url": self.platform_url,
       "status":     self.status,
       "message":    self.message,
       "created":    self.created,
@@ -97,9 +110,9 @@ class Job:
     self.updated = datetime.utcnow()
     query = """
       UPDATE jobs SET
-      (process_id, status, progress, parameters, message, created, started, finished, updated)
+      (process_id, platform_prefix, platform_url, status, progress, parameters, message, created, started, finished, updated)
       =
-      (%(process_id)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(process_id)s, %(platform_prefix)s, %(platform_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
       WHERE job_id = %(job_id)s
     """
     with DBHandler() as db:
@@ -109,7 +122,12 @@ class Job:
     job_dict = self._to_dict()
     job_dict["type"] = "process"
     job_dict["jobID"] = job_dict.pop("job_id")
-    job_dict["processID"] = job_dict.pop("process_id")
+
+    process_id = {
+      "process_id": job_dict.pop("process_id"),
+      "platform_prefix": self.platform_prefix
+    }
+    job_dict["processID"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
     job_dict["links"] = []
 
     for attr in job_dict:
@@ -136,9 +154,12 @@ class Job:
 
   def results(self):
     if self.status == JobStatus.successful.value:
+      p = platforms[self.platform_prefix]
+      self.platform_url    = p['url']
+
       response = requests.get(
-          f"{config.model_platform_url}/jobs/{self.job_id}/results?f=json",
-          auth    = (config.model_platform_user, config.model_platform_password),
+          f"{self.platform_url}/jobs/{self.job_id}/results?f=json",
+          auth    = (p['user'], p['password']),
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
       # TODO: manage error
