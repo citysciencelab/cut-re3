@@ -47,7 +47,7 @@ class Process():
     # TODO
     # self.validate_params(parameters)
 
-    logging.info(f" --> Executing {self.process_id} on model server {p['url']} with params {parameters}")
+    logging.info(f" --> Executing {self.process_id} on model server {p['url']} with params {parameters} as process {self.process_id_base64}")
 
     job = self.start_process_execution(parameters)
 
@@ -86,7 +86,7 @@ class Process():
       job.status = JobStatus.running.value
       job.save()
 
-      logging.info(f' --> Job {job.job_id} for model {self.process_id} started running.')
+      logging.info(f' --> Job {job.job_id} for model {self.process_id_base64} started running.')
 
       return job
 
@@ -112,7 +112,7 @@ class Process():
         if job_details["job_end_datetime"]:
           finished = True
 
-        job.progress = job_details["progress"]
+        job.progress = job_details["progress"] - 25 # because we still need to store it to geoserver
         job.updated = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
         job.save()
 
@@ -122,7 +122,7 @@ class Process():
       logging.info(f" --> Remote execution job {job.job_id}: success = {finished}. Took approx. {int((time.time() - start)/60)} minutes.")
 
     except Exception as e:
-      logging.error(f" --> Could not retrieve results for job {self.process_id}/{job.job_id} from simulation model server: {e}")
+      logging.error(f" --> Could not retrieve results for job {self.process_id_base64} (={self.process_id})/{job.job_id} from simulation model server: {e}")
       job.status = JobStatus.failed.value
       job.message = str(e)
       job.updated = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
@@ -150,6 +150,10 @@ class Process():
         )
       response.raise_for_status()
 
+      if not response.ok:
+        job.status = JobStatus.failed.value
+        job.message = f'Could not retrieve results for {job}! {response.status_code}: {response.reason}'
+
       results = response.json()
 
       geoserver.save_results(
@@ -157,15 +161,16 @@ class Process():
         data      = results
       )
 
-      logging.info(f" --> Successfully stored results for job {self.process_id}/{job.job_id} to geoserver.")
+      logging.info(f" --> Successfully stored results for job {self.process_id_base64} (={self.process_id})/{job.job_id} to geoserver.")
       job.status = JobStatus.successful.value
 
     except CustomException as e:
-      logging.error(f" --> Could not store results for job {self.process_id}/{job.job_id} to geoserver: {e}")
+      logging.error(f" --> Could not store results for job {self.process_id_base64} (={self.process_id})/{job.job_id} to geoserver: {e}")
       job.status = JobStatus.failed.value
       job.message = str(e)
 
     job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    job.updated = job.finished
     job.progress = 100
     job.save()
 
@@ -183,7 +188,7 @@ class Process():
       sort_keys=True, indent=2)
 
   def __str__(self):
-    return f'src.process.Process object: process_id={self.process_id}'
+    return f'src.process.Process object: process_id={self.process_id}, process_id_base64={self.process_id_base64}, platform_prefix={self.platform_prefix}'
 
   def __repr__(self):
     return f'src.process.Process(process_id={self.process_id})'
