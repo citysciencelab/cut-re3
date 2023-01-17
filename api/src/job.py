@@ -42,8 +42,9 @@ class Job:
 
     if len(job_details) > 0:
       self._init_from_dict(dict(job_details[0]))
+      return True
     else:
-      raise InvalidUsage(f"Job with ID={job_id} not found.")
+      return False
 
   def _init_from_dict(self, data):
     self.job_id     = data['job_id']
@@ -144,7 +145,7 @@ class Job:
       response.raise_for_status()
       return response.json()
     else:
-      return { "error": "No result available" }
+      return { "error": f"No result available: {response.status_code} - {response.reason}" }
 
   def __str__(self):
     return f"""

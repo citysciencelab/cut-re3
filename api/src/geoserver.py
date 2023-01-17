@@ -50,24 +50,6 @@ class Geoserver:
 
   def save_results(self, job_id: str, data: dict):
     self.job_id = job_id
-
-    self.path = os.path.join('data', 'geoserver', job_id)
-    os.mkdir(self.path)
-
-    # write geojson data to file path/results.geojson
-    with open(os.path.join(self.path, RESULTS_FILENAME), "x") as file:
-      file.write(json.dumps(data))
-
-    success = self.create_workspace()
-    if not success:
-      return False
-
-    convert_data_to_shapefile(
-      path = self.path,
-      filename = self.RESULTS_FILENAME,
-      shapefile_name = job_id
-    )
-
     store_name = job_id
 
     try:
@@ -76,7 +58,7 @@ class Geoserver:
 
       # write geojson data to file path/results.geojson
       with open(os.path.join(self.path, self.RESULTS_FILENAME), "x") as file:
-        file.write(data)
+       file.write(json.dumps(data))
 
       self.create_workspace()
 
