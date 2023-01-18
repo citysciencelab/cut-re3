@@ -11,6 +11,7 @@ api/*/__pycache__/*
 api/*/*/__pycache__/*
 api/data/geoserver/*
 api/configs/.env
+api/configs/providers.yml
 
 */node_modules/
 db/*

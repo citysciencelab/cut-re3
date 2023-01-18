@@ -7,8 +7,10 @@ import requests
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
 from src.errors import InvalidUsage, CustomException
-from configs.platforms import platforms
 import base64
+import yaml
+
+PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
 import logging
 
@@ -23,12 +25,12 @@ class Process():
     except Exception as e:
       raise CustomException(f"Unknown process ID. Get a list of available processes under /api/processes. Error: \"{e}\"")
 
-    self.platform_prefix = process_id_dict['platform_prefix']
+    self.provider_prefix = process_id_dict['provider_prefix']
     self.process_id = process_id_dict['process_id']
     self.set_details()
 
   def set_details(self):
-    p = platforms[self.platform_prefix]
+    p = PROVIDERS[self.provider_prefix]
 
     response = requests.get(
       f"{p['url']}/processes/{self.process_id}",
@@ -45,7 +47,7 @@ class Process():
       raise InvalidUsage(f"Model/process not found! {response.status_code}: {response.reason}. Check /api/processes endpoint for available models/processes.")
 
   def execute(self, parameters):
-    p = platforms[self.platform_prefix]
+    p = PROVIDERS[self.provider_prefix]
 
     # TODO
     # self.validate_params(parameters)
@@ -69,7 +71,7 @@ class Process():
   def start_process_execution(self, parameters):
     params = parameters
     params["mode"] = "async"
-    p = platforms[self.platform_prefix]
+    p = PROVIDERS[self.provider_prefix]
 
     response = requests.post(
         f"{p['url']}/processes/{self.process_id}/execution",
@@ -95,7 +97,7 @@ class Process():
 
   def _wait_for_results(self, job):
     finished = False
-    p = platforms[self.platform_prefix]
+    p = PROVIDERS[self.provider_prefix]
     timeout = float(p['timeout'])
     start = time.time()
 
@@ -182,7 +184,7 @@ class Process():
   def to_dict(self):
     process_dict = self.__dict__
     process_dict.pop("process_id")
-    process_dict.pop("platform_prefix")
+    process_dict.pop("provider_prefix")
     process_dict["id"] = process_dict.pop("process_id_base64")
     return process_dict
 
@@ -191,7 +193,7 @@ class Process():
       sort_keys=True, indent=2)
 
   def __str__(self):
-    return f'src.process.Process object: process_id={self.process_id}, process_id_base64={self.process_id_base64}, platform_prefix={self.platform_prefix}'
+    return f'src.process.Process object: process_id={self.process_id}, process_id_base64={self.process_id_base64}, provider_prefix={self.provider_prefix}'
 
   def __repr__(self):
     return f'src.process.Process(process_id={self.process_id})'

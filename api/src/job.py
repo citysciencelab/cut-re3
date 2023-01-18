@@ -2,13 +2,15 @@ from datetime import datetime
 import uuid
 import json
 import configs.config as config
-from configs.platforms import platforms
 import base64
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests
 from src.errors import InvalidUsage
 import logging
+import yaml
+
+PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
 class Job:
   DISPLAYED_ATTRIBUTES = [
@@ -25,9 +27,8 @@ class Job:
     if process_id_base64:
       data = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
       self.process_id      = data['process_id']
-      self.platform_prefix = data['platform_prefix']
-      p = platforms[self.platform_prefix]
-      self.platform_url    = p['url']
+      self.provider_prefix = data['provider_prefix']
+      self.provider_url    = PROVIDERS[self.provider_prefix]['url']
 
     self.parameters      = parameters
     self.status          = None
@@ -58,8 +59,8 @@ class Job:
   def _init_from_dict(self, data):
     self.job_id          = data['job_id']
     self.process_id      = data['process_id']
-    self.platform_prefix = data['platform_prefix']
-    self.platform_url    = data['platform_url']
+    self.provider_prefix = data['provider_prefix']
+    self.provider_url    = data['provider_url']
     self.status          = data['status']
     self.message         = data['message']
     self.created         = data['created']
@@ -81,9 +82,9 @@ class Job:
 
     query = """
       INSERT INTO jobs
-      (job_id, process_id, platform_prefix, platform_url, status, progress, parameters, message, created, started, finished, updated)
+      (job_id, process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
       VALUES
-      (%(job_id)s, %(process_id)s, %(platform_prefix)s, %(platform_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(job_id)s, %(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
     """
     with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
@@ -94,8 +95,8 @@ class Job:
     return {
       "process_id": self.process_id,
       "job_id":     self.job_id,
-      "platform_prefix": self.platform_prefix,
-      "platform_url": self.platform_url,
+      "provider_prefix": self.provider_prefix,
+      "provider_url": self.provider_url,
       "status":     self.status,
       "message":    self.message,
       "created":    self.created,
@@ -110,9 +111,9 @@ class Job:
     self.updated = datetime.utcnow()
     query = """
       UPDATE jobs SET
-      (process_id, platform_prefix, platform_url, status, progress, parameters, message, created, started, finished, updated)
+      (process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
       =
-      (%(process_id)s, %(platform_prefix)s, %(platform_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
       WHERE job_id = %(job_id)s
     """
     with DBHandler() as db:
@@ -125,7 +126,7 @@ class Job:
 
     process_id = {
       "process_id": job_dict.pop("process_id"),
-      "platform_prefix": self.platform_prefix
+      "provider_prefix": self.provider_prefix
     }
     job_dict["processID"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
     job_dict["links"] = []
@@ -154,11 +155,11 @@ class Job:
 
   def results(self):
     if self.status == JobStatus.successful.value:
-      p = platforms[self.platform_prefix]
-      self.platform_url    = p['url']
+      p = PROVIDERS[self.provider_prefix]
+      self.provider_url    = p['url']
 
       response = requests.get(
-          f"{self.platform_url}/jobs/{self.job_id}/results?f=json",
+          f"{self.provider_url}/jobs/{self.job_id}/results?f=json",
           auth    = (p['user'], p['password']),
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )

@@ -3,8 +3,8 @@ CREATE TYPE status AS ENUM ('accepted', 'running', 'successful', 'failed', 'dism
 CREATE TABLE IF NOT EXISTS jobs (
   process_id      varchar(40),
   job_id          varchar(40) PRIMARY KEY,
-  platform_prefix varchar(40),
-  platform_url    varchar(40),
+  provider_prefix varchar(40),
+  provider_url    varchar(40),
   status          status,
   message         text,
   created         timestamp,
