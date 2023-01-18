@@ -18,7 +18,10 @@ class Process():
   def __init__(self, process_id_base64=None):
     self.process_id_base64 = process_id_base64
 
-    process_id_dict = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
+    try:
+      process_id_dict = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
+    except Exception as e:
+      raise CustomException(f"Unknown process ID. Get a list of available processes under /api/processes. Error: \"{e}\"")
 
     self.platform_prefix = process_id_dict['platform_prefix']
     self.process_id = process_id_dict['process_id']

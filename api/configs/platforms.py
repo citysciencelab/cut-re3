@@ -1,8 +1,6 @@
 # This is the configuration file for setting up simulation servers.
 # The servers should provide an OGC processes api which will be retrieved
 # on the fly to provide all existing processes via this api.
-
-
 import os
 
 platforms = {}
