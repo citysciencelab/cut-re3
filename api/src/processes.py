@@ -1,4 +1,3 @@
-import requests
 import logging
 import base64
 import json
@@ -13,19 +12,24 @@ async def all_processes():
   processes = {}
   async with aiohttp.ClientSession() as session:
     for prefix in PROVIDERS:
-      p = PROVIDERS[prefix]
+      try:
+        p = PROVIDERS[prefix]
 
-      response = await session.get(
-        f"{p['url']}/processes",
-        auth=aiohttp.BasicAuth(p['user'], p['password']),
-        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-      )
-      async with response:
-        assert response.status == 200
-        results = await response.json()
+        response = await session.get(
+          f"{p['url']}/processes",
+          auth=aiohttp.BasicAuth(p['user'], p['password']),
+          headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        )
+        async with response:
+          assert response.status == 200
+          results = await response.json()
 
-        if "processes" in results:
-          processes[prefix] = results["processes"]
+          if "processes" in results:
+            processes[prefix] = results["processes"]
+      except Exception as e:
+        logging.error(f"Cannot access {prefix} provider! {e}")
+        traceback.print_exc()
+        processes[prefix] = []
 
   return _processes_list(processes)
 
@@ -44,4 +48,3 @@ def _processes_list(results):
       processes.append(process)
 
   return processes
-
