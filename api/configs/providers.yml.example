@@ -5,6 +5,7 @@
 # then provide https://example.org/rest/api as url.
 # This file should be considered as a secret.
 
+# Look for "CUT" in 1password for credentials (stored in "team")
 cut:
   url: "https://api-processes.cut.hcu-hamburg.de"
   user: "cut"

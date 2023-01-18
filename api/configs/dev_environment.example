@@ -3,13 +3,8 @@
 # Schema:
 # ENVIRONMENT_KEY=Value
 #
-# Please copy `./api/configs/.env.example` to `./api/configs/.env`
+# Please copy `./api/configs/dev_environment.example` to `./api/configs/dev_environment`
 # and fill in the missing information!
-
-# Look for "CUT" in 1password (stored in "team")
-MODEL_PROVIDER_URL=https://api-processes.cut.hcu-hamburg.de
-MODEL_PROVIDER_USER=cut
-MODEL_PROVIDER_PASSWORD=cut_password
 
 LOGLEVEL=DEBUG
 FLASK_DEBUG=True
