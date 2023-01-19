@@ -1,11 +1,13 @@
 import json
-import logging
+import time
+from datetime import datetime
+import re
+from multiprocessing import dummy
+import requests
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
-from multiprocessing import dummy
-from datetime import datetime
-from src.processes import all_processes
 from src.errors import InvalidUsage, CustomException
+import configs.config as config
 
 import logging
 
@@ -14,29 +16,35 @@ logging.basicConfig(level=logging.INFO)
 class Process():
   def __init__(self, process_id=None):
     self.process_id = process_id
-    self.process = self.set_details()
+    self.set_details()
 
   def set_details(self):
-    processes = all_processes()
+    response = requests.get(
+      f"{config.model_platform_url}/processes/{self.process_id}",
+      auth    = (config.model_platform_user, config.model_platform_password),
+      headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    )
+    response.raise_for_status()
 
-    for process in processes["processes"]:
-      if process['id'] == self.process_id:
-        return process
-
-    raise InvalidUsage("Process ID unknown! Please choose a valid model name as process ID. Check /api/processes endpoint.")
+    if response.ok:
+      process_details = response.json()
+      for key in process_details:
+        setattr(self, key, process_details[key])
+    else:
+      raise InvalidUsage(f"Model/process not found! {response.status_code}: {response.reason}. Check /api/processes endpoint for available models/processes.")
 
   def execute(self, parameters):
-    self.validate_params(parameters)
+    # TODO
+    # self.validate_params(parameters)
 
     logging.info(f" --> Executing {self.process_id} with params {parameters}")
 
-    job = Job(job_id=None, process_id=self.process_id, parameters=parameters)
-    job.save()
+    job = self.start_process_execution(parameters)
 
     _process = dummy.Process(
-      target=self._execute_in_backend,
-      args=([job, parameters])
-    )
+            target=self._wait_for_results,
+            args=([job])
+        )
     _process.start()
 
     result = {
@@ -45,35 +53,98 @@ class Process():
     }
     return result
 
-  def _execute_in_backend(self, job, parameters):
-    job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-    job.status = JobStatus.running.value
-    job.save()
+  def start_process_execution(self, parameters):
+    params = parameters
+    params["mode"] = "async"
+    logging.info(f" --> Executing {self.process_id} with params {params}")
 
-    logging.info(f' --> Job {job.job_id} started running at {job.started}')
+    response = requests.post(
+        f"{config.model_platform_url}/processes/{self.process_id}/execution",
+        json    = params,
+        auth    = (config.model_platform_user, config.model_platform_password),
+        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+      )
+    response.raise_for_status()
 
-    # response = requests.get(
-    #   config.dummy_model_url,
-    #   headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-    # )
+    if response.ok and response.headers:
+      match = re.search('http.*/jobs/(.*)$', response.headers["location"])
+      if match:
+        job_id = match.group(1)
 
-    geoserver = Geoserver()
-    with open("data/job_id_123456/results_XS.geojson") as f:
-      results = f.read()
+      job = Job(job_id=job_id, process_id=self.process_id, parameters=params)
+      job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+      job.status = JobStatus.running.value
+      job.save()
 
-      try:
-        geoserver.save_results(
-          job_id    = job.job_id,
-          data      = results
-        )
+      logging.info(f' --> Job {job.job_id} for model {self.process_id} started running.')
 
-        logging.info(f" --> Successfully stored results for job {self.process_id}/{job.job_id} to geoserver.")
-        job.status = JobStatus.successful.value
+      return job
 
-      except CustomException as e:
-        logging.error(f" --> Could not store results for job {self.process_id}/{job.job_id} to geoserver: {e}")
+  def _wait_for_results(self, job):
+    finished = False
+    timeout = float(config.model_platform_timeout)
+    start = time.time()
+
+    try:
+      while not finished:
+        response = requests.get(
+            f"{config.model_platform_url}/jobs/{job.job_id}",
+            auth    = (config.model_platform_user, config.model_platform_password),
+            headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+          )
+        response.raise_for_status()
+
+        job_details = response.json()
+
+        # Remark: doesn't the OGC specification ask for a "finished" timestamp
+        # to be returned instead?
+        if job_details["job_end_datetime"]:
+          finished = True
+
+        if time.time() - start > timeout:
+          raise TimeoutError(f"Job did not finish within {timeout/60} minutes. Giving up.")
+
+      logging.info(f" --> Remote execution job {job.job_id}: success = {finished}. Took approx. {int((time.time() - start)/60)} minutes.")
+
+    except Exception as e:
+      logging.error(f" --> Could not retrieve results for job {self.process_id}/{job.job_id} from simulation model server: {e}")
+      job.status = JobStatus.failed.value
+      job.message = str(e)
+      raise CustomException("Could not retrieve results from simulation model server. {e}")
+
+    try:
+      if job_details["status"] != JobStatus.successful.value:
         job.status = JobStatus.failed.value
-        job.message = str(e)
+        job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        job.updated = job.finished
+        job.progress = 100
+        job.message = f'Remote execution was not successful! {job_details["message"]}'
+        job.save()
+        raise CustomException(f"Remote job {job} could not be successfully executed! {job.message}")
+
+      geoserver = Geoserver()
+
+      response = requests.get(
+          f"{config.model_platform_url}/jobs/{job.job_id}/results?f=json",
+          auth    = (config.model_platform_user, config.model_platform_password),
+          headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        )
+      response.raise_for_status()
+
+      results = response.json()
+
+      geoserver.save_results(
+        job_id    = job.job_id,
+        data      = results
+      )
+
+      logging.info(f" --> Successfully stored results for job {self.process_id}/{job.job_id} to geoserver.")
+      job.status = JobStatus.successful.value
+
+    except CustomException as e:
+      logging.error(f" --> Could not store results for job {self.process_id}/{job.job_id} to geoserver: {e}")
+      job.status = JobStatus.failed.value
+      job.message = str(e)
 
     job.finished = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
     job.progress = 100
@@ -81,13 +152,8 @@ class Process():
 
     geoserver.cleanup()
 
-  def validate_params(self, params={}):
-    for input in self.process['inputs'].keys():
-      if self.process['inputs'][input]["minOccurs"] > 0 and params.get(input) is None:
-        raise InvalidUsage(f'Cannot process without parameter {input}')
-
   def to_json(self):
-    return json.dumps(self.process, default=lambda o: o.__dict__,
+    return json.dumps(self, default=lambda o: o.__dict__,
       sort_keys=True, indent=2)
 
   def __str__(self):

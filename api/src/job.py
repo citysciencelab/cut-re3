@@ -1,9 +1,10 @@
 from datetime import datetime
 import uuid
 import json
-import config
+import configs.config as config
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
+import requests
 from src.errors import InvalidUsage
 import logging
 
@@ -29,9 +30,7 @@ class Job:
     self.finished   = None
     self.updated    = None
 
-    if job_id is not None:
-      self._init_from_db(job_id)
-    else:
+    if not self._init_from_db(job_id):
       self._create()
 
   def _init_from_db(self, job_id):
@@ -43,8 +42,9 @@ class Job:
 
     if len(job_details) > 0:
       self._init_from_dict(dict(job_details[0]))
+      return True
     else:
-      raise InvalidUsage(f"Job with ID={job_id} not found.")
+      return False
 
   def _init_from_dict(self, data):
     self.job_id     = data['job_id']
@@ -59,7 +59,7 @@ class Job:
     self.parameters = data['parameters']
 
   def _create(self):
-    self.job_id     = str(uuid.uuid4())
+    self.job_id    = self.job_id if self.job_id else str(uuid.uuid4())
     self.status    = JobStatus.accepted.value
     self.progress  = 0
     self.message   = ""
@@ -134,10 +134,18 @@ class Job:
 
     return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}
 
-  def results_as_geojson(self):
-    with open(f"data/geoserver/{self.job_id}/results.geojson") as f:
-      results = f.read()
-    return results
+  def results(self):
+    if self.status == JobStatus.successful.value:
+      response = requests.get(
+          f"{config.model_platform_url}/jobs/{self.job_id}/results?f=json",
+          auth    = (config.model_platform_user, config.model_platform_password),
+          headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        )
+      # TODO: manage error
+      response.raise_for_status()
+      return response.json()
+    else:
+      return { "error": f"No result available: {response.status_code} - {response.reason}" }
 
   def __str__(self):
     return f"""

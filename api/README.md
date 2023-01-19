@@ -10,6 +10,9 @@ https://developer.ogc.org/api/processes/index.html#tag/JobList
 
 For convenience there is still some documentation below.
 
+## Setup
+Please copy api/configs/.env.example to api/configs/.env and provide credentials (stored in 1password).
+
 ### GET api/jobs
 Example payload:
 ```

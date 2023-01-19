@@ -5,7 +5,7 @@ import logging
 import json
 from routes.processes import processes
 from routes.jobs import jobs
-from src.errors import InvalidUsage
+from src.errors import CustomException
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ api.register_blueprint(jobs, url_prefix='/jobs')
 
 app.register_blueprint(api)
 
-@app.errorhandler(InvalidUsage)
+@app.errorhandler(CustomException)
 def handle_invalid_usage(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code

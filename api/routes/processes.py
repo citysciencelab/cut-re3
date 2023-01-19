@@ -18,5 +18,5 @@ def show(process_id=None):
 @processes.route('/<path:process_id>/execution', methods = ['POST'])
 def execute(process_id=None):
   process = Process(process_id)
-  result = process.execute(request.json["inputs"])
+  result = process.execute(request.json)
   return Response(json.dumps(result), status=201, mimetype='application/json')

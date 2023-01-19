@@ -1,10 +1,10 @@
-import json
-
-def all_processes():
-  with open("example_processes_list.json") as f:
-    result = f.read()
-  return json.loads(result)
+import requests
+import configs.config as config
 
 def all_processes_as_json():
-  result = all_processes()
-  return json.dumps(result)
+  response = requests.get(
+      f"{config.model_platform_url}/processes",
+      auth    = (config.model_platform_user, config.model_platform_password),
+      headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    )
+  return response.content

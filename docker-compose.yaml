@@ -22,12 +22,8 @@ services:
 
   api:
     build: api/.
-    environment:
-      - LOGLEVEL=DEBUG
-      - FLASK_DEBUG=True
-      - POSTGRES_USER=cut_dev
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=cut_dev
+    env_file:
+      - ./api/configs/.env
     volumes:
       - ./api:/usr/src/app
     depends_on:

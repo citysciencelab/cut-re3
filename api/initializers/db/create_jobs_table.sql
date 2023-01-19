@@ -2,7 +2,7 @@ CREATE TYPE status AS ENUM ('accepted', 'running', 'successful', 'failed', 'dism
 
 CREATE TABLE IF NOT EXISTS jobs (
   process_id  varchar(40),
-  job_id      varchar(40),
+  job_id      varchar(40) PRIMARY KEY,
   status     status,
   message    text,
   created    timestamp,

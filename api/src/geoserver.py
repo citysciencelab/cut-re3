@@ -1,5 +1,6 @@
 import requests
-import config
+import configs.config as config
+
 from src.data_helper import convert_data_to_shapefile, archive_data, cleanup_unused_files
 from src.errors import CustomException, GeoserverException
 import os
@@ -47,7 +48,7 @@ class Geoserver:
     else:
       raise GeoserverException(f"Workspace could not be created")
 
-  def save_results(self, job_id: str, data: json):
+  def save_results(self, job_id: str, data: dict):
     self.job_id = job_id
     store_name = job_id
 
@@ -57,7 +58,7 @@ class Geoserver:
 
       # write geojson data to file path/results.geojson
       with open(os.path.join(self.path, self.RESULTS_FILENAME), "x") as file:
-        file.write(data)
+       file.write(json.dumps(data))
 
       self.create_workspace()
 

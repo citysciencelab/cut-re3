@@ -19,4 +19,11 @@ def show(job_id=None):
 @jobs.route('/<path:job_id>/results', methods = ['GET'])
 def results(job_id=None):
   job = Job(job_id)
-  return Response(job.results_as_geojson(), mimetype='application/json')
+
+  if job.errors:
+    # TODO: like this?
+    result = {"errors": job.errors}
+  else:
+    result = job.results()
+
+  return Response(json.dumps(result), mimetype='application/json')
