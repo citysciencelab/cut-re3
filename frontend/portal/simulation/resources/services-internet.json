@@ -35,6 +35,16 @@
       }
     ],
     "notSupportedIn3D": false
+  },
+  {
+    "id": "123456",
+    "isSimulationLayer": true,
+    "modelId": "model1",
+    "styleId": "654321",
+    "name": "Simulation Layer",
+    "url": "http://localhost:3000/geoserver/CUT/ows",
+    "typ": "GeoJSON",
+    "isVisibleInMap": true,
+    "legend": false
   }
 ]
-

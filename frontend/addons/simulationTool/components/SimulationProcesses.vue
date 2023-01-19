@@ -23,14 +23,26 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <template v-if="processes?.length">
-          <tr v-for="process in processes" :key="process.id">
-            <th scope="row">{{ process.title }}</th>
-            <td>{{ process.description }}</td>
-            <td>
-              <a href="#" @click="$emit('selected', process.id)">Details</a>
-            </td>
-          </tr>
+        <template v-if="processes !== null">
+          <template v-if="processes.length === 0">
+            <tr>
+              <th scope="row">Error</th>
+              <td class="error">
+                No models found for configured simulation layers!
+              </td>
+              <td></td>
+            </tr>
+          </template>
+
+          <template v-if="processes !== null && processes.length">
+            <tr v-for="process in processes" :key="process.id">
+              <th scope="row">{{ process.title }}</th>
+              <td>{{ process.description }}</td>
+              <td>
+                <a href="#" @click="$emit('selected', process.id)">Details</a>
+              </td>
+            </tr>
+          </template>
         </template>
 
         <tr v-else class="placeholder-glow" aria-hidden>
@@ -50,5 +62,9 @@ h3 {
   margin: -1.25rem -1.25rem 0;
   padding: 1.25rem 1.25rem 0.5rem;
   background: white;
+}
+
+.error {
+  color: red;
 }
 </style>

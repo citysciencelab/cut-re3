@@ -88,8 +88,14 @@
       ]
     },
     "Fachdaten": {
-      "Layer": []
+      "Layer": [
+        {
+          "id": "123456",
+          "name": "Simulation Layer",
+          "styleId": "654321",
+          "visibility": true
+        }
+      ]
     }
   }
 }
-

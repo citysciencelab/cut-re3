@@ -1,6 +1,7 @@
 <script>
 import SimulationProcessJobsTable from "./SimulationProcessJobsTable.vue";
 import SimulationProcessJobExecution from "./SimulationProcessJobExecution.vue";
+import Config from "../../../portal/simulation/config";
 
 export default {
   name: "SimulationProcess",
@@ -12,91 +13,23 @@ export default {
       process: null,
       jobs: null,
       loadingJobs: false,
+      apiUrl: Config.simulationApiUrl,
     };
   },
   computed: {
     inputsConfig() {
-      // TODO: remove dummy data
-      /**
-      return {
-        string: {
-          title: "String",
-          description: "A string parameter",
-          schema: {
-            type: "string", // array | boolean | integer | number | object | string
-            minLength: 1,
-            maxLength: 10,
-            pattern: "[A-Za-z]",
-            default: "hello",
-          },
-          minOccurs: 0,
-          maxOccurs: 1,
-          metadata: {
-            display: "range",
-          },
-        },
-        boolean: {
-          title: "Boolean",
-          description: "A boolean parameter",
-          schema: {
-            type: "boolean",
-            default: 456,
-          },
-          minOccurs: 1,
-          maxOccurs: 1,
-          metadata: {
-            display: "range",
-          },
-        },
-        number: {
-          title: "Number",
-          description: "A number parameter",
-          schema: {
-            type: "numeric",
-            minimum: 2,
-            maximum: 3,
-            default: 456,
-          },
-          minOccurs: 1,
-          maxOccurs: 1,
-          metadata: {
-            display: "range",
-          },
-        },
-        array: {
-          title: "Array of numbers",
-          description: "An array parameter",
-          schema: {
-            type: "array",
-            minItems: 0,
-            maxItems: 3,
-            items: {
-              type: "numeric",
-            },
-          },
-          minOccurs: 1,
-          maxOccurs: 1,
-          metadata: {
-            display: "range",
-          },
-        },
-      };
-      */
       return this.process?.inputs || {};
     },
   },
   methods: {
     async fetchProcess(processId) {
-      this.process = await fetch(
-        `http://localhost:3000/api/processes/${processId}`,
-        {
-          headers: { "content-type": "application/json" },
-        }
-      ).then((res) => res.json());
+      this.process = await fetch(`${this.apiUrl}/processes/${processId}`, {
+        headers: { "content-type": "application/json" },
+      }).then((res) => res.json());
     },
     async fetchJobs(processId) {
       this.loadingJobs = true;
-      this.jobs = await fetch(`http://localhost:3000/api/jobs`)
+      this.jobs = await fetch(`${this.apiUrl}/jobs`)
         .then((res) => res.json())
         .then((json) => json.jobs.filter((job) => job.processID === processId));
 

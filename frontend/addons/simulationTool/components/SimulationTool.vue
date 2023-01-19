@@ -122,6 +122,7 @@ export default {
         <SimulationProcessJob
           v-if="mode === 'job'"
           :job-id="selectedJobId"
+          :process-id="selectedProcessId"
           @close="selectJob"
         />
       </div>

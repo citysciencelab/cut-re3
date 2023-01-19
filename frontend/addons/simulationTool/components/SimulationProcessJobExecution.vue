@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       executionValues: {},
+      apiUrl: Config.simulationApiUrl,
     };
   },
   watch: {
@@ -42,14 +43,11 @@ export default {
         const processId = this.processId;
         const body = { mode: "async", inputs: this.executionValues };
 
-        await fetch(
-          `http://localhost:3000/api/processes/${processId}/execution`,
-          {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: { "Content-Type": "application/json" },
-          }
-        ).then((res) => res.json());
+        await fetch(`${this.apiUrl}/processes/${processId}/execution`, {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: { "Content-Type": "application/json" },
+        }).then((res) => res.json());
 
         this.resetExecutionValues();
         this.$emit("executed");
