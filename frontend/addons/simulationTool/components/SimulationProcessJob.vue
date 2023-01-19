@@ -1,6 +1,8 @@
 <script>
 import Chart from "chart.js";
+import { GeoJSON } from "ol/format";
 import { and, equalTo } from "ol/format/filter";
+
 import WFS from "ol/format/WFS";
 
 export default {
@@ -101,6 +103,8 @@ export default {
                         modelId: this.processId,
                     }
                 );
+
+                this.xxx = 0;
             }
         },
 
@@ -137,20 +141,26 @@ export default {
 
             const geoserverUrl = Config.simulationGeoserverWorkspaceUrl;
             const url = `${geoserverUrl}?${urlParams.toString()}`;
+            const geojson = await fetch(url).then((res) => res.json());
+            const dataProjetion = new GeoJSON().readProjection(geojson);
+            const mapProjection = Radio.request("MapView", "getProjection");
+            const features = this.layer.parseDataToFeatures(
+                geojson,
+                mapProjection,
+                dataProjetion
+            );
 
-            const source = this.layer.layer.getSource();
-            source.setUrl(url);
-            source.refresh();
+            const source = this.layer.get("layerSource");
+            source.clear();
+            source.addFeatures(features);
 
             // update charts
-            source.once("featuresloadend", () => {
-                this.graphData = source.getFeatures().map((feature) => {
-                    const properties = { ...feature.getProperties() };
-                    delete properties.geometry;
-                    return properties;
-                });
-                this.renderChart();
+            this.graphData = source.getFeatures().map((feature) => {
+                const properties = { ...feature.getProperties() };
+                delete properties.geometry;
+                return properties;
             });
+            this.renderChart();
         },
 
         initMapFilters() {
@@ -287,6 +297,7 @@ export default {
 
                     <select
                         v-else
+                        class="form-select"
                         :value="filter.value"
                         :disabled="!filter.active"
                         @change="
@@ -407,10 +418,6 @@ export default {
 
 .job-filter li label {
     font-weight: bold;
-}
-
-.job-filter li select {
-    padding: 0.25em 0.5em;
 }
 </style>
 
