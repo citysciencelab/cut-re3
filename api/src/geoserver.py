@@ -1,7 +1,7 @@
 import requests
 import configs.config as config
 
-from src.data_helper import convert_data_to_shapefile, archive_data, cleanup_unused_files
+from src.data_helper import geojson_to_postgis, archive_data, cleanup_unused_files
 from src.errors import CustomException, GeoserverException
 import os
 import json
@@ -50,7 +50,6 @@ class Geoserver:
 
   def save_results(self, job_id: str, data: dict):
     self.job_id = job_id
-    store_name = job_id
 
     try:
       self.path = os.path.join('data', 'geoserver', job_id)
@@ -62,24 +61,20 @@ class Geoserver:
 
       self.create_workspace()
 
-      convert_data_to_shapefile(
-        path = self.path,
-        filename = self.RESULTS_FILENAME,
-        shapefile_name = job_id
-      )
-
-      self.push_shapefile_directory(
-        store_name = store_name
-      )
-
-      path_to_archive = archive_data(
-        path = self.path,
-        store_name = store_name
+      geojson_to_postgis(
+        path =       self.path,
+        filename =   self.RESULTS_FILENAME,
+        table_name = job_id
       )
 
       success = self.push_data_to_store(
-        store_name = store_name,
-        path_to_archive = path_to_archive
+        store_name = job_id,
+        table_name = job_id
+      )
+
+      success = self.publish_layer(
+        store_name = job_id,
+        layer_name = job_id
       )
 
     except Exception as e:
@@ -92,57 +87,41 @@ class Geoserver:
       )
     return success
 
-  def push_shapefile_directory(self, store_name: str):
-    xml_config = f"""
+  def publish_layer(self, store_name: str, layer_name: str):
+    response = requests.post(
+      f"{config.geoserver_workspaces_url}/{self.workspace}/datastores/{store_name}/featuretypes/{layer_name}.json",
+      auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
+      data    = "<featureType><name>{layer_name}</name>>/featureType>",
+      headers = {'Content-type': 'application/xml'}
+    )
+    return response.ok
+
+  def push_data_to_store(self, store_name: str, table_name: str):
+    logging.info(f" --> Storing results to geoserver store {store_name}")
+
+    xml_body = f"""
     <dataStore>
       <name>{store_name}</name>
-      <type>Directory of spatial files (shapefiles)</type>
       <connectionParameters>
-        <entry key="charset">ISO-8859-1</entry>
-        <entry key="filetype">shapefile</entry>
-        <entry key="create spatial index">true</entry>
-        <entry key="memory mapped buffer">false</entry>
-        <entry key="timezone">America/New_York</entry>
-        <entry key="enable spatial index">true</entry>
-        <entry key="namespace">http://www.opengeospatial.net/cite</entry>
-        <entry key="cache and reuse memory maps">true</entry>
-        <entry key="url">file:/opt/geoserver/data_dir/{store_name}</entry>
-        <entry key="fstype">shape</entry>
+        <host>{config.postgres_host}</host>
+        <port>{config.postgres_port}</port>
+        <database>{config.postgres_db}</database>
+        <user>{config.postgres_user}</user>
+        <passwd>{config.postgres_password}</passwd>
+        <dbtype>postgis</dbtype>
       </connectionParameters>
     </dataStore>
-"""
-
-    # TODO: Check the settings, e.g.
-    # .   - Coordinate Reference System, e.g. EPSG:4326
-    # .   - Bounding Boxes (in UI can be computed automatically from the data)
-    # .   - Basic resource info (name, title, abstract)
-    # - plus some Layer Settings like WMS (e.g. polygon)
-
+    """
     response = requests.post(
         f"{config.geoserver_workspaces_url}/{self.workspace}/datastores",
         auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-        data   = xml_config,
-        headers = {'Content-type': 'text/xml', 'Accept': '*/*'},
-        timeout = 60 * 1
-      )
-
-    logging.info(f' --> created shapefile directory {store_name}')
-    return response.ok
-
-  def push_data_to_store(self, store_name: str, path_to_archive: str):
-    logging.info(f" --> Storing data {path_to_archive} to geoserver store {store_name}")
-
-    with open(path_to_archive, 'rb') as archive:
-      response = requests.put(
-        f"{config.geoserver_workspaces_url}/{self.workspace}/datastores/{store_name}/file.shp",
-        auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-        files   = {'file': archive},
-        headers = {'Content-type': 'application/zip'}
+        data   = xml_body,
+        headers = {'Content-type': 'application/xml'}
       )
 
     if not response or not response.ok:
       raise GeoserverException(
-        f"Could not store shapefile {path_to_archive} to geoserver store {store_name}",
+        f"Could not store data from postgis to geoserver store {store_name}",
         payload={
           "status_code": response.status_code,
           "message":     response.reason
