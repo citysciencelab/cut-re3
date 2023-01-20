@@ -52,7 +52,7 @@ class Geoserver:
     self.job_id = job_id
 
     try:
-      self.path = os.path.join('data', 'geoserver', job_id)
+      self.path = os.path.join('data', 'results', job_id)
       os.mkdir(self.path)
 
       # write geojson data to file path/results.geojson
@@ -89,10 +89,10 @@ class Geoserver:
 
   def publish_layer(self, store_name: str, layer_name: str):
     response = requests.post(
-      f"{config.geoserver_workspaces_url}/{self.workspace}/datastores/{store_name}/featuretypes/{layer_name}.json",
+      f"{config.geoserver_workspaces_url}/{self.workspace}/datastores/{store_name}/featuretypes",
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-      data    = "<featureType><name>{layer_name}</name>>/featureType>",
-      headers = {'Content-type': 'application/xml'}
+      data    = "<featureType><name>{layer_name}</name></featureType>",
+      headers = {'Content-type': 'text/xml'}
     )
     return response.ok
 
