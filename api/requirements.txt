@@ -4,5 +4,6 @@ asyncio==3.4.3
 psycopg2==2.9.5
 numpy==1.24.1
 geopandas==0.12.2
-PyYAML==6.0
+pyyaml==6.0
 aiohttp==3.8.3
+geoalchemy2==0.13

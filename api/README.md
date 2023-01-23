@@ -15,6 +15,8 @@ Please copy api/configs/dev_environment.example to api/configs/dev_environment a
 
 Also the list of providers delivering the OGC processes api have to be configured in providers.yml. See providers.yml.example as example. It contains credentials!
 
+In order to remove all data and start from scratch you can remove the folder api/data for the geoserver files and the folder ./geoserver/data to erase the postgis data. The data folders will be recreated when the docker containers start up (necessary DB table creation included).
+
 ### GET api/jobs
 Example payload:
 ```

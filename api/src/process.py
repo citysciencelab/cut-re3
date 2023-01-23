@@ -13,6 +13,8 @@ from src.errors import InvalidUsage, CustomException
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
+PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
+
 import logging
 
 logging.basicConfig(level=logging.INFO)

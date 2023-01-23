@@ -13,6 +13,9 @@ api/data/geoserver/*
 api/configs/providers.yml
 api/configs/dev_environment
 
+api/tmp/data/*
+!api/tmp/data/.gitkeep
+
 */node_modules/
 db/*
 

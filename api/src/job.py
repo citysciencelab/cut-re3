@@ -22,22 +22,25 @@ class Job:
 
   def __init__(self, job_id=None, process_id_base64=None, parameters={}):
     self.job_id = job_id
+    self.process_id        = None
+    self.provider_prefix   = None
+    self.provider_url      = None
     self.process_id_base64 = process_id_base64
+    self.parameters        = parameters
+    self.status            = None
+    self.message           = None
+    self.progress          = None
+    self.parameters        = parameters
+    self.created           = None
+    self.started           = None
+    self.finished          = None
+    self.updated           = None
+
     if process_id_base64:
       data = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
       self.process_id      = data['process_id']
       self.provider_prefix = data['provider_prefix']
       self.provider_url    = PROVIDERS[self.provider_prefix]['url']
-
-    self.parameters      = parameters
-    self.status          = None
-    self.message         = None
-    self.progress        = None
-    self.parameters      = parameters
-    self.created         = None
-    self.started         = None
-    self.finished        = None
-    self.updated         = None
 
     if not self._init_from_db(job_id):
       self._create()
