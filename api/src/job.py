@@ -6,7 +6,6 @@ import base64
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests
-from src.errors import InvalidUsage
 import logging
 import yaml
 

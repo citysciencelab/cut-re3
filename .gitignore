@@ -10,8 +10,8 @@ api/__pycache__/*
 api/*/__pycache__/*
 api/*/*/__pycache__/*
 api/data/geoserver/*
-api/configs/.env
 api/configs/providers.yml
+api/configs/dev_environment
 
 api/tmp/data/*
 !api/tmp/data/.gitkeep
