@@ -41,7 +41,7 @@ export default {
         <template v-if="jobs?.length">
           <tr v-for="job in currentPageJobs" :key="job.jobID">
             <td class="time">
-              {{ new Date(job.job_start_datetime).toLocaleString() }}
+              {{ new Date(job.started).toLocaleString() }}
             </td>
             <td>
               <span

@@ -29,8 +29,6 @@ services:
     depends_on:
       - geoserver
       - nginx
-    platform:
-      "linux/amd64"
 
   frontend:
     build: frontend/.

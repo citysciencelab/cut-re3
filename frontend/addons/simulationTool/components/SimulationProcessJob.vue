@@ -167,9 +167,9 @@ export default {
 
             const mapProjection = Radio.request("MapView", "getProjection");
             const response = await getFeaturePOST(this.layer.get("url"), {
-                featureTypes: ["CUT:results_XS"],
+                featureTypes: ["CUT:62233c74-9b3a-11ed-8cbb-0242ac120015"],
                 srsName: mapProjection.getCode(),
-                filter: olFilter,
+                // filter: olFilter,
             });
 
             const dataProjetion = new WFS().readProjection(response);
@@ -305,7 +305,7 @@ export default {
                     {{
                         job
                             ? `Job ${new Date(
-                                  job.job_start_datetime
+                                  job.started
                               ).toLocaleString()}`
                             : "Loading job name"
                     }}
@@ -330,10 +330,10 @@ export default {
                 </div>
                 <div>
                     Started:
-                    {{ new Date(job.job_start_datetime).toLocaleString() }}
+                    {{ new Date(job.started).toLocaleString() }}
                 </div>
                 <div>
-                    Ended: {{ new Date(job.job_end_datetime).toLocaleString() }}
+                    Ended: {{ new Date(job.finished).toLocaleString() }}
                 </div>
             </div>
             <p v-else class="placeholder-glow" aria-hidden>
