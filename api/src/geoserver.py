@@ -7,6 +7,7 @@ import configs.config as config
 from src.errors import GeoserverException
 
 import os
+import shutil
 import json
 import logging
 
@@ -141,7 +142,5 @@ class Geoserver:
     gdf.to_postgis(name=table.string, con=engine)
 
   def cleanup(self):
-    if self.path_to_results:
-      filename = os.path.join(self.path_to_results, self.RESULTS_FILENAME)
-      if os.path.exists(filename):
-        os.remove(filename)
+    if self.path_to_results and os.path.exists(self.path_to_results):
+      shutil.rmtree(self.path_to_results)
