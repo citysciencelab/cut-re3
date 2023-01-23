@@ -11,7 +11,9 @@ https://developer.ogc.org/api/processes/index.html#tag/JobList
 For convenience there is still some documentation below.
 
 ## Setup
-Please copy api/configs/.env.example to api/configs/.env and provide credentials (stored in 1password).
+Please copy api/configs/dev_environment.example to api/configs/dev_environment and provide credentials (stored in 1password in "team" as "CUT").
+
+Also the list of providers delivering the OGC processes api have to be configured in providers.yml. See providers.yml.example as example. It contains credentials!
 
 ### GET api/jobs
 Example payload:
