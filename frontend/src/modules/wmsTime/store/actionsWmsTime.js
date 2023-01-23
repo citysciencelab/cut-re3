@@ -1,5 +1,5 @@
-import drawLayer from "../utils/drawLayer";
 import getPosition from "../utils/getPosition";
+import {getRenderPixel} from "ol/render";
 
 const actions = {
     windowWidthChanged ({commit, dispatch, state, getters}) {
@@ -33,6 +33,8 @@ const actions = {
             const {name, parentId, transparent, level, layers, styles, url, version,
                 gfiAttributes, featureCount, time} = layerModel.attributes;
 
+            commit("setLayerSwiperSourceLayer", layerModel.get("layer"));
+
             Radio.trigger("Parser", "addLayer",
                 name + "_second", secondId, parentId,
                 level, layers, url, version,
@@ -47,6 +49,7 @@ const actions = {
                 }
             );
             Radio.trigger("ModelList", "addModelsByAttributes", {id: secondId});
+            commit("setLayerSwiperTargetLayer", Radio.request("ModelList", "getModelByAttributes", {id: secondId}).get("layer"));
         }
         else {
             // If the button of the "original" window is clicked, it is assumed, that the time value selected in the added window is desired to be further displayed.
@@ -84,14 +87,44 @@ const actions = {
      *
      * @returns {void}
      */
-    updateMap ({state, rootGetters}) {
+    updateMap ({state, rootGetters, dispatch}) {
         if (!state.timeSlider.playing) {
             mapCollection.getMap(rootGetters["Maps/mode"]).render();
         }
-        state.layerSwiper.targetLayer?.once("prerender", renderEvent => drawLayer(mapCollection.getMap(rootGetters["Maps/mode"]).getSize(), renderEvent, state.layerSwiper.valueX));
+
+        state.layerSwiper.targetLayer?.once("prerender", renderEvent => dispatch("drawLayer", renderEvent));
         state.layerSwiper.targetLayer?.once("postrender", ({context}) => {
             context.restore();
         });
+
+        state.layerSwiper.sourceLayer?.once("prerender", renderEvent => dispatch("drawLayer", renderEvent));
+        state.layerSwiper.sourceLayer?.once("postrender", ({context}) => {
+            context.restore();
+            if (!state.layerSwiper.active) {
+                mapCollection.getMap(rootGetters["Maps/mode"]).render();
+            }
+        });
+    },
+    /**
+     * Manipulates the width of each layer according to the position of the layerSwiper and the side of the layer.
+     *
+     * @param {ol.render.Event} renderEvent The event object triggered on prerender
+     * @returns {void}
+     */
+    drawLayer ({state, rootGetters}, renderEvent) {
+        const {context} = renderEvent,
+            mapSize = mapCollection.getMap(rootGetters["Maps/mode"]).getSize(),
+            isRightSided = renderEvent.target.get("id").endsWith(state.layerAppendix);
+
+        // Clip everything that is to the other side of the swiper
+        context.save();
+        context.beginPath();
+        context.moveTo(...getRenderPixel(renderEvent, isRightSided ? [state.layerSwiper.valueX, 0] : [0, 0]));
+        context.lineTo(...getRenderPixel(renderEvent, isRightSided ? [state.layerSwiper.valueX, mapSize[1]] : [0, mapSize[1]]));
+        context.lineTo(...getRenderPixel(renderEvent, isRightSided ? mapSize : [state.layerSwiper.valueX, mapSize[1]]));
+        context.lineTo(...getRenderPixel(renderEvent, isRightSided ? [mapSize[0], 0] : [state.layerSwiper.valueX, 0]));
+        context.closePath();
+        context.clip();
     }
 };
 

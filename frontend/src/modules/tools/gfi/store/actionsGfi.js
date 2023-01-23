@@ -63,7 +63,7 @@ export default {
                 const clickPixel = rootGetters["Maps/clickPixel"],
                     clickCartesianCoordinate = rootGetters["Maps/clickCartesianCoordinate"],
                     mode = rootGetters["Maps/mode"],
-                    allGfiFeatures = gfiFeaturesAtPixel(clickPixel, clickCartesianCoordinate, mode).concat(...gfiFeatures);
+                    allGfiFeatures = gfiFeaturesAtPixel(clickPixel, clickCoordinate, clickCartesianCoordinate, mode).concat(...gfiFeatures);
 
                 // only commit if features found
                 if (allGfiFeatures.length > 0) {

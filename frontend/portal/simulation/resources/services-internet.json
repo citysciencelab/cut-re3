@@ -35,6 +35,29 @@
       }
     ],
     "notSupportedIn3D": false
+  },
+  {
+    "id": "123456",
+    "isSimulationLayer": true,
+    "filterOnClient": false,
+    "simModelId": "model1",
+    "styleId": "654321",
+    "name": "Simulation Layer",
+    "url": "http://localhost:3000/geoserver/CUT/ows",
+    "featureType": "",
+    "version": "1.0.0",
+    "typ": "WebGL",
+    "isVisibleInMap": true,
+    "legend": false,
+    "style": {
+      "symbol": {
+        "symbolType": "circle",
+        "size": 10,
+        "color": [0, 0, 255],
+        "opacity": 1,
+        "rotateWithView": true
+      }
+    }
   }
 ]
 

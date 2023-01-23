@@ -53,6 +53,19 @@ describe("src/core/maps/actions/actionsMapLayers.js", () => {
         });
     let map;
 
+    before(() => {
+        sinon.stub(Radio, "request").callsFake((...args) => {
+            if (args[0] === "ModelList") {
+                if (args[1] === "getModelsByAttributes") {
+                    if (args[2]?.type === "layer") {
+                        return [layer1, layer2, layer3, layer4, layer5, layer6, layer7];
+                    }
+                }
+            }
+            return undefined;
+        });
+    });
+
     beforeEach(() => {
         mapCollection.clear();
         map = new Map({
@@ -66,13 +79,26 @@ describe("src/core/maps/actions/actionsMapLayers.js", () => {
     });
 
     describe("addLayer", () => {
+        it("Add all layers with undefined zIndex (rendered as added)", () => {
+            const zIndexes = [undefined, undefined, undefined],
+                ids = ["Donald", "Daisy", "Darkwing"];
+
+            store.dispatch("Maps/addLayer", layer1);
+            store.dispatch("Maps/addLayer", layer4);
+            store.dispatch("Maps/addLayer", layer3);
+
+            mapCollection.getMap("2D").getLayers().forEach((layer, index) => {
+                expect(layer.getZIndex()).equals(zIndexes[index]);
+                expect(layer.get("id")).equals(ids[index]);
+            });
+        });
         it("Set layer2 with alwaysOnTop on top", () => {
-            const zIndexes = [0, 3, 2],
+            const zIndexes = [undefined, 7, undefined],
                 ids = ["Donald", "Dagobert", "Darkwing"];
 
-            store.dispatch("Maps/addLayer", layer1, 0);
-            store.dispatch("Maps/addLayer", layer2, 1);
-            store.dispatch("Maps/addLayer", layer3, 2);
+            store.dispatch("Maps/addLayer", layer1);
+            store.dispatch("Maps/addLayer", layer2);
+            store.dispatch("Maps/addLayer", layer3);
 
             mapCollection.getMap("2D").getLayers().forEach((layer, index) => {
                 expect(layer.getZIndex()).equals(zIndexes[index]);
@@ -83,7 +109,7 @@ describe("src/core/maps/actions/actionsMapLayers.js", () => {
 
     describe("addLayerToIndex", () => {
         it("Set layer2 with alwaysOnTop on top", () => {
-            const zIndexes = [0, 3, 2],
+            const zIndexes = [0, 7, 2],
                 ids = ["Donald", "Dagobert", "Darkwing"];
 
             store.dispatch("Maps/addLayerToIndex", {layer: layer1, zIndex: 0});
@@ -95,17 +121,31 @@ describe("src/core/maps/actions/actionsMapLayers.js", () => {
                 expect(layer.get("id")).equals(ids[index]);
             });
         });
+        it("Add all layers with assign index", () => {
+            const zIndexes = [0, 100, 2],
+                ids = ["Donald", "Daisy", "Darkwing"];
+
+            store.dispatch("Maps/addLayerToIndex", {layer: layer1, zIndex: 0});
+            store.dispatch("Maps/addLayerToIndex", {layer: layer4, zIndex: 100});
+            store.dispatch("Maps/addLayerToIndex", {layer: layer3, zIndex: 2});
+
+            mapCollection.getMap("2D").getLayers().forEach((layer, index) => {
+                expect(layer.getZIndex()).equals(zIndexes[index]);
+                expect(layer.get("id")).equals(ids[index]);
+            });
+        });
     });
 
     describe("addLayerOnTop", () => {
-        it("Set layer3 on top and then layer2 with alwaysOnTop on top", () => {
-            const zIndexes = [0, 3, 2],
-                ids = ["Donald", "Dagobert", "Darkwing"];
+        it("Add layer4 on top with the highest possible zIndex based on layerlist", () => {
+            const zIndexes = [0, 7, 2, 7],
+                ids = ["Donald", "Dagobert", "Darkwing", "Daisy"];
 
 
-            store.dispatch("Maps/addLayer", layer1, 0);
-            store.dispatch("Maps/addLayer", layer2, 3);
-            store.dispatch("Maps/addLayer", layer3, 2);
+            store.dispatch("Maps/addLayer", layer1);
+            store.dispatch("Maps/addLayer", layer2);
+            store.dispatch("Maps/addLayer", layer3);
+            store.dispatch("Maps/addLayerOnTop", layer4);
 
             mapCollection.getMap("2D").getLayers().forEach((layer, index) => {
                 expect(layer.getZIndex()).equals(zIndexes[index]);

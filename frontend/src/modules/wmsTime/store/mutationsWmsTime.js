@@ -25,7 +25,7 @@ const mutations = {
 
         // NOTE: This is needed when the LayerSwiper is closed and no new value was selected in the second
         // TimeSlider thus newValue would be the same as defaultValue and would not trigger the update Event.
-        currentObject.defaultValue = currentObject.timeRange[0];
+        currentObject.defaultValue = currentObject.timeRange?.[0];
         Vue.nextTick(() => {
             currentObject.defaultValue = newValue;
         });
@@ -48,6 +48,9 @@ const mutations = {
     },
     setLayerSwiperTargetLayer (state, layer) {
         state.layerSwiper.targetLayer = layer;
+    },
+    setLayerSwiperSourceLayer (state, layer) {
+        state.layerSwiper.sourceLayer = layer;
     }
 };
 

@@ -61,6 +61,61 @@ PROCESS_METADATA = {
             'maxOccurs': 1,
             'metadata': None,
             'keywords': ['y']
+        },
+        "string": {
+            "title": "String",
+            "description": "A string parameter",
+            "schema": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 10,
+                "pattern": "[A-Za-z]",
+                "default": "hello"
+            },
+            "metadata": {
+                "display": "range"
+            }
+        },
+        "boolean": {
+            "title": "Boolean",
+            "description": "A boolean parameter",
+            "schema": {
+                "type": "boolean",
+                "default": 456
+            },
+            "metadata": {
+                "display": "range"
+            }
+        },
+        "number": {
+            "title": "Number",
+            "description": "A number parameter",
+            "schema": {
+                "type": "numeric",
+                "minimum": 2,
+                "maximum": 3,
+                "default": 456
+            },
+            "minOccurs": 1,
+            "maxOccurs": 1,
+            "metadata": {
+                "display": "range"
+            }
+        },
+        "array": {
+            "title": "Array of numbers",
+            "description": "An array parameter",
+            "schema": {
+                "type": "array",
+                "minItems": 0,
+                "maxItems": 3,
+                "items": {
+                    "type": "numeric"
+                }
+            },
+            "metadata": {
+                "display": "range"
+            }
         }
     },
     'outputs': {

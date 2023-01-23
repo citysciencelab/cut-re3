@@ -61,11 +61,10 @@ export default {
         StyleVT,
         SupplyCoord,
         WfsSearch,
-        Wfst,
+        Wfst
     },
     state,
     getters,
     mutations,
-    actions,
+    actions
 };
-

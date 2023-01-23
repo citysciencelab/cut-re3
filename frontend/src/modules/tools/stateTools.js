@@ -54,10 +54,9 @@ const state = {
         styleVT: StyleVT,
         supplyCoord: SupplyCoord,
         wfsSearch: WfsSearch,
-        wfst: WfsTransaction,
+        wfst: WfsTransaction
     },
-    configuredTools: [],
+    configuredTools: []
 };
 
 export default state;
-

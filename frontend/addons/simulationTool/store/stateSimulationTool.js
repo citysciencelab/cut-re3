@@ -22,6 +22,7 @@ const state = {
   processes: null,
   selectedProcessId: null,
   selectedJobId: null,
+  apiUrl: Config.simulationApiUrl,
   // defaults for config.json parameters
   active: false,
   name: "Sim Tool",
