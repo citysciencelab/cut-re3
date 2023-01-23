@@ -1,8 +1,11 @@
 import requests
-import configs.config as config
+import geopandas as gpd
+from sqlalchemy import create_engine
+from psycopg2.sql import Identifier
 
-from src.data_helper import geojson_to_postgis, archive_data, cleanup_unused_files
-from src.errors import CustomException, GeoserverException
+import configs.config as config
+from src.errors import GeoserverException
+
 import os
 import json
 import logging
@@ -16,7 +19,7 @@ class Geoserver:
   def __init__(self):
     self.workspace = config.geoserver_workspace
     self.errors = []
-    self.path = None
+    self.path_to_results = None
     self.job_id = None
 
   def create_workspace(self):
@@ -52,22 +55,24 @@ class Geoserver:
     self.job_id = job_id
 
     try:
-      self.path = os.path.join('data', 'results', job_id)
-      os.mkdir(self.path)
+      self.path_to_results = os.path.join('tmp', 'data', job_id)
+      os.mkdir(self.path_to_results)
 
-      # write geojson data to file path/results.geojson
-      with open(os.path.join(self.path, self.RESULTS_FILENAME), "x") as file:
+      # write geojson data to file path_to_results/results.geojson
+      with open(os.path.join(self.path_to_results, self.RESULTS_FILENAME), "x") as file:
        file.write(json.dumps(data))
+
+      logging.info(f" --> Geojson results written to {self.path_to_results}")
 
       self.create_workspace()
 
-      geojson_to_postgis(
-        path =       self.path,
+      self.geojson_to_postgis(
+        path =       self.path_to_results,
         filename =   self.RESULTS_FILENAME,
         table_name = job_id
       )
 
-      success = self.push_data_to_store(
+      success = self.create_store(
         store_name = job_id,
         table_name = job_id
       )
@@ -91,12 +96,12 @@ class Geoserver:
     response = requests.post(
       f"{config.geoserver_workspaces_url}/{self.workspace}/datastores/{store_name}/featuretypes",
       auth    = (config.geoserver_admin_user, config.geoserver_admin_password),
-      data    = "<featureType><name>{layer_name}</name></featureType>",
+      data    = f"<featureType><name>{layer_name}</name></featureType>",
       headers = {'Content-type': 'text/xml'}
     )
     return response.ok
 
-  def push_data_to_store(self, store_name: str, table_name: str):
+  def create_store(self, store_name: str, table_name: str):
     logging.info(f" --> Storing results to geoserver store {store_name}")
 
     xml_body = f"""
@@ -129,8 +134,14 @@ class Geoserver:
       )
     return response.ok
 
+  def geojson_to_postgis(self, path: str, filename: str, table_name: str):
+    engine = create_engine(f'postgresql://{config.postgres_user}:{config.postgres_password}@postgis/{config.postgres_db}')
+    gdf = gpd.read_file(f"{path}/{filename}")
+    table = Identifier(table_name)
+    gdf.to_postgis(name=table.string, con=engine)
+
   def cleanup(self):
-    cleanup_unused_files(
-      path          = self.path,
-      base_filename = self.job_id
-    )
+    if self.path_to_results:
+      filename = os.path.join(self.path_to_results, self.RESULTS_FILENAME)
+      if os.path.exists(filename):
+        os.remove(filename)
