@@ -1,9 +1,8 @@
 <script>
 import Chart from "chart.js";
-import { GeoJSON } from "ol/format";
+import { WFS } from "ol/format";
 import { and, equalTo } from "ol/format/filter";
-
-import WFS from "ol/format/WFS";
+import { getFeaturePOST } from "../../../src/api/wfs/getFeature";
 
 export default {
     name: "SimulationProcessJob",
@@ -11,15 +10,13 @@ export default {
     emits: ["close"],
     data() {
         return {
-            job: null,
-            graphData: null,
-            chart: null,
-            chartType: "line",
-            // prettier-ignore
-            apiUrl: Config.simulationApiUrl,
-            layer: null,
-            displayMapFilters: [],
-            mapFilters: [],
+            job: null, // the loaded job data
+            chart: null, // the chart.js chart
+            chartType: "line", // the currently rendered chart type
+            layer: null, // the map layer used for this job
+            displayMapFilters: [], // internally used filters settings
+            mapFilters: [], // the filter settings
+            filterOnClient: false, // flag wether server or clint filtering will be used, read from the job's layer config
         };
     },
     watch: {
@@ -27,6 +24,7 @@ export default {
             this.renderChart();
         },
         mapFilters: {
+            // watch (deeply) for changes in mapFilters to initiate new WFS requests or filter data in client
             handler: function (newVal, oldVal) {
                 if (!oldVal.length) {
                     return;
@@ -38,16 +36,32 @@ export default {
         },
     },
     methods: {
+        /**
+         * Fetches the job details
+         * @param {String} jobId Id of the job to fetch
+         */
         async fetchJob(jobId) {
-            this.job = await fetch(`${this.apiUrl}/jobs/${jobId}`, {
+            this.job = await fetch(`${Config.simulationApiUrl}/jobs/${jobId}`, {
                 headers: { "content-type": "application/json" },
             }).then((res) => res.json());
         },
 
+        /**
+         * Calculates and returns the data to render charts.
+         * TODO: this is currently bound to a specific model, need to discuss how this will be defined per model
+         */
         getChartData() {
             const result = {};
+            const graphData = this.layer
+                .get("layerSource")
+                .getFeatures()
+                .map((feature) => {
+                    const properties = { ...feature.getProperties() };
+                    delete properties.geometry;
+                    return properties;
+                });
 
-            for (const data of this.graphData) {
+            for (const data of graphData) {
                 // Count agents per Stadtviertel
                 const id = data.AgentID.split("-")[0];
                 result[id] = result[id] ? result[id] + 1 : 1;
@@ -59,13 +73,16 @@ export default {
             };
         },
 
+        /**
+         * Render new chart or update existing one
+         */
         renderChart() {
-            const barChartData = this.getChartData();
+            const chartData = this.getChartData();
             const data = {
-                labels: barChartData.labels,
+                labels: chartData.labels,
                 datasets: [
                     {
-                        data: barChartData.data,
+                        data: chartData.data,
                         backgroundColor: "cornflowerblue",
                     },
                 ],
@@ -80,7 +97,7 @@ export default {
                 this.chart?.destroy();
             }
 
-            // Render the new chart
+            // Render new chart
             const context = this.$refs.chart.getContext("2d");
             this.chart = new Chart(context, {
                 type: this.chartType,
@@ -93,6 +110,9 @@ export default {
             });
         },
 
+        /**
+         * Get the corresponding layer configured in the services file
+         */
         createLayer() {
             if (!this.layer) {
                 this.layer = Radio.request(
@@ -100,72 +120,129 @@ export default {
                     "getModelByAttributes",
                     {
                         isSimulationLayer: true,
-                        modelId: this.processId,
+                        simModelId: this.processId,
                     }
                 );
 
-                this.xxx = 0;
+                if (!this.layer) {
+                    throw new Error(
+                        `No matching layer found for simModelId '${this.processId}`
+                    );
+                }
+
+                // read and save the load mode for this layer/model
+                this.filterOnClient = Boolean(
+                    this.layer.attributes.filterOnClient
+                );
             }
         },
 
+        /**
+         * Updates the layer features
+         */
         async updateLayer() {
-            const urlParams = new URLSearchParams();
-            urlParams.append("service", "wfs");
-            urlParams.append("version", "1.0.0");
-            urlParams.append("request", "getFeature");
-            urlParams.append("outputFormat", "application/json");
-            urlParams.append("typeName", "CUT:results_XS");
+            if (this.filterOnClient) {
+                this.updateLayerClient();
+            } else {
+                this.updateLayerServer();
+            }
+        },
 
+        /**
+         * Update the layer features, filtered on the server via WFS filter
+         */
+        async updateLayerServer() {
             const filters = this.mapFilters.filter((mf) => mf.active);
 
+            let olFilter = undefined;
+
             if (filters.length) {
-                const olFilter =
+                olFilter =
                     filters.length < 2
                         ? equalTo(filters[0].key, filters[0].value)
                         : and(
                               ...filters.map((mf) => equalTo(mf.key, mf.value))
                           );
-
-                const requestOptions = {
-                    featureTypes: ["CUT:results_XS"],
-                    filter: olFilter,
-                };
-                const getFeatureRequest = new WFS().writeGetFeature(
-                    requestOptions
-                );
-                const filterString = new XMLSerializer().serializeToString(
-                    getFeatureRequest.querySelector("Filter")
-                );
-                urlParams.append("filter", filterString);
             }
 
-            const geoserverUrl = Config.simulationGeoserverWorkspaceUrl;
-            const url = `${geoserverUrl}?${urlParams.toString()}`;
-            const geojson = await fetch(url).then((res) => res.json());
-            const dataProjetion = new GeoJSON().readProjection(geojson);
             const mapProjection = Radio.request("MapView", "getProjection");
-            const features = this.layer.parseDataToFeatures(
-                geojson,
+            const response = await getFeaturePOST(this.layer.get("url"), {
+                featureTypes: ["CUT:results_XS"],
+                srsName: mapProjection.getCode(),
+                filter: olFilter,
+            });
+
+            const dataProjetion = new WFS().readProjection(response);
+            const features = new WFS().readFeatures(
+                response,
                 mapProjection,
                 dataProjetion
             );
 
-            const source = this.layer.get("layerSource");
-            source.clear();
-            source.addFeatures(features);
-
-            // update charts
-            this.graphData = source.getFeatures().map((feature) => {
-                const properties = { ...feature.getProperties() };
-                delete properties.geometry;
-                return properties;
-            });
+            this.updateSource(features);
             this.renderChart();
         },
 
+        /**
+         * Update the layer features, loads all data initially and filters on the client
+         */
+        async updateLayerClient() {
+            if (!this.features) {
+                const mapProjection = Radio.request("MapView", "getProjection");
+                const response = await getFeaturePOST(this.layer.get("url"), {
+                    featureTypes: ["CUT:results_XS"],
+                    format: "application/json",
+                    srsName: mapProjection.getCode(),
+                });
+                const dataProjetion = new WFS().readProjection(response);
+
+                // generate ol features and reproject data
+                this.features = new WFS().readFeatures(
+                    response,
+                    mapProjection,
+                    dataProjetion
+                );
+            }
+
+            // filter features by mapFilters
+            const filteredFeatures = this.features.filter((feature) => {
+                return this.mapFilters.every((mf) => {
+                    if (!mf.active) {
+                        // if filter is not active this check is passed
+                        return true;
+                    }
+
+                    const { key, value } = mf;
+                    const properties = feature.getProperties();
+                    const featureValue =
+                        typeof value === "number"
+                            ? Number(properties[key])
+                            : properties[key];
+
+                    return value === featureValue;
+                });
+            });
+
+            this.updateSource(filteredFeatures);
+            this.renderChart();
+        },
+
+        /**
+         * Updates the layer's source
+         * @param {ol.Feature[]} features The feature to show on the map
+         */
+        updateSource(features) {
+            const source = this.layer.get("layerSource");
+            source.clear();
+            source.addFeatures(features);
+        },
+
+        /**
+         * Initially set the job's filter values retrieved from the job's config
+         */
         initMapFilters() {
             this.mapFilters = [
-                { key: "Step", value: 0, active: true },
+                { key: "Step", value: 0, active: true, min: 0, max: 100 },
                 { key: "iteration", value: 0, active: false },
                 {
                     key: "AgentID",
@@ -177,12 +254,22 @@ export default {
             this.displayMapFilters = structuredClone(this.mapFilters);
         },
 
+        /**
+         * Hlper function to update a filter value
+         * @param {String} key The filter key
+         * @param {String | Number} value The filter's new value
+         * @param {Boolean} active If the filter is active
+         */
         setMapFilter(key, value, active) {
             const filter = this.displayMapFilters.find((mf) => mf.key === key);
             filter.value = value;
             filter.active = active;
         },
 
+        /**
+         * Commtis the current display filters to the actual applied filter values.
+         * Note that new requests are only fired when the applied filters object changes.
+         */
         commitMapFilters() {
             this.mapFilters = structuredClone(this.displayMapFilters);
         },
@@ -195,6 +282,7 @@ export default {
     },
 
     beforeDestroy() {
+        // clear the layer's source to remove everything from the map
         this.layer?.layer.getSource().clear();
     },
 };
@@ -279,20 +367,21 @@ export default {
                     <input
                         v-if="typeof filter.value === 'number'"
                         type="range"
-                        min="0"
-                        max="10"
+                        :min="filter.min ?? 0"
+                        :max="filter.max ?? 0"
                         step="1"
                         :value="filter.value"
                         :disabled="!filter.active"
                         @input="
-                            (event) =>
+                            (event) => {
                                 setMapFilter(
                                     filter.key,
                                     Number(event.target.value),
                                     filter.active
-                                )
+                                );
+                                commitMapFilters();
+                            }
                         "
-                        @change="commitMapFilters()"
                     />
 
                     <select
@@ -402,6 +491,10 @@ export default {
 
 .job-filter {
     padding: 1em 0;
+}
+
+.job-filter input {
+    outline: none;
 }
 
 .job-filter ul {
