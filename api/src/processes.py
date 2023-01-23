@@ -3,7 +3,6 @@ import base64
 import json
 import yaml
 import traceback
-import asyncio
 import aiohttp
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))

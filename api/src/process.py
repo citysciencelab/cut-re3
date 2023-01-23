@@ -4,11 +4,12 @@ from datetime import datetime
 import re
 from multiprocessing import dummy
 import requests
+import base64
+import yaml
+
 from src.job import Job, JobStatus
 from src.geoserver import Geoserver
 from src.errors import InvalidUsage, CustomException
-import base64
-import yaml
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
