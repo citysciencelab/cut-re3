@@ -1,6 +1,6 @@
 import VectorLayer from "ol/layer/Vector.js";
 import VectorSource from "ol/source/Vector.js";
-
+import {getLayerModelsByAttributes} from "../../../layers/RadioBridge";
 
 export default {
     /**
@@ -12,21 +12,20 @@ export default {
      * @returns {void}
      */
     addLayer ({dispatch}, layer) {
-        layer.setZIndex(mapCollection.getMap("2D").getLayers().getLength());
         mapCollection.getMap("2D").addLayer(layer);
 
         dispatch("setLayersAlwaysOnTop", mapCollection.getMap("2D").getLayers());
     },
     /**
      * Pushes layers with the attribute: "alwaysOnTop" to the top of the layer collection.
-     * @param {Object} state state object
+     * @param {Object} _ the store context object (not used)
      * @param {module:ol/Collection~Collection} layers Layer Collection.
      * @returns {void}
      */
-    setLayersAlwaysOnTop (state, layers) {
+    setLayersAlwaysOnTop (_, layers) {
         layers.forEach(layer => {
             if (layer.get("alwaysOnTop") === true) {
-                layer.setZIndex(layers.getLength());
+                layer.setZIndex(getLayerModelsByAttributes({type: "layer"}).length);
             }
         });
     },
@@ -58,7 +57,7 @@ export default {
      * @returns {void}
      */
     addLayerOnTop ({dispatch}, layer) {
-        dispatch("addLayerToIndex", {layer: layer, zIndex: mapCollection.getMap("2D").getLayers().getLength()});
+        dispatch("addLayerToIndex", {layer: layer, zIndex: getLayerModelsByAttributes({type: "layer"}).length});
     },
 
     /**

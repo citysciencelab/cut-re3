@@ -4,7 +4,7 @@
     "rules": [
       {
         "style": {
-          "circleRadius": 5,
+          "circleRadius": 2,
           "circleStrokeColor": [0, 100, 255, 255],
           "circleFillColor": [50, 150, 255, 255]
         }
@@ -12,3 +12,4 @@
     ]
   }
 ]
+

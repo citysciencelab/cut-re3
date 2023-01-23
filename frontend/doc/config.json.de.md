@@ -1718,6 +1718,7 @@ Die Konfiguration eines Layers.
 |searchInMapExtent|nein|Boolean|false|Wenn auf `true` eingestellt, wird automatisch eine generische Checkbox erzeugt, mit der die Filterung auf den Browser-Extent beschränkt werden kann. Ist die Checkbox angehakt, ist das automatische Zoomen ausgeschaltet. Bitte unbedingt [loadingStrategy](#markdown-header-themenconfiglayervector) auf `all` setzen, da es sonst zu ungewollten Effekten kommt, wenn nach dem Filtern herausgezoomt wird.|false|
 |searchInMapExtentInfo|nein|Boolean|true|Rechts von der Checkbox wird ein Info-Symbol angezeigt, bei Klick wird eine Standard-Beschreibung eingeblendet. Auf `false` stellen, wenn es nicht angezeigt werden soll. Kann auch als String mit einem eigenen Info-Text eingestellt werden oder als Übersetzungs-Key.|false|
 |searchInMapExtentProactive|nein|Boolean|true|Die Checkbox zum Filtern im Browser-Extent löst unter `strategy`: `active` eine direkte Filterung im aktuellen Browser-Extent aus. Dies kann durch Einstellen von `searchInMapExtentProactive`: `false` abgeschaltet werden.|false|
+|searchInMapExtentPreselected|nein|Boolean|false|Die Checkbox zum Filtern im Browser-Extent ist initial ausgewählt wenn `searchInMapExtentPreselected`: `true` eingestellt ist.|false|
 |showHits|nein|Boolean|true|Die Treffer nach einer Filterung werden als Text angezeigt. Auf `false` stellen, um die Treffer nicht anzuzeigen.|false|
 |clearAll|nein|Boolean|false|Beim Klick auf den Zurücksetzen-Button werden alle Features angezeigt. Wird das clearAll-Flag auf `true` gestellt, werden beim Zurücksetzen keine Features angezeigt.|false|
 |wmsRefId|nein|String/String[]|""|Wenn der Layer gefiltert wird, wird der WMS-Layer mit der wmsRefId unsichtbar und im Themenbaum deaktiviert. Stattdessen wird der WFS aus der Filter-Konfiguration angezeigt. Nach dem Zurücksetzen des Filters wird die WMS-Ebene wieder aktiviert und wieder sichtbar.|false|
@@ -2414,7 +2415,7 @@ Modul für das Zeichnen von Features auf der Karte. Dies beinhaltet Punkte, welc
 |Name|Verpflichtend|Typ|Default|Beschreibung|Expert|
 |----|-------------|---|-------|------------|------|
 |name|ja|String||Name des Werkzeugs im Menü.|false|
-|iconList|nein|**[icon](#markdown-header-portalconfigmenutooldrawicon)**[]|[{"id": "iconPoint", "type": "simple_point", "value": "simple_point"}, {"id": "yellow pin", "type": "image", "scale": 0.5, "value": "https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"}]|Liste an Symbolen, aus welcher ein Nutzer die Auswahl für das Zeichnen eines farbigen Punktes oder eines Symbols hat. Es können wie im Beispiel eigene Bild-Dateien verwendet werden.|false|
+|iconList|nein|**[icon](#markdown-header-portalconfigmenutooldrawicon)**[]|[{"id": "iconPoint", "type": "simple_point", "value": "simple_point"}, {"id": "yellow pin", "type": "image", "scale": 2, "value": "geo-fill-ylw.svg"}]|Liste an Symbolen, aus welcher ein Nutzer die Auswahl für das Zeichnen eines farbigen Punktes oder eines Symbols hat. Es können wie im Beispiel eigene Bild-Dateien verwendet werden.|false|
 |drawSymbolSettings|nein|**[drawSymbolSet](#markdown-header-portalconfigmenutooldrawdrawsymbolset)**|{"color": [55, 126, 184, 1], "opacity": 1}|Voreinstellung für das Zeichnen von Symbolen.|false|
 |addIconsOfActiveLayers|nein|Boolean|false|Setzen Sie dieses Flag auf `true` um die Icons und Symbole aller im Themenbaum aktivierten WFS-Layer als zusätzliche Symbole neben den unter `drawSymbolSettings` konfigurierten Icons auswählen zu können.|false|
 |drawLineSettings|nein|**[drawLineSet](#markdown-header-portalconfigmenutooldrawdrawlineset)**|{"strokeWidth": 1, "opacityContour": 1, "colorContour": [0, 0, 0, 1]}|Voreinstellung für das Zeichnen von Linien.|false|
@@ -2449,8 +2450,8 @@ Modul für das Zeichnen von Features auf der Karte. Dies beinhaltet Punkte, welc
         {
             "id": "gelber Pin",
             "type": "image",
-            "scale": 0.5,
-            "value": "https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"
+            "scale": 2,
+            "value": "geo-fill-ylw.svg"
         }
     ],
     "drawDoubleCircleSettings": {
@@ -2505,8 +2506,8 @@ Punkt Objekt, bestehend aus der Beschriftung, dem Typ und dem Wert.
     {
         "id": "gelber Pin",
         "type": "image",
-        "scale": 0.5,
-        "value": "https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"
+        "scale": 2,
+        "value": "geo-fill-ylw.svg"
     },
 ```
 

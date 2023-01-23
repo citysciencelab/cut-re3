@@ -1783,6 +1783,7 @@ An object to define a layer to filter with.
 |searchInMapExtent|no|Boolean|false|Set to `true` to activate a generic checkbox, where you can set the filtering to `only filter in current browser extent`. If the extent checkbox is checked, automatic zooming is disabled. Make sure to set [loadingStrategy](#markdown-header-themenconfiglayervector) to `all` to avoid weird effects when zooming out after filtering in extent.|false|
 |searchInMapExtentInfo|no|Boolean|true|A little icon is shown right hand side of the checkbox. Clicking the icon, a standard description is shown. Set to `false` to disable this feature. Set to a individual text to use an own description or use a translation key.|false|
 |searchInMapExtentProactive|no|Boolean|true|The checkbox for filtering in the browser extent triggers direct filtering in the current browser extent under `strategy`: `active`. This can be disabled by setting `searchInMapExtentProactive`: `false`.|false|
+|searchInMapExtentPreselected|nein|Boolean|false|The checkbox for filtering in the browser extent is initially selected if `searchInMapExtentPreselected`: `true` is set.|false|
 |showHits|no|Boolean|true|After filtering, the hits are displayed. Set to `false` to not show the hits.|false|
 |clearAll|no|Boolean|false|After clicking button Reset all, all the features will be shown. Set to `true` to clear all the features after clicking Reselt all button.|false|
 |wmsRefId|no|String/String[]|""|If the layer is filtered, the WMS layer with `wmsRefId` will be invisible and deactivated from Tree. After resetting the layer, the WMS layer will be activated and visible again.|false|
@@ -2482,7 +2483,7 @@ Module used to draw features on the map. This includes points, which may also be
 |Name|Required|Type|Default|Description|Expert|
 |----|--------|----|-------|-----------|------|
 |name|yes|String||Tool name in the menu.|false|
-|iconList|no|**[icon](#markdown-header-portalconfigmenutooldrawicon)**[]|[{"id": "iconPoint", "type": "simple_point", "value": "simple_point"}, {"id": "yellow pin", "type": "image", "scale": 0.5, "value": "https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"}]|List of symbols the user may choose from to draw colored symbols or dots. Images may be used, too, as shown in the example.|false|
+|iconList|no|**[icon](#markdown-header-portalconfigmenutooldrawicon)**[]|[{"id": "iconPoint", "type": "simple_point", "value": "simple_point"}, {"id": "yellow pin", "type": "image", "scale": 2, "value": "geo-fill-ylw.svg"}]|List of symbols the user may choose from to draw colored symbols or dots. Images may be used, too, as shown in the example.|false|
 |drawSymbolSettings|no|**[drawSymbolSet](#markdown-header-portalconfigmenutooldrawdrawsymbolset)**|{"color": [55, 126, 184, 1], "opacity": 1}|Pre-configuration for symbol drawing.|false|
 |addIconsOfActiveLayers|nein|Boolean|false|Set this flag to `true` to be able to select the icons and symbols of all WFS layers activated in the topic tree as additional symbols besides the icons configured under `drawSymbolSettings`.|false|
 |drawLineSettings|no|**[drawLineSet](#markdown-header-portalconfigmenutooldrawdrawlineset)**|{"strokeWidth": 1, "opacityContour": 1, "colorContour": [0, 0, 0, 1]}|Pre-configuration for line drawing.|false|
@@ -2518,8 +2519,8 @@ Module used to draw features on the map. This includes points, which may also be
             {
                 "id": "yellow pin",
                 "type": "image",
-                "scale": 0.5,
-                "value": "https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"
+                "scale": 2,
+                "value": "geo-fill-ylw.svg"
             }
         ],
         "drawDoubleCircleSettings": {
@@ -2576,8 +2577,8 @@ Dot object consisting of text, type, and value.
         {
             "id": "yellow pin",
             "type": "image",
-            "scale": 0.5,
-            "value": "https://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png"
+            "scale": 2,
+            "value": "geo-fill-ylw.svg"
         }
     ]
 }

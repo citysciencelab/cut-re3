@@ -244,28 +244,30 @@ export default {
         ];
     },
     mounted () {
-        this.getInitialSliderMin(this.getAttrNameFrom(), min => {
-            this.getInitialSliderMax(this.getAttrNameUntil(), max => {
-                this.initSlider(parseFloat(min), parseFloat(max));
-                this.$nextTick(() => {
-                    if (this.isPrecheckedValid()) {
-                        this.emitCurrentRule(this.prechecked, true);
-                        this.$emit("setSnippetPrechecked", this.visible ? this.snippetId : false);
-                    }
-                    else {
-                        this.$emit("setSnippetPrechecked", false);
-                    }
+        this.$nextTick(() => {
+            this.getInitialSliderMin(this.getAttrNameFrom(), min => {
+                this.getInitialSliderMax(this.getAttrNameUntil(), max => {
+                    this.initSlider(parseFloat(min), parseFloat(max));
+                    this.$nextTick(() => {
+                        if (this.isPrecheckedValid()) {
+                            this.emitCurrentRule(this.prechecked, true);
+                            this.$emit("setSnippetPrechecked", this.visible ? this.snippetId : false);
+                        }
+                        else {
+                            this.$emit("setSnippetPrechecked", false);
+                        }
+                        this.setIsInitializing(false);
+                    });
+                }, error => {
                     this.setIsInitializing(false);
+                    this.$emit("setSnippetPrechecked", false);
+                    console.error(error);
                 });
             }, error => {
                 this.setIsInitializing(false);
                 this.$emit("setSnippetPrechecked", false);
                 console.error(error);
             });
-        }, error => {
-            this.setIsInitializing(false);
-            this.$emit("setSnippetPrechecked", false);
-            console.error(error);
         });
     },
     methods: {
@@ -784,6 +786,7 @@ export default {
         height: auto;
         .titleWrapper {
             .title {
+                float: left;
                 left: 0;
                 padding-right: 15px;
             }
@@ -793,6 +796,7 @@ export default {
             }
         }
         .inputWrapper {
+            clear: both;
             position: relative;
             margin-top: 5px;
             height: 24px;

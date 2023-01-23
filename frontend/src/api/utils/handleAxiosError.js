@@ -6,7 +6,7 @@
  * @returns {void}
  * @see {@link https://github.com/axios/axios#handling-errors}
  */
-function handleAxiosError (error, functionName, onerror) {
+export function handleAxiosError (error, functionName, onerror) {
     let errorMessage = "";
 
     if (error?.response) {

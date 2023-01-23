@@ -23,10 +23,20 @@ function getFeaturesByLayerId (layerId) {
         return [];
     }
 
+    /**
+     * @todo should be default
+     * accessing a stable features list on the layer model is more sensible
+     * avoids styling and clustering issues
+     */
+    if (layer.features) {
+        return layer.features;
+    }
+
     if (layer.get("isClustered")) {
         return layer.get("layer").getSource().getSource().getFeatures();
     }
 
+    // not sure how to handle those just yet
     if (layer.layer instanceof LayerGroup) {
         const layerSource = layer.get("layerSource");
 
@@ -36,6 +46,7 @@ function getFeaturesByLayerId (layerId) {
             }
         });
 
+        // could also work through hosting the features on the layer model
         return layer.layer.getSource().getFeatures();
     }
 

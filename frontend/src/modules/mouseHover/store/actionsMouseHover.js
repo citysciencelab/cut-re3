@@ -1,4 +1,6 @@
 import {createGfiFeature} from "../../../api/gfi/getWmsFeaturesByMimeType";
+import {buffer} from "ol/extent";
+import Point from "ol/geom/Point";
 
 export default {
     /**
@@ -22,36 +24,66 @@ export default {
             commit("setInfoText", infoText);
         }
         map.on("pointermove", (evt) => {
-            if (evt.originalEvent.pointerType !== "touch") {
-                featuresAtPixel = [];
-                commit("setHoverPosition", evt.coordinate);
-                map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => {
-                    if (layer?.getVisible()) {
-                        if (feature.getProperties().features) {
-                            feature.get("features").forEach(clusteredFeature => {
-                                featuresAtPixel.push(createGfiFeature(
-                                    layer,
-                                    "",
-                                    clusteredFeature
-                                ));
-                            });
-                        }
-                        else {
+            if (!state.isActive || evt.originalEvent.pointerType === "touch") {
+                return;
+            }
+            featuresAtPixel = [];
+            commit("setHoverPosition", evt.coordinate);
+
+            // works for WebGL layers that are point layers
+            // behavior is different from GFI, reason unclear, same method
+            map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => {
+                if (layer?.getVisible()) {
+                    if (feature.getProperties().features) {
+                        feature.get("features").forEach(clusteredFeature => {
+                            featuresAtPixel.push(createGfiFeature(
+                                layer,
+                                "",
+                                clusteredFeature
+                            ));
+                        });
+                    }
+                    else {
+                        featuresAtPixel.push(createGfiFeature(
+                            layer,
+                            "",
+                            feature
+                        ));
+                    }
+                }
+            });
+            /** check WebGL Layers
+             * use buffered coord instead of pixel for hitTolerance
+             * only necessary for WebGL polygon and line layers
+             * @todo refactor?
+            */
+            map.getLayers().getArray()
+                .filter(layer => layer.get("typ") === "WebGL" && !layer.get("isPointLayer")) // point features are already caught by map.forEachFeatureAtPixel loop
+                .forEach(layer => {
+                    if (layer.get("gfiAttributes") && layer.get("gfiAttributes") !== "ignore") {
+                        /**
+                         * use OL resolution based buffer to adjust the hitTolerance (in m) for lower zoom levels
+                         */
+                        const hitBox = buffer(
+                            new Point(evt.coordinate).getExtent(),
+                            (layer.get("hitTolerance") || 1) * Math.sqrt(mapCollection.getMapView("2D").getResolution())
+                        );
+
+                        layer.getSource()?.forEachFeatureIntersectingExtent(hitBox, feature => {
                             featuresAtPixel.push(createGfiFeature(
                                 layer,
                                 "",
                                 feature
                             ));
-                        }
+                        });
                     }
                 });
-                state.overlay.setPosition(evt.coordinate);
-                state.overlay.setElement(document.querySelector("#mousehover-overlay"));
-                commit("setInfoBox", null);
+            state.overlay.setPosition(evt.coordinate);
+            state.overlay.setElement(document.querySelector("#mousehover-overlay"));
+            commit("setInfoBox", null);
 
-                if (featuresAtPixel.length > 0) {
-                    dispatch("filterInfos", featuresAtPixel);
-                }
+            if (featuresAtPixel.length > 0) {
+                dispatch("filterInfos", featuresAtPixel);
             }
         });
     },

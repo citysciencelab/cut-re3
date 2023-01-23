@@ -2,6 +2,8 @@ import {generateSimpleGetters} from "../../../../app-store/utils/generators";
 import stateGfi from "./stateGfi";
 import {createGfiFeature} from "../../../../api/gfi/getWmsFeaturesByMimeType";
 import {getGfiFeaturesByTileFeature} from "../../../../api/gfi/getGfiFeaturesByTileFeature";
+import Point from "ol/geom/Point";
+import {buffer} from "ol/extent";
 
 const getters = {
     ...generateSimpleGetters(stateGfi),
@@ -9,18 +11,20 @@ const getters = {
     /**
      * Gets the features at the given pixel for the gfi.
      * @param {Number[]} clickPixel The pixel coordinate of the click event in 2D
+     * @param {Number[]} clickCoordinate The geographic coordinate of the click event in 2D
      * @param {Number[]} clickCartesianCoordinate The coordinate of the click event in 3D
      * @param {String} mode The current map mode
      * @returns {Object[]} gfi features
      */
-    gfiFeaturesAtPixel: () => (clickPixel, clickCartesianCoordinate, mode) => {
+    gfiFeaturesAtPixel: () => (clickPixel, clickCoordinate, clickCartesianCoordinate, mode) => {
         const featuresAtPixel = [];
 
         if (clickPixel && mode === "2D") {
+            // doesn't work for WebGL layers, behavior is different from mouseHover, reason unclear, same method
             mapCollection.getMap("2D").forEachFeatureAtPixel(clickPixel, (feature, layer) => {
                 if (layer?.getVisible() && layer?.get("gfiAttributes") && layer?.get("gfiAttributes") !== "ignore") {
                     if (feature.getProperties().features) {
-                        feature.get("features").forEach(clusteredFeature => {
+                        feature.get("features").forEach(function (clusteredFeature) {
                             featuresAtPixel.push(createGfiFeature(
                                 layer,
                                 "",
@@ -36,7 +40,35 @@ const getters = {
                         ));
                     }
                 }
+            }, {
+                // filter WebGL layers and look at them individually
+                layerFilter: layer => layer.get("typ") !== "WebGL"
             });
+            /** check WebGL Layers
+            * use buffered coord instead of pixel for hitTolerance
+            * @todo refactor?
+            */
+            mapCollection.getMap("2D").getLayers().getArray()
+                .filter(layer => layer.get("typ") === "WebGL")
+                .forEach(layer => {
+                    if (layer.get("gfiAttributes") && layer.get("gfiAttributes") !== "ignore") {
+                        /**
+                         * use OL resolution based buffer to adjust the hitTolerance (in m) for lower zoom levels
+                         */
+                        const hitBox = buffer(
+                            new Point(clickCoordinate).getExtent(),
+                            (layer.get("hitTolerance") || 1) * Math.sqrt(mapCollection.getMapView("2D").getResolution())
+                        );
+
+                        layer.getSource()?.forEachFeatureIntersectingExtent(hitBox, feature => {
+                            featuresAtPixel.push(createGfiFeature(
+                                layer,
+                                "",
+                                feature
+                            ));
+                        });
+                    }
+                });
         }
         if (mode === "3D" && Array.isArray(clickCartesianCoordinate) && clickCartesianCoordinate.length === 2) {
             // add features from map3d
