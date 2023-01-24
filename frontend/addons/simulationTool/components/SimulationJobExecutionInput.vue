@@ -35,7 +35,7 @@ export default {
   />
 
   <input
-    v-else-if="schema.type === 'numeric'"
+    v-else-if="schema.type === 'number'"
     class="form-control"
     :key="`input_${inputKey}`"
     :id="`input_${inputKey}`"

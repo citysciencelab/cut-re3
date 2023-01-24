@@ -29,7 +29,7 @@ const Config = {
     infoText: "(weitere Objekte. Bitte zoomen.)",
   },
   addons: ["simulationTool"],
-  simulationApiUrl: "http://localhost:3000/processes/api",
+  simulationApiUrl: "http://localhost:3000/api",
   simulationGeoserverWorkspaceUrl: " http://localhost:3000/geoserver/CUT/ows",
 };
 

@@ -46,4 +46,4 @@ def _processes_list(results):
       process["id"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
       processes.append(process)
 
-  return processes
+  return { "processes": processes }

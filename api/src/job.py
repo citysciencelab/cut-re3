@@ -15,7 +15,7 @@ class Job:
   DISPLAYED_ATTRIBUTES = [
       "processID", "type", "jobID", "status", "message",
       "created", "started", "finished", "updated", "progress",
-      "links"
+      "links", "parameters"
     ]
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
@@ -125,6 +125,7 @@ class Job:
     job_dict = self._to_dict()
     job_dict["type"] = "process"
     job_dict["jobID"] = job_dict.pop("job_id")
+    job_dict["parameters"] = self.parameters
 
     process_id = {
       "process_id": job_dict.pop("process_id"),

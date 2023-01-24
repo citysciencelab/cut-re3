@@ -40,7 +40,7 @@
     "id": "123456",
     "isSimulationLayer": true,
     "filterOnClient": false,
-    "simModelId": "model1",
+    "simModelId": "eyJwcm9jZXNzX2lkIjogImFibS10ZXN0LW1vZGVsIiwgInByb3ZpZGVyX3ByZWZpeCI6ICJjdXQifQ==",
     "styleId": "654321",
     "name": "Simulation Layer",
     "url": "http://localhost:3000/geoserver/CUT/ows",
