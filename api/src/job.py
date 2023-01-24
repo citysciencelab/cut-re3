@@ -15,7 +15,7 @@ class Job:
   DISPLAYED_ATTRIBUTES = [
       "processID", "type", "jobID", "status", "message",
       "created", "started", "finished", "updated", "progress",
-      "links"
+      "links", "parameters"
     ]
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
