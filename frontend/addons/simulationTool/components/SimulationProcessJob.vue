@@ -167,9 +167,9 @@ export default {
 
             const mapProjection = Radio.request("MapView", "getProjection");
             const response = await getFeaturePOST(this.layer.get("url"), {
-                featureTypes: ["CUT:62233c74-9b3a-11ed-8cbb-0242ac120015"],
+                featureTypes: [`CUT:${this.jobId}`],
                 srsName: mapProjection.getCode(),
-                // filter: olFilter,
+                filter: olFilter,
             });
 
             const dataProjetion = new WFS().readProjection(response);
@@ -190,7 +190,7 @@ export default {
             if (!this.features) {
                 const mapProjection = Radio.request("MapView", "getProjection");
                 const response = await getFeaturePOST(this.layer.get("url"), {
-                    featureTypes: ["CUT:results_XS"],
+                    featureTypes: [`CUT:${this.jobId}`],
                     format: "application/json",
                     srsName: mapProjection.getCode(),
                 });
@@ -304,9 +304,10 @@ export default {
                 <h3 :class="{ placeholder: !job }" :aria-hidden="!job">
                     {{
                         job
-                            ? `Job ${new Date(
-                                  job.started
-                              ).toLocaleString()}`
+                            ? `Job "${
+                                  job.parameters.inputs.name ||
+                                  new Date(job.started).toLocaleString()
+                              }"`
                             : "Loading job name"
                     }}
                 </h3>
@@ -332,9 +333,7 @@ export default {
                     Started:
                     {{ new Date(job.started).toLocaleString() }}
                 </div>
-                <div>
-                    Ended: {{ new Date(job.finished).toLocaleString() }}
-                </div>
+                <div>Ended: {{ new Date(job.finished).toLocaleString() }}</div>
             </div>
             <p v-else class="placeholder-glow" aria-hidden>
                 <span class="placeholder col-3" />
@@ -379,7 +378,16 @@ export default {
                                     Number(event.target.value),
                                     filter.active
                                 );
-                                commitMapFilters();
+                                if (filterOnClient) {
+                                    commitMapFilters();
+                                }
+                            }
+                        "
+                        @change="
+                            (event) => {
+                                if (!filterOnClient) {
+                                    commitMapFilters();
+                                }
                             }
                         "
                     />
