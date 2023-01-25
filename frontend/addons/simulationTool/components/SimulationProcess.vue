@@ -100,7 +100,7 @@ export default {
 
         <div class="process-content" v-if="process">
             <SimulationProcessJobsTable
-                :processId="processId"
+                :process="process"
                 :jobs="jobs"
                 :loadingJobs="loadingJobs"
                 v-on="$listeners"
