@@ -7,7 +7,7 @@ jobs = Blueprint('jobs', __name__)
 
 @jobs.route('/', defaults={'page': 'index'})
 def index(page):
-  args = request.json if request.is_json else {}
+  args = request.args.to_dict(flat=False) if request.args else {}
   result = get_jobs(args)
   return Response(json.dumps(result), mimetype='application/json')
 

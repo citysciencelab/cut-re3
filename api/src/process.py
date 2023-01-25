@@ -161,13 +161,15 @@ class Process():
       if not response.ok:
         job.status = JobStatus.failed.value
         job.message = f'Could not retrieve results for {job}! {response.status_code}: {response.reason}'
+      else:
+        results = response.json()
 
-      results = response.json()
+        job.set_results_metadata(results)
 
-      geoserver.save_results(
-        job_id    = job.job_id,
-        data      = results
-      )
+        geoserver.save_results(
+          job_id    = job.job_id,
+          data      = results
+        )
 
       logging.info(f" --> Successfully stored results for job {self.process_id_base64} (={self.process_id})/{job.job_id} to geoserver.")
       job.status = JobStatus.successful.value

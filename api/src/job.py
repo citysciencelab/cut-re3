@@ -8,6 +8,7 @@ from src.job_status import JobStatus
 import requests
 import logging
 import yaml
+import geopandas as gpd
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
@@ -15,7 +16,7 @@ class Job:
   DISPLAYED_ATTRIBUTES = [
       "processID", "type", "jobID", "status", "message",
       "created", "started", "finished", "updated", "progress",
-      "links", "parameters"
+      "links", "parameters", "results_metadata"
     ]
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
@@ -35,6 +36,7 @@ class Job:
     self.started           = None
     self.finished          = None
     self.updated           = None
+    self.results_metadata  = {}
 
     if process_id_base64:
       data = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
@@ -59,18 +61,19 @@ class Job:
       return False
 
   def _init_from_dict(self, data):
-    self.job_id          = data['job_id']
-    self.process_id      = data['process_id']
-    self.provider_prefix = data['provider_prefix']
-    self.provider_url    = data['provider_url']
-    self.status          = data['status']
-    self.message         = data['message']
-    self.created         = data['created']
-    self.started         = data['started']
-    self.finished        = data['finished']
-    self.updated         = data['updated']
-    self.progress        = data['progress']
-    self.parameters      = data['parameters']
+    self.job_id           = data['job_id']
+    self.process_id       = data['process_id']
+    self.provider_prefix  = data['provider_prefix']
+    self.provider_url     = data['provider_url']
+    self.status           = data['status']
+    self.message          = data['message']
+    self.created          = data['created']
+    self.started          = data['started']
+    self.finished         = data['finished']
+    self.updated          = data['updated']
+    self.progress         = data['progress']
+    self.parameters       = data['parameters']
+    self.results_metadata = data['results_metadata']
 
   def _create(self):
     self.job_id    = self.job_id if self.job_id else str(uuid.uuid4())
@@ -106,26 +109,49 @@ class Job:
       "finished":   self.finished,
       "updated":    self.updated,
       "progress":   self.progress,
-      "parameters": json.dumps(self.parameters)
+      "parameters": json.dumps(self.parameters),
+      "results_metadata": json.dumps(self.results_metadata)
     }
 
   def save(self):
     self.updated = datetime.utcnow()
+
     query = """
       UPDATE jobs SET
-      (process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
+      (process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated, results_metadata)
       =
-      (%(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s, %(results_metadata)s)
       WHERE job_id = %(job_id)s
     """
     with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
+
+  def set_results_metadata(self, results_as_json):
+    results_df = gpd.GeoDataFrame.from_features(results_as_json)
+    max = results_df.max(numeric_only=True).to_dict()
+    min = results_df.min(numeric_only=True).to_dict()
+
+    values = []
+    for column in max:
+      values.append(
+        {
+          column:
+          {
+            "min": min[column],
+            "max": max[column]
+          }
+        }
+      )
+    self.results_metadata = { "values": values }
+
+    return self.results_metadata
 
   def display(self):
     job_dict = self._to_dict()
     job_dict["type"] = "process"
     job_dict["jobID"] = job_dict.pop("job_id")
     job_dict["parameters"] = self.parameters
+    job_dict["results_metadata"] = self.results_metadata
 
     process_id = {
       "process_id": job_dict.pop("process_id"),
