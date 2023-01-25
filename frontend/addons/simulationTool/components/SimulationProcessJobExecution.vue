@@ -41,7 +41,7 @@ export default {
 
             if (formIsValid) {
                 const processId = this.processId;
-                const body = { mode: "async", inputs: this.executionValues };
+                const body = { inputs: this.executionValues };
 
                 await fetch(`${this.apiUrl}/processes/${processId}/execution`, {
                     method: "POST",
@@ -105,6 +105,7 @@ export default {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.5rem;
+    padding-right: 2rem;
 }
 
 .execution-form label {
