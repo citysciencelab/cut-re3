@@ -47,6 +47,11 @@ Currently all results are stored to the Geoserver in a single workspace (e.g. "C
 
 The workspace name is configured by the backend api but also has to be configured by the frontend.
 
+Currently the geoserver stores its data to api/data/geoserver. This is configured in the docker-compose.yaml file.
+
+## PostGis configuration
+See geoserver/configs/postgis. The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml
+
 ## nginx configuration
 The nginx configuration can be found at nginx/default.conf. It configures the paths to the respective endpoints.
 There are no changes necessary for development.
@@ -79,8 +84,7 @@ Please configure the process IDs in **services-internet.json** as "simModelId". 
 
 Also configure the correct URL to the Geoserver in **services-internet.json** as "url".
 
-
-
-
+## Reset data in development
+If you are in development and want to reset all PostGis and Geoserver data, you can safely delete the geoserver/data and api/data folders completely.
 
 
