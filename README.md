@@ -47,7 +47,9 @@ Currently all results are stored to the Geoserver in a single workspace (e.g. "C
 
 The workspace name is configured by the backend api but also has to be configured by the frontend.
 
-Currently the geoserver stores its data to api/data/geoserver. This is configured in the docker-compose.yaml file.
+Currently the geoserver stores its data into the folder api/data/geoserver. This is configured in the docker-compose.yaml file.
+
+Remark: The geoserver needs a lot of resources. If you have issues with it you can try to give docker more resources.
 
 ## PostGis configuration
 PostGis is configured with the Geoserver in geoserver/configs/postgis (see above).
@@ -85,6 +87,15 @@ The frontend can be configured to provide a selected list of simulation models (
 Please configure the process IDs in **services-internet.json** as "simModelId". The list of available process IDs is provided by the backend endpoint \<base url>/api/processes.
 
 Also configure the correct URL to the Geoserver in **services-internet.json** as "url".
+
+## Routes
+If not configured differently in nginx/default.conf, then:
+
+The **frontend** is available under localhost:3000. Click on the link "portal" -> "simulation" and then choose "Werkzeuge" -> "Simulation Tool".
+
+The **Geoserver** is available under localhost:3000/geoserver. Choose "Layer previews" in the menu to see the list of uploaded layers. If you click on OpenLayers then the data will be displayed in a new tab.
+
+The **backend api** is available under localhost:3000/api.
 
 ## Reset data in development
 If you are in development and want to reset all PostGis and Geoserver data, you can safely delete the geoserver/data and api/data folders completely.

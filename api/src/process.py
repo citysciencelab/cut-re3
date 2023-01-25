@@ -117,7 +117,7 @@ class Process():
 
         # Remark: doesn't the OGC specification ask for a "finished" timestamp
         # to be returned instead?
-        if job_details["job_end_datetime"]:
+        if job_details["job_end_datetime"] or job_details["status"] == JobStatus.failed.value or job_details["status"] == JobStatus.dismissed.value:
           finished = True
 
         job.progress = job_details["progress"] - 25 # because we still need to store it to geoserver
