@@ -50,7 +50,9 @@ The workspace name is configured by the backend api but also has to be configure
 Currently the geoserver stores its data to api/data/geoserver. This is configured in the docker-compose.yaml file.
 
 ## PostGis configuration
-See geoserver/configs/postgis. The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml
+PostGis is configured with the Geoserver in geoserver/configs/postgis (see above).
+
+The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml
 
 ## nginx configuration
 The nginx configuration can be found at nginx/default.conf. It configures the paths to the respective endpoints.
