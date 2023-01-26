@@ -2,11 +2,9 @@ from src.db_handler import DBHandler
 from src.job_status import JobStatus
 from src.job import Job
 
-DEFAULT_LIMIT = 10
-
 def get_jobs(args):
-  page  = args["page"] if "page" in args else 1
-  limit = args["limit"] if "limit" in args else DEFAULT_LIMIT
+  page  = int(args["page"][0]) if "page" in args else 1
+  limit = int(args["limit"][0]) if "limit" in args else None
 
   jobs = []
   query = """
@@ -21,6 +19,7 @@ def get_jobs(args):
 
   if 'status' in args:
     query_params['status'] = tuple(args['status'])
+
   else:
     query_params['status'] = (
       JobStatus.running.value, JobStatus.successful.value,
@@ -50,7 +49,7 @@ def get_jobs(args):
   return { "jobs": jobs, "links": links, "total_count": count_jobs }
 
 def next_links(page, limit, count_jobs):
-  if count_jobs <= limit:
+  if not limit or count_jobs <= limit:
     return []
 
   links = []
