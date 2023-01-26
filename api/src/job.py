@@ -9,6 +9,7 @@ import logging
 import yaml
 import geopandas as gpd
 import re
+from src.errors import InvalidUsage
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
@@ -40,6 +41,9 @@ class Job:
 
     if process_id_with_prefix:
       match = re.search(r'(.*):(.*)', self.process_id_with_prefix)
+      if not match:
+        raise InvalidUsage(f"Process ID {self.process_id_with_prefix} is not known! Please check endpoint api/processes for a list of available processes.")
+
       self.provider_prefix = match.group(1)
       self.process_id = match.group(2)
       self.provider_url    = PROVIDERS[self.provider_prefix]['url']
