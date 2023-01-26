@@ -2,13 +2,14 @@ from datetime import datetime
 import uuid
 import json
 import configs.config as config
-import base64
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests
 import logging
 import yaml
 import geopandas as gpd
+import re
+from src.errors import InvalidUsage
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
@@ -21,12 +22,12 @@ class Job:
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
-  def __init__(self, job_id=None, process_id_base64=None, parameters={}):
+  def __init__(self, job_id=None, process_id_with_prefix=None, parameters={}):
     self.job_id = job_id
     self.process_id        = None
     self.provider_prefix   = None
     self.provider_url      = None
-    self.process_id_base64 = process_id_base64
+    self.process_id_with_prefix = process_id_with_prefix
     self.parameters        = parameters
     self.status            = None
     self.message           = None
@@ -38,10 +39,13 @@ class Job:
     self.updated           = None
     self.results_metadata  = {}
 
-    if process_id_base64:
-      data = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
-      self.process_id      = data['process_id']
-      self.provider_prefix = data['provider_prefix']
+    if process_id_with_prefix:
+      match = re.search(r'(.*):(.*)', self.process_id_with_prefix)
+      if not match:
+        raise InvalidUsage(f"Process ID {self.process_id_with_prefix} is not known! Please check endpoint api/processes for a list of available processes.")
+
+      self.provider_prefix = match.group(1)
+      self.process_id = match.group(2)
       self.provider_url    = PROVIDERS[self.provider_prefix]['url']
 
     if not self._init_from_db(job_id):
@@ -65,6 +69,7 @@ class Job:
     self.process_id       = data['process_id']
     self.provider_prefix  = data['provider_prefix']
     self.provider_url     = data['provider_url']
+    self.process_id_with_prefix = f"{data['provider_prefix']}:{data['process_id']}"
     self.status           = data['status']
     self.message          = data['message']
     self.created          = data['created']
@@ -171,12 +176,7 @@ class Job:
     job_dict["jobID"] = job_dict.pop("job_id")
     job_dict["parameters"] = self.parameters
     job_dict["results_metadata"] = self.results_metadata
-
-    process_id = {
-      "process_id": job_dict.pop("process_id"),
-      "provider_prefix": self.provider_prefix
-    }
-    job_dict["processID"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
+    job_dict["processID"] = self.process_id_with_prefix
     job_dict["links"] = []
 
     for attr in job_dict:

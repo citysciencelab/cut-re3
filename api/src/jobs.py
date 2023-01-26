@@ -1,6 +1,7 @@
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 from src.job import Job
+import re
 
 def get_jobs(args):
   page  = int(args["page"][0]) if "page" in args else 1
@@ -14,8 +15,20 @@ def get_jobs(args):
   conditions = []
 
   if 'processID' in args and args['processID']:
+    # this processID is actually the process_id_with_prefix!!!
+    # we cannot change the name because it would not be OGC processes compliant anymore
+    process_ids = []
+
+    for process_id_with_prefix in args['processID']:
+      match = re.search(r'(.*):(.*)', process_id_with_prefix)
+      provider_prefix = match.group(1)
+      process_ids.append(match.group(2))
+
     conditions.append("process_id IN %(process_id)s")
-    query_params['process_id'] = tuple(args['processID'])
+    query_params['process_id'] = tuple(process_ids)
+
+    conditions.append("provider_prefix = %(provider_prefix)s")
+    query_params['provider_prefix'] = provider_prefix
 
   if 'status' in args:
     query_params['status'] = tuple(args['status'])

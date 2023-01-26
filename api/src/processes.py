@@ -1,6 +1,4 @@
 import logging
-import base64
-import json
 import yaml
 import traceback
 import aiohttp
@@ -39,11 +37,7 @@ def _processes_list(results):
       if process["id"] in PROVIDERS[prefix]["exclude"]:
         continue
 
-      process_id = {
-        "process_id": process['id'],
-        "provider_prefix": prefix
-      }
-      process["id"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
+      process["id"] = f"{prefix}:{process['id']}"
       processes.append(process)
 
   return { "processes": processes }

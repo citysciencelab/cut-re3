@@ -4,7 +4,6 @@ from datetime import datetime
 import re
 from multiprocessing import dummy
 import requests
-import base64
 import yaml
 
 from src.job import Job, JobStatus
@@ -13,23 +12,24 @@ from src.errors import InvalidUsage, CustomException
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
-PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
-
 import logging
 
 logging.basicConfig(level=logging.INFO)
 
 class Process():
-  def __init__(self, process_id_base64=None):
-    self.process_id_base64 = process_id_base64
+  def __init__(self, process_id_with_prefix=None):
+    self.process_id_with_prefix = process_id_with_prefix
 
-    try:
-      process_id_dict = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
-    except Exception as e:
-      raise CustomException(f"Unknown process ID. Get a list of available processes under /api/processes. Error: \"{e}\"")
+    match = re.search(r'(.*):(.*)', self.process_id_with_prefix)
+    if not match:
+      raise InvalidUsage(f"Process ID {self.process_id_with_prefix} is not known! Please check endpoint api/processes for a list of available processes.")
 
-    self.provider_prefix = process_id_dict['provider_prefix']
-    self.process_id = process_id_dict['process_id']
+    self.provider_prefix = match.group(1)
+    self.process_id = match.group(2)
+
+    if not self.process_id or not self.provider_prefix in PROVIDERS.keys():
+      raise InvalidUsage(f"Process ID {self.process_id_with_prefix} is not known! Please check endpoint api/processes for a list of available processes.")
+
     self.set_details()
 
   def set_details(self):
@@ -40,7 +40,6 @@ class Process():
       auth    = (p['user'], p['password']),
       headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
     )
-    response.raise_for_status()
 
     if response.ok:
       process_details = response.json()
@@ -49,13 +48,54 @@ class Process():
     else:
       raise InvalidUsage(f"Model/process not found! {response.status_code}: {response.reason}. Check /api/processes endpoint for available models/processes.")
 
+  def validate_params(self, parameters):
+    if not self.inputs:
+      return
+
+    for input in self.inputs:
+      try:
+        if not "schema" in self.inputs[input]:
+          next
+
+        schema = self.inputs[input]["schema"]
+
+        if not input in parameters["inputs"]:
+          logging.warn(f"Model execution {self.process_id_with_prefix} started without parameter {input}.")
+          next
+
+        param = parameters["inputs"][input]
+
+        if "minimum" in schema:
+          assert param >= schema["minimum"]
+
+        if "maximum" in schema:
+          assert param <= schema["maximum"]
+
+        if "type" in schema:
+          if schema["type"] == "number":
+            assert type(param) == int or type(param) == float or type(param) == complex
+
+          if schema["type"] == "string":
+            assert type(param) == str
+
+            if "maxLength" in schema:
+              assert len(param) <= schema["maxLength"]
+
+            if "minLength" in schema:
+              assert len(param) >= schema["minLength"]
+
+        if "pattern" in schema:
+          assert re.search(schema["pattern"], param)
+
+      except AssertionError:
+        raise InvalidUsage(f"Invalid parameter {input} = {param}: does not match mandatory schema {schema}")
+
   def execute(self, parameters):
     p = PROVIDERS[self.provider_prefix]
 
-    # TODO
-    # self.validate_params(parameters)
+    self.validate_params(parameters)
 
-    logging.info(f" --> Executing {self.process_id} on model server {p['url']} with params {parameters} as process {self.process_id_base64}")
+    logging.info(f" --> Executing {self.process_id} on model server {p['url']} with params {parameters} as process {self.process_id_with_prefix}")
 
     job = self.start_process_execution(parameters)
 
@@ -73,7 +113,6 @@ class Process():
 
   def start_process_execution(self, parameters):
     params = parameters
-    params["mode"] = "async"
     p = PROVIDERS[self.provider_prefix]
 
     response = requests.post(
@@ -85,16 +124,18 @@ class Process():
     response.raise_for_status()
 
     if response.ok and response.headers:
+      # Retrieve the job id from the simulation model server from the location header:
       match = re.search('http.*/jobs/(.*)$', response.headers["location"])
       if match:
         job_id = match.group(1)
 
-      job = Job(job_id=job_id, process_id_base64=self.process_id_base64, parameters=params)
+      # Create a new job with the same job_id as the one from the simulation model server:
+      job = Job(job_id=job_id, process_id_with_prefix=self.process_id_with_prefix, parameters=params)
       job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
       job.status = JobStatus.running.value
       job.save()
 
-      logging.info(f' --> Job {job.job_id} for model {self.process_id_base64} started running.')
+      logging.info(f' --> Job {job.job_id} for model {self.process_id_with_prefix} started running.')
 
       return job
 
@@ -115,10 +156,7 @@ class Process():
 
         job_details = response.json()
 
-        # Remark: doesn't the OGC specification ask for a "finished" timestamp
-        # to be returned instead?
-        if job_details["job_end_datetime"] or job_details["status"] == JobStatus.failed.value or job_details["status"] == JobStatus.dismissed.value:
-          finished = True
+        finished = self.is_finished(job_details)
 
         job.progress = job_details["progress"] - 25 # because we still need to store it to geoserver
         job.updated = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
@@ -130,7 +168,7 @@ class Process():
       logging.info(f" --> Remote execution job {job.job_id}: success = {finished}. Took approx. {int((time.time() - start)/60)} minutes.")
 
     except Exception as e:
-      logging.error(f" --> Could not retrieve results for job {self.process_id_base64} (={self.process_id})/{job.job_id} from simulation model server: {e}")
+      logging.error(f" --> Could not retrieve results for job {self.process_id_with_prefix} (={self.process_id})/{job.job_id} from simulation model server: {e}")
       job.status = JobStatus.failed.value
       job.message = str(e)
       job.updated = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
@@ -171,11 +209,11 @@ class Process():
           data      = results
         )
 
-      logging.info(f" --> Successfully stored results for job {self.process_id_base64} (={self.process_id})/{job.job_id} to geoserver.")
+      logging.info(f" --> Successfully stored results for job {self.process_id_with_prefix} (={self.process_id})/{job.job_id} to geoserver.")
       job.status = JobStatus.successful.value
 
     except CustomException as e:
-      logging.error(f" --> Could not store results for job {self.process_id_base64} (={self.process_id})/{job.job_id} to geoserver: {e}")
+      logging.error(f" --> Could not store results for job {self.process_id_with_prefix} (={self.process_id})/{job.job_id} to geoserver: {e}")
       job.status = JobStatus.failed.value
       job.message = str(e)
 
@@ -186,11 +224,25 @@ class Process():
 
     geoserver.cleanup()
 
+  def is_finished(self, job_details):
+    finished = False
+
+    if "job_end_datetime" in job_details and job_details["job_end_datetime"]:
+      finished = True
+
+    if "finished" in job_details and job_details["finished"]:
+      finished = True
+
+    if job_details["status"] in [JobStatus.dismissed.value, JobStatus.failed.value]:
+      finished = True
+
+    return finished
+
   def to_dict(self):
     process_dict = self.__dict__
     process_dict.pop("process_id")
     process_dict.pop("provider_prefix")
-    process_dict["id"] = process_dict.pop("process_id_base64")
+    process_dict["id"] = process_dict.pop("process_id_with_prefix")
     return process_dict
 
   def to_json(self):
@@ -198,7 +250,7 @@ class Process():
       sort_keys=True, indent=2)
 
   def __str__(self):
-    return f'src.process.Process object: process_id={self.process_id}, process_id_base64={self.process_id_base64}, provider_prefix={self.provider_prefix}'
+    return f'src.process.Process object: process_id={self.process_id}, process_id_with_prefix={self.process_id_with_prefix}, provider_prefix={self.provider_prefix}'
 
   def __repr__(self):
     return f'src.process.Process(process_id={self.process_id})'
