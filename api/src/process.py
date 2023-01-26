@@ -113,7 +113,6 @@ class Process():
 
   def start_process_execution(self, parameters):
     params = parameters
-    params["mode"] = "async"
     p = PROVIDERS[self.provider_prefix]
 
     response = requests.post(

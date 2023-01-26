@@ -69,6 +69,7 @@ class Job:
     self.process_id       = data['process_id']
     self.provider_prefix  = data['provider_prefix']
     self.provider_url     = data['provider_url']
+    self.process_id_with_prefix = f"{data['provider_prefix']}:{data['process_id']}"
     self.status           = data['status']
     self.message          = data['message']
     self.created          = data['created']
@@ -175,11 +176,6 @@ class Job:
     job_dict["jobID"] = job_dict.pop("job_id")
     job_dict["parameters"] = self.parameters
     job_dict["results_metadata"] = self.results_metadata
-
-    process_id = {
-      "process_id": job_dict.pop("process_id"),
-      "provider_prefix": self.provider_prefix
-    }
     job_dict["processID"] = self.process_id_with_prefix
     job_dict["links"] = []
 
