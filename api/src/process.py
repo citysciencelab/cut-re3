@@ -54,6 +54,9 @@ class Process():
 
     for input in self.inputs:
       try:
+        if not "schema" in self.inputs[input]:
+          next
+
         schema = self.inputs[input]["schema"]
 
         if not input in parameters["inputs"]:
