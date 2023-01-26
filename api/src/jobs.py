@@ -49,7 +49,7 @@ def get_jobs(args):
   return { "jobs": jobs, "links": links, "total_count": count_jobs }
 
 def next_links(page, limit, count_jobs):
-  if count_jobs <= limit:
+  if not limit or count_jobs <= limit:
     return []
 
   links = []

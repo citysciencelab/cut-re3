@@ -128,20 +128,39 @@ class Job:
 
   def set_results_metadata(self, results_as_json):
     results_df = gpd.GeoDataFrame.from_features(results_as_json)
-    max = results_df.max(numeric_only=True).to_dict()
-    min = results_df.min(numeric_only=True).to_dict()
+
+    minimal_values_df = results_df.min(numeric_only=True)
+    maximal_values_df = results_df.max(numeric_only=True)
+
+    minimal_values_dict = minimal_values_df.to_dict()
+    maximal_values_dict = maximal_values_df.to_dict()
+
+    types = results_df.dtypes.to_dict()
 
     values = []
-    for column in max:
+    for column in maximal_values_dict:
       values.append(
         {
           column:
           {
-            "min": min[column],
-            "max": max[column]
+            "type": str(types[column]),
+            "min":  minimal_values_dict[column],
+            "max":  maximal_values_dict[column]
           }
         }
       )
+
+    for column in results_df.select_dtypes(include=[object]).to_dict():
+      values.append(
+        {
+          column:
+          {
+            "type": "string",
+            "values": list(set(results_df[column]))
+          }
+        }
+      )
+
     self.results_metadata = { "values": values }
 
     return self.results_metadata
