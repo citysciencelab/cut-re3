@@ -158,7 +158,7 @@ class Process():
 
         finished = self.is_finished(job_details)
 
-        job.progress = job_details["progress"] - 25 # because we still need to store it to geoserver
+        job.progress = job_details["progress"]
         job.updated = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
         job.save()
 
