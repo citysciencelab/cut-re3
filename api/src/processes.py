@@ -18,7 +18,7 @@ async def all_processes():
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
         async with response:
-          assert response.status == 200
+          assert response.status == 200, f"Response status {response.status}, {response.reason}"
           results = await response.json()
 
           if "processes" in results:
