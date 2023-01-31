@@ -62,7 +62,7 @@ export default {
 
 <template v-if="Object.values(inputsConfig).length">
     <section>
-        <h4>Execute Job</h4>
+        <h4>{{ $t("additional:modules.tools.simulationTool.executeJob") }}</h4>
 
         <form class="execution-form" ref="form">
             <template v-for="(input, key) in inputsConfig">
@@ -93,7 +93,7 @@ export default {
                     ).length
                 "
             >
-                Run job
+                {{ $t("additional:modules.tools.simulationTool.runJob") }}
             </button>
         </form>
     </section>

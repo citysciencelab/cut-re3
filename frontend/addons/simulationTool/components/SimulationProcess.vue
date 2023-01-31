@@ -84,7 +84,10 @@ export default {
                 </a>
 
                 <h3 :class="{ placeholder: !process }" :aria-hidden="!process">
-                    {{ process?.title || "Loading process name" }}
+                    {{
+                        process?.title ||
+                        $t("additional:modules.tools.simulationTool.loading")
+                    }}
                 </h3>
             </div>
 

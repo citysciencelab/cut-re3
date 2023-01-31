@@ -14,13 +14,15 @@ export default {
 
 <template>
     <div>
-        <h3>{{ $t("common:modules.addons.models") }}</h3>
+        <h3>{{ $t("additional:modules.tools.simulationTool.models") }}</h3>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="col-4">Model Name</th>
-                    <th scope="col" class="col-6">Description</th>
+                    <th scope="col" class="col-4">
+                        {{ $t("additional:modules.tools.simulationTool.name") }}
+                    </th>
+                    <th scope="col" class="col-6">{{ $t("additional:modules.tools.simulationTool.description") }}</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
@@ -29,10 +31,9 @@ export default {
                 <template v-if="processes !== null">
                     <template v-if="processes.length === 0">
                         <tr>
-                            <th scope="row">Error</th>
+                            <th scope="row">{{ $t("additional:modules.tools.simulationTool.error") }}</th>
                             <td class="error">
-                                No models found for configured simulation
-                                layers!
+                                {{ $t("additional:modules.tools.simulationTool.noModelsError") }}
                             </td>
                             <td></td>
                         </tr>
@@ -47,14 +48,14 @@ export default {
                                     target="_blank"
                                     class="process-link"
                                     :href="getProcessLink(process)"
-                                    >Info</a
+                                    >{{ $t("additional:modules.tools.simulationTool.info") }}</a
                                 >
                             </td>
                             <td>
                                 <a
                                     href="#"
                                     @click="$emit('selected', process.id)"
-                                    >Model</a
+                                    >{{ $t("additional:modules.tools.simulationTool.model") }}</a
                                 >
                             </td>
                         </tr>
