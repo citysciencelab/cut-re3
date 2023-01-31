@@ -3,6 +3,12 @@ export default {
     name: "SimulationProcesses",
     props: ["processes"],
     emits: ["selected"],
+    methods: {
+        getProcessLink(process) {
+            const link = process.links.find(({ rel }) => rel === "about");
+            return link ? link.href : "";
+        },
+    },
 };
 </script>
 
@@ -37,7 +43,12 @@ export default {
                             <th scope="row">{{ process.title }}</th>
                             <td>{{ process.description }}</td>
                             <td>
-                                <a href="process.url">Info</a>
+                                <a
+                                    target="_blank"
+                                    class="process-link"
+                                    :href="getProcessLink(process)"
+                                    >Info</a
+                                >
                             </td>
                             <td>
                                 <a
@@ -70,6 +81,11 @@ h3 {
 }
 
 .error {
+    color: red;
+}
+
+.process-link[href=""] {
+    pointer-events: none;
     color: red;
 }
 </style>

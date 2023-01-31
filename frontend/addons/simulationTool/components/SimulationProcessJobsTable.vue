@@ -66,6 +66,7 @@ export default {
                 </div>
                 <div>
                     <span
+                        :title="job.status === 'failed' ? job.message : ''"
                         :class="{
                             status: true,
                             'text-bg-info':
@@ -114,7 +115,7 @@ export default {
                         >
                             <th>{{ key }}:{{ " " }}</th>
                             <td>
-                                {{ value }}
+                                {{ isArray(value) ? value.join(", ") : value }}
                             </td>
                         </tr>
                     </table>

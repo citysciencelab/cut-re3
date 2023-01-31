@@ -13,6 +13,7 @@ export default {
             job: null, // the loaded job data
             chart: null, // the chart.js chart
             chartType: "line", // the currently rendered chart type
+            chartData: null, // the computed chart data
             layer: null, // the map layer used for this job
             displayMapFilters: [], // internally used filters settings
             mapFilters: [], // the filter settings
@@ -67,7 +68,7 @@ export default {
                 result[id] = result[id] ? result[id] + 1 : 1;
             }
 
-            return {
+            this.chartData = {
                 labels: Object.keys(result),
                 data: Object.values(result),
             };
@@ -77,12 +78,18 @@ export default {
          * Render new chart or update existing one
          */
         renderChart() {
-            const chartData = this.getChartData();
+            try {
+                this.getChartData();
+            } catch (err) {
+                console.error("Chart could not be rendered!", err);
+                return;
+            }
+
             const data = {
-                labels: chartData.labels,
+                labels: this.chartData.labels,
                 datasets: [
                     {
-                        data: chartData.data,
+                        data: this.chartData.data,
                         backgroundColor: "cornflowerblue",
                     },
                 ],
@@ -241,11 +248,30 @@ export default {
          * Initially set the job's filter values retrieved from the job's config
          */
         initMapFilters() {
-            this.mapFilters = this.job.results_metadata.values.map(
-                (filterEntry) => {
+            this.mapFilters = this.job.results_metadata.values
+                .map((filterEntry) => {
                     const key = Object.keys(filterEntry)[0];
-                    const filterValues = value[key];
+                    const filterValues = filterEntry[key];
                     const { type, min, max, values } = filterValues;
+
+                    // we do not filter for float values
+                    if (type.startsWith("float")) {
+                        return null;
+                    }
+
+                    // we do not filter if there is only one possible value (int)
+                    if (
+                        type.startsWith("int") &&
+                        typeof min === "number" &&
+                        min === max
+                    ) {
+                        return null;
+                    }
+
+                    // we do not filter if there is only one possible value (string)
+                    if (type.startsWith("string") && values.length <= 1) {
+                        return null;
+                    }
 
                     const value = type === "string" ? values[0] : min;
                     const filter = {
@@ -262,21 +288,10 @@ export default {
                         filter.step = 1;
                     }
 
-                    if (type.startsWith("float")) {
-                        filter.step = "any";
-                    }
-                }
-            );
-            // this.mapFilters = [
-            //     { key: "Step", value: 0, active: true, min: 0, max: 100 },
-            //     { key: "iteration", value: 0, active: false },
-            //     {
-            //         key: "AgentID",
-            //         value: "",
-            //         active: false,
-            //         options: ["Bahrenfeld-1", "Rotherbaum-0"],
-            //     },
-            // ];
+                    return filter;
+                })
+                .filter(Boolean);
+
             this.displayMapFilters = structuredClone(this.mapFilters);
         },
 
@@ -374,7 +389,7 @@ export default {
             <h4>Property Filter</h4>
             <ul>
                 <li v-for="filter in displayMapFilters" :key="filter.key">
-                    <label>{{ filter.key }}</label>
+                    <label :title="filter.key">{{ filter.key }}</label>
                     <input
                         type="checkbox"
                         :checked="filter.active"
@@ -394,7 +409,7 @@ export default {
                         type="range"
                         :min="filter.min ?? 0"
                         :max="filter.max ?? 0"
-                        step="1"
+                        :step="filter.step"
                         :value="filter.value"
                         :disabled="!filter.active"
                         @input="
@@ -449,7 +464,11 @@ export default {
             </ul>
         </div>
 
-        <div class="job-graphs" v-if="job">
+        <div
+            class="job-graphs"
+            v-if="job"
+            :class="{ 'job-graphs': true, visible: Boolean(chartData) }"
+        >
             <h4>Charts</h4>
             <ul class="nav nav-pills nav-fill">
                 <li
@@ -515,8 +534,12 @@ export default {
 }
 
 .job-graphs {
-    display: grid;
+    display: none;
     gap: 1rem;
+
+    &.visible {
+        display: grid;
+    }
 }
 
 .job-graphs canvas {
@@ -538,13 +561,16 @@ export default {
 .job-filter li {
     display: grid;
     padding: 1em 0;
-    grid-template-columns: 5em auto 1fr minmax(2em, auto);
+    grid-template-columns: 6em auto 1fr minmax(2em, auto);
     gap: 1em;
     align-items: center;
 }
 
 .job-filter li label {
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>
 

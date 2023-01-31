@@ -40,11 +40,11 @@ export default {
          */
         async fetchJobs(processId) {
             this.loadingJobs = true;
-            this.jobs = await fetch(`${this.apiUrl}/jobs`)
+            this.jobs = await fetch(
+                `${this.apiUrl}/jobs?processID=${processId}`
+            )
                 .then((res) => res.json())
-                .then((json) =>
-                    json.jobs.filter((job) => job.processID === processId)
-                );
+                .then((json) => json.jobs);
 
             this.loadingJobs = false;
 

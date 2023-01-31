@@ -26,10 +26,10 @@ export default {
         :id="`input_${inputKey}`"
         :name="`input_${inputKey}`"
         type="text"
-        :minLength="schema.minLength"
-        :maxLength="schema.maxLength"
-        :pattern="schema.pattern"
-        :placeholder="schema.default"
+        :minLength="data.schema.minLength"
+        :maxLength="data.schema.maxLength"
+        :pattern="data.schema.pattern"
+        :placeholder="data.schema.default"
         :value="value"
         :required="data.schema.required || data.required || data.minOccurs > 0"
         @input="$emit('change', $event.target.value)"
@@ -75,10 +75,11 @@ export default {
         >
             <SimulationJobExecutionInput
                 :inputKey="index"
-                :schema="data.schema.items"
+                :data="{ schema: data.schema.items }"
                 :value="value[index]"
                 @change="handleArrayValueChange(index, $event)"
             />
+
             <span
                 v-if="value.length > 1"
                 class="bootstrap-icon"
