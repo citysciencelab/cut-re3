@@ -44,5 +44,17 @@ psql -U <username> -d <db_name>
 ## Environment Variables
 |   Variable    | Default value | Description |
 | ------------- | ------------- | ----------- |
-|  SERVER_URL      | localhost:3000 | This is only used to return the complete URL in the result of the job details as specified in OGC. |
+|  API_SERVER_URL      | localhost:3000 | This is only used to return the complete URL in the result of the job details as specified in OGC. |
+|  CORS_URL_REGEX | * | Restrict CORS support to configured URL. Should be the frontend url.  |
+|  POSTGRES_DB | cut_dev | Database name |
+|  POSTGRES_HOST | postgis | Database name |
+|  POSTGRES_USER | postgres | Database name |
+|  POSTGRES_PASSWORD | postgres | Database name |
+|  POSTGRES_PORT | 5432 | Database name |
+|  GEOSERVER_WORKSPACE  | CUT | All layers are being stored to one geoserver workspace. Configure its name here.
+|  GEOSERVER_ADMIN_USER | admin | |
+|  GEOSERVER_ADMIN_PASSWORD | geoserver | |
+|  GEOSERVER_BASE_URL | http://geoserver:8080/geoserver | Url to the geoserver. |
+
+
 

@@ -9,6 +9,12 @@
 LOGLEVEL=DEBUG
 FLASK_DEBUG=True
 
+# origin to allow requests from: as regular expression or string.
+# Include both the schema and the port (if not 80).
+# Please provide the url to the frontend.
+# default: "*"
+CORS_URL_REGEX="http://localhost:80"
+
 POSTGRES_DB=cut_dev
 POSTGRES_HOST=postgis
 POSTGRES_USER=cut_dev
@@ -20,6 +26,6 @@ GEOSERVER_ADMIN_USER=admin
 GEOSERVER_ADMIN_PASSWORD=geoserver
 GEOSERVER_BASE_URL=http://geoserver:8080/geoserver
 
-# The SERVER_URL is only used to return the complete URL in the result of the job details as specified in OGC.
+# The API_SERVER_URL is only used to return the complete URL in the result of the job details as specified in OGC.
 # Should be the base url to the api.
-SERVER_URL=localhost:3000
+API_SERVER_URL=localhost:3000

@@ -1,6 +1,6 @@
 import os
 
-server_url = os.environ.get("SERVER_URL", "localhost:3000")
+api_server_url = os.environ.get("API_SERVER_URL", "localhost:3000")
 
 # DATABASE
 postgres_db = os.environ.get("POSTGRES_DB", "cut_dev")

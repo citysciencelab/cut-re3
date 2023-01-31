@@ -1,8 +1,10 @@
 from flask import Flask, Blueprint, jsonify
+from flask_cors import CORS
 from werkzeug.exceptions import HTTPException
 
 import logging
 import json
+import os
 from routes.processes import processes
 from routes.jobs import jobs
 from src.errors import CustomException
@@ -10,6 +12,7 @@ from src.errors import CustomException
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+CORS(app, origins = os.environ.get("CORS_URL_REGEX", "*"))
 
 api = Blueprint('api', __name__, url_prefix='/api')
 api.register_blueprint(processes, url_prefix='/processes')
