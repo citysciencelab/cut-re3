@@ -3,18 +3,25 @@ export default {
     name: "SimulationProcesses",
     props: ["processes"],
     emits: ["selected"],
+    methods: {
+        getProcessLink(process) {
+            const link = process.links.find(({ rel }) => rel === "about");
+            return link ? link.href : "";
+        },
+    },
 };
 </script>
 
 <template>
     <div>
-        <h3>Models</h3>
+        <h3>{{ $t("common:modules.addons.models") }}</h3>
 
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col" class="col-4">Model Name</th>
                     <th scope="col" class="col-6">Description</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -37,9 +44,17 @@ export default {
                             <td>{{ process.description }}</td>
                             <td>
                                 <a
+                                    target="_blank"
+                                    class="process-link"
+                                    :href="getProcessLink(process)"
+                                    >Info</a
+                                >
+                            </td>
+                            <td>
+                                <a
                                     href="#"
                                     @click="$emit('selected', process.id)"
-                                    >Details</a
+                                    >Model</a
                                 >
                             </td>
                         </tr>
@@ -66,6 +81,11 @@ h3 {
 }
 
 .error {
+    color: red;
+}
+
+.process-link[href=""] {
+    pointer-events: none;
     color: red;
 }
 </style>

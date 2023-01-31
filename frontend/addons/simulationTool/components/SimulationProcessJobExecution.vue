@@ -77,8 +77,7 @@ export default {
                 <SimulationJobExecutionInput
                     :key="`input_${key}`"
                     :inputKey="key"
-                    :schema="input.schema"
-                    :title="input.title"
+                    :data="input"
                     :value="executionValues[key]"
                     @change="updateExecutionValue(key, $event)"
                 />

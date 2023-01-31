@@ -2,7 +2,8 @@
   "modules": {
     "tools": {
       "simulationTool": {
-        "title": "Simulation Tool"
+        "title": "Simulation Tool",
+        "models": "Modelle"
       }
     }
   }

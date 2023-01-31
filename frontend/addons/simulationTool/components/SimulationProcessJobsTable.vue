@@ -1,5 +1,6 @@
 <script>
 import SimulationPagination from "./SimulationPagination.vue";
+import SimulationProcessJobRow from "./SimulationProcessJobRow.vue";
 
 export default {
     name: "SimulationProcessJobsTable",
@@ -10,6 +11,7 @@ export default {
         return {
             jobsPerPage: 6,
             currentJobsPageIndex: 0,
+            expandedParameterJobIds: [],
         };
     },
     computed: {
@@ -34,6 +36,17 @@ export default {
 
             return Object.fromEntries(entries);
         },
+        areParametersExpanded(jobId) {
+            return Boolean(this.expandedParameterJobIds.includes(jobId));
+        },
+        toggleExpandParameters(jobId) {
+            if (this.areParametersExpanded(jobId)) {
+                this.expandedParameterJobIds =
+                    this.expandedParameterJobIds.filter((id) => id !== jobId);
+            } else {
+                this.expandedParameterJobIds.push(jobId);
+            }
+        },
     },
 };
 </script>
@@ -41,89 +54,74 @@ export default {
 <template v-if="process">
     <section>
         <h4>Jobs</h4>
+        <div v-if="jobs?.length" class="job-grid">
+            <div class="grid-header">Start Time</div>
+            <div class="grid-header">Status</div>
+            <div class="grid-header">Parameters</div>
+            <div class="grid-header">Result</div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="col-4">Start Time</th>
-                    <th scope="col" class="col-3">Status</th>
-                    <th scope="col">Parameters</th>
-                    <th scope="col">Result</th>
-                </tr>
-            </thead>
-            <tbody>
-                <template v-if="jobs?.length">
-                    <tr v-for="job in currentPageJobs" :key="job.jobID">
-                        <td class="time">
-                            {{ new Date(job.started).toLocaleString() }}
-                        </td>
-                        <td>
-                            <span
-                                :class="{
-                                    status: true,
-                                    'text-bg-info':
-                                        job.status !== 'successful' &&
-                                        job.status !== 'failed',
-                                    'text-bg-success':
-                                        job.status === 'successful',
-                                    'text-bg-danger': job.status === 'failed',
-                                }"
-                            >
-                                {{ job.status }}
-                            </span>
-                        </td>
-                        <td>
-                            <ul class="jobs-table-input-list">
-                                <table>
-                                    <tr
-                                        v-for="(
-                                            value, key
-                                        ) in displayParameters(
-                                            job.parameters.inputs
-                                        )"
-                                    >
-                                        <th>{{ key }}:</th>
-                                        <td>
-                                            {{ value }}
-                                        </td>
-                                    </tr>
-                                </table>
-                            </ul>
-                        </td>
-                        <td>
-                            <span
-                                v-if="job.status === 'failed'"
-                                class="text-danger"
-                            >
-                                n/a
-                            </span>
-                            <a
-                                v-if="job.status === 'successful'"
-                                href="#"
-                                @click="$emit('selected', job.jobID)"
-                            >
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                </template>
+            <template v-for="job in currentPageJobs">
+                <div class="job-date">
+                    {{ new Date(job.started).toLocaleString() }}
+                </div>
+                <div>
+                    <span
+                        :title="job.status === 'failed' ? job.message : ''"
+                        :class="{
+                            status: true,
+                            'text-bg-info':
+                                job.status !== 'successful' &&
+                                job.status !== 'failed',
+                            'text-bg-success': job.status === 'successful',
+                            'text-bg-danger': job.status === 'failed',
+                        }"
+                    >
+                        {{ job.status }}
+                    </span>
+                </div>
+                <div class="job-parameter-button">
+                    <!-- <a href="#" @click="toggleExpandParameters(job.jobID)">{{
+                        areParametersExpanded(job.jobID) ? "Hide" : "Show"
+                    }}</a> -->
+                    <button
+                        class="btn btn-secondary btn-sm"
+                        @click="toggleExpandParameters(job.jobID)"
+                    >
+                        {{ areParametersExpanded(job.jobID) ? "Hide" : "Show" }}
+                    </button>
+                </div>
+                <div>
+                    <span v-if="job.status === 'failed'" class="text-danger">
+                        n/a
+                    </span>
+                    <a
+                        v-if="job.status === 'successful'"
+                        href="#"
+                        @click="$emit('selected', job.jobID)"
+                    >
+                        View
+                    </a>
+                </div>
 
-                <tr
-                    v-else-if="loadingJobs"
-                    class="placeholder-glow"
-                    aria-hidden
+                <div
+                    v-if="areParametersExpanded(job.jobID)"
+                    class="job-parameter"
                 >
-                    <td><span class="placeholder d-block" /></td>
-                    <td><span class="placeholder d-block" /></td>
-                    <td><span class="placeholder d-block" /></td>
-                </tr>
-
-                <tr v-else>
-                    <td colspan="3" class="text-black-50">No jobs yet</td>
-                </tr>
-            </tbody>
-        </table>
-
+                    <table>
+                        <tr
+                            v-for="(value, key) in displayParameters(
+                                job.parameters.inputs
+                            )"
+                        >
+                            <th>{{ key }}:{{ " " }}</th>
+                            <td>
+                                {{ isArray(value) ? value.join(", ") : value }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </template>
+        </div>
         <div class="jobs-table-footer">
             <SimulationPagination
                 v-if="jobs?.length > jobsPerPage"
@@ -161,6 +159,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 1em;
 }
 
 .pagination {
@@ -174,19 +173,40 @@ export default {
     white-space: nowrap;
 }
 
-.jobs-table-input-list {
-    list-style: none;
-    padding-left: 0;
-}
+.job-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1em;
 
-.jobs-table-input-list {
-    list-style: none;
-    padding-left: 0;
-}
+    .grid-header {
+        white-space: nowrap;
+        color: #666;
+        font-weight: bold;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
 
-.jobs-table-input-list th {
-    padding-right: 1em;
-    white-space: nowrap;
+    .job-date {
+        white-space: nowrap;
+    }
+
+    .job-parameter-button button {
+        padding: 0.1em 0.5em;
+        min-width: 4em;
+    }
+
+    .job-parameter {
+        grid-column: 1 / -1;
+        padding-left: 1em;
+        border-left: 4px solid rgba(0, 0, 0, 0.1);
+
+        table {
+            line-height: 1.4;
+        }
+
+        td {
+            padding-left: 1em;
+        }
+    }
 }
 </style>
 

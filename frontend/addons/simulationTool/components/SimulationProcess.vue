@@ -40,11 +40,11 @@ export default {
          */
         async fetchJobs(processId) {
             this.loadingJobs = true;
-            this.jobs = await fetch(`${this.apiUrl}/jobs`)
+            this.jobs = await fetch(
+                `${this.apiUrl}/jobs?processID=${processId}`
+            )
                 .then((res) => res.json())
-                .then((json) =>
-                    json.jobs.filter((job) => job.processID === processId)
-                );
+                .then((json) => json.jobs);
 
             this.loadingJobs = false;
 
@@ -119,7 +119,7 @@ export default {
 .process-details {
     position: sticky;
     top: -1.25rem;
-    margin: -1.25rem -1.25rem 1rem;
+    margin: -1.25rem -1.25rem 2rem;
     padding: 1.25rem 1.25rem 0;
     background: white;
 }
@@ -127,7 +127,7 @@ export default {
 .process-details::after {
     content: "";
     display: block;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .process-header {
