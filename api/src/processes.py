@@ -34,7 +34,7 @@ def _processes_list(results):
   processes = []
   for prefix in PROVIDERS:
     for process in results[prefix]:
-      if process["id"] in PROVIDERS[prefix]["exclude"]:
+      if "exclude" in PROVIDERS[prefix] and process["id"] in PROVIDERS[prefix]["exclude"]:
         continue
 
       process["id"] = f"{prefix}:{process['id']}"
