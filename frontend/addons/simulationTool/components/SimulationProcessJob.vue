@@ -337,7 +337,7 @@ export default {
                     class="bootstrap-icon"
                     href="#"
                     @click="$emit('close')"
-                    title="Back"
+                    :title="$t('additional:modules.tools.simulationTool.back')"
                 >
                     <i class="bi-chevron-left"></i>
                 </a>
@@ -345,18 +345,23 @@ export default {
                 <h3 :class="{ placeholder: !job }" :aria-hidden="!job">
                     {{
                         job
-                            ? `Job "${
+                            ? $t(
+                                  "additional:modules.tools.simulationTool.job"
+                              ) +
+                              ` "${
                                   job.parameters.inputs.name ||
                                   new Date(job.started).toLocaleString()
                               }"`
-                            : "Loading job name"
+                            : $t(
+                                  "additional:modules.tools.simulationTool.loading"
+                              )
                     }}
                 </h3>
             </div>
 
             <div v-if="job" class="job-data">
                 <div>
-                    Status:
+                    {{ $t("additional:modules.tools.simulationTool.status") }}:
                     <span
                         :class="{
                             status: true,
@@ -371,10 +376,13 @@ export default {
                     </span>
                 </div>
                 <div>
-                    Started:
+                    {{ $t("additional:modules.tools.simulationTool.started") }}:
                     {{ new Date(job.started).toLocaleString() }}
                 </div>
-                <div>Ended: {{ new Date(job.finished).toLocaleString() }}</div>
+                <div>
+                    {{ $t("additional:modules.tools.simulationTool.ended") }}:
+                    {{ new Date(job.finished).toLocaleString() }}
+                </div>
             </div>
             <p v-else class="placeholder-glow" aria-hidden>
                 <span class="placeholder col-3" />
@@ -386,7 +394,13 @@ export default {
         </div>
 
         <div class="job-filter" v-if="job">
-            <h4>Property Filter</h4>
+            <h4>
+                {{
+                    $t(
+                        "additional:modules.tools.simulationTool.propertyFilter"
+                    )
+                }}:
+            </h4>
             <ul>
                 <li v-for="filter in displayMapFilters" :key="filter.key">
                     <label :title="filter.key">{{ filter.key }}</label>
@@ -469,7 +483,7 @@ export default {
             v-if="job"
             :class="{ 'job-graphs': true, visible: Boolean(chartData) }"
         >
-            <h4>Charts</h4>
+            <h4>{{ $t("additional:modules.tools.simulationTool.charts") }}</h4>
             <ul class="nav nav-pills nav-fill">
                 <li
                     class="nav-item"
@@ -484,9 +498,12 @@ export default {
                         :aria-current="chartType === type ? 'page' : false"
                         href="#"
                         @click.prevent="chartType = type"
+                        >{{
+                            $t(
+                                `additional:modules.tools.simulationTool.chart-${type}`
+                            )
+                        }}</a
                     >
-                        {{ type.charAt(0).toUpperCase() + type.slice(1) }} Chart
-                    </a>
                 </li>
             </ul>
 

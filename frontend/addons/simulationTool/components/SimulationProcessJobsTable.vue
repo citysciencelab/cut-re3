@@ -47,6 +47,9 @@ export default {
                 this.expandedParameterJobIds.push(jobId);
             }
         },
+        getFormattedParameterValue(value) {
+            return Array.isArray(value) ? value.join(", ") : value;
+        },
     },
 };
 </script>
@@ -55,10 +58,18 @@ export default {
     <section>
         <h4>Jobs</h4>
         <div v-if="jobs?.length" class="job-grid">
-            <div class="grid-header">Start Time</div>
-            <div class="grid-header">Status</div>
-            <div class="grid-header">Parameters</div>
-            <div class="grid-header">Result</div>
+            <div class="grid-header">
+                {{ $t("additional:modules.tools.simulationTool.started") }}
+            </div>
+            <div class="grid-header">
+                {{ $t("additional:modules.tools.simulationTool.status") }}
+            </div>
+            <div class="grid-header">
+                {{ $t("additional:modules.tools.simulationTool.parameters") }}
+            </div>
+            <div class="grid-header">
+                {{ $t("additional:modules.tools.simulationTool.result") }}
+            </div>
 
             <template v-for="job in currentPageJobs">
                 <div class="job-date">
@@ -80,14 +91,19 @@ export default {
                     </span>
                 </div>
                 <div class="job-parameter-button">
-                    <!-- <a href="#" @click="toggleExpandParameters(job.jobID)">{{
-                        areParametersExpanded(job.jobID) ? "Hide" : "Show"
-                    }}</a> -->
                     <button
                         class="btn btn-secondary btn-sm"
                         @click="toggleExpandParameters(job.jobID)"
                     >
-                        {{ areParametersExpanded(job.jobID) ? "Hide" : "Show" }}
+                        {{
+                            areParametersExpanded(job.jobID)
+                                ? $t(
+                                      "additional:modules.tools.simulationTool.hide"
+                                  )
+                                : $t(
+                                      "additional:modules.tools.simulationTool.show"
+                                  )
+                        }}
                     </button>
                 </div>
                 <div>
@@ -99,7 +115,7 @@ export default {
                         href="#"
                         @click="$emit('selected', job.jobID)"
                     >
-                        View
+                        {{ $t("additional:modules.tools.simulationTool.show") }}
                     </a>
                 </div>
 
@@ -115,7 +131,7 @@ export default {
                         >
                             <th>{{ key }}:{{ " " }}</th>
                             <td>
-                                {{ isArray(value) ? value.join(", ") : value }}
+                                {{ getFormattedParameterValue(value) }}
                             </td>
                         </tr>
                     </table>
@@ -135,8 +151,8 @@ export default {
                 v-if="jobs?.length && loadingJobs"
                 class="loader text-black-50"
             >
-                <span class="spinner-border spinner-border-sm"></span>
-                Updating Jobs...
+                <span class="spinner-border spinner-border-sm"></span
+                >{{ $t("additional:modules.tools.simulationTool.loading") }}:
             </div>
         </div>
     </section>

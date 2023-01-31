@@ -75,7 +75,12 @@ export default {
         >
             <SimulationJobExecutionInput
                 :inputKey="index"
-                :data="{ schema: data.schema.items }"
+                :data="{
+                    schema: {
+                        ...data.schema.items,
+                        required: index < data.schema.minItems,
+                    },
+                }"
                 :value="value[index]"
                 @change="handleArrayValueChange(index, $event)"
             />
