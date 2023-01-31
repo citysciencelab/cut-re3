@@ -59,7 +59,7 @@ export default {
         <h4>Jobs</h4>
         <div v-if="jobs?.length" class="job-grid">
             <div class="grid-header">
-                {{ $t("additional:modules.tools.simulationTool.started") }}
+                {{ $t("additional:modules.tools.simulationTool.job") }}
             </div>
             <div class="grid-header">
                 {{ $t("additional:modules.tools.simulationTool.status") }}
@@ -73,7 +73,10 @@ export default {
 
             <template v-for="job in currentPageJobs">
                 <div class="job-date">
-                    {{ new Date(job.started).toLocaleString() }}
+                    {{
+                        job.parameters.inputs.name ||
+                        new Date(job.started).toLocaleString()
+                    }}
                 </div>
                 <div>
                     <span
