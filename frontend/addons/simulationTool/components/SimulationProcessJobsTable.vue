@@ -6,7 +6,7 @@ export default {
     name: "SimulationProcessJobsTable",
     props: ["process", "jobs", "loadingJobs"],
     emits: ["selected"],
-    components: { SimulationPagination, SimulationProcessJobRow },
+    components: { SimulationPagination },
     data() {
         return {
             jobsPerPage: 6,

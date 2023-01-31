@@ -1,6 +1,4 @@
 import logging
-import base64
-import json
 import yaml
 import traceback
 import aiohttp
@@ -20,7 +18,7 @@ async def all_processes():
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
         async with response:
-          assert response.status == 200
+          assert response.status == 200, f"Response status {response.status}, {response.reason}"
           results = await response.json()
 
           if "processes" in results:
@@ -36,14 +34,10 @@ def _processes_list(results):
   processes = []
   for prefix in PROVIDERS:
     for process in results[prefix]:
-      if process["id"] in PROVIDERS[prefix]["exclude"]:
+      if "exclude" in PROVIDERS[prefix] and process["id"] in PROVIDERS[prefix]["exclude"]:
         continue
 
-      process_id = {
-        "process_id": process['id'],
-        "provider_prefix": prefix
-      }
-      process["id"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
+      process["id"] = f"{prefix}:{process['id']}"
       processes.append(process)
 
   return { "processes": processes }

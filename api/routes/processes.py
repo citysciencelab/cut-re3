@@ -11,13 +11,13 @@ def index(page):
   result = asyncio.run(all_processes())
   return Response(json.dumps(result), mimetype='application/json')
 
-@processes.route('/<path:process_id>', methods = ['GET'])
-def show(process_id=None):
-  process = Process(process_id)
+@processes.route('/<path:process_id_with_prefix>', methods = ['GET'])
+def show(process_id_with_prefix=None):
+  process = Process(process_id_with_prefix)
   return Response(process.to_json(), mimetype='application/json')
 
-@processes.route('/<path:process_id>/execution', methods = ['POST'])
-def execute(process_id=None):
-  process = Process(process_id)
+@processes.route('/<path:process_id_with_prefix>/execution', methods = ['POST'])
+def execute(process_id_with_prefix=None):
+  process = Process(process_id_with_prefix)
   result = process.execute(request.json)
   return Response(json.dumps(result), status=201, mimetype='application/json')

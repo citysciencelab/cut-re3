@@ -2,12 +2,14 @@ from datetime import datetime
 import uuid
 import json
 import configs.config as config
-import base64
 from src.db_handler import DBHandler
 from src.job_status import JobStatus
 import requests
 import logging
 import yaml
+import geopandas as gpd
+import re
+from src.errors import InvalidUsage
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
@@ -15,17 +17,17 @@ class Job:
   DISPLAYED_ATTRIBUTES = [
       "processID", "type", "jobID", "status", "message",
       "created", "started", "finished", "updated", "progress",
-      "links", "parameters"
+      "links", "parameters", "results_metadata"
     ]
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
-  def __init__(self, job_id=None, process_id_base64=None, parameters={}):
+  def __init__(self, job_id=None, process_id_with_prefix=None, parameters={}):
     self.job_id = job_id
     self.process_id        = None
     self.provider_prefix   = None
     self.provider_url      = None
-    self.process_id_base64 = process_id_base64
+    self.process_id_with_prefix = process_id_with_prefix
     self.parameters        = parameters
     self.status            = None
     self.message           = None
@@ -35,11 +37,15 @@ class Job:
     self.started           = None
     self.finished          = None
     self.updated           = None
+    self.results_metadata  = {}
 
-    if process_id_base64:
-      data = json.loads(base64.urlsafe_b64decode(process_id_base64.encode()).decode())
-      self.process_id      = data['process_id']
-      self.provider_prefix = data['provider_prefix']
+    if process_id_with_prefix:
+      match = re.search(r'(.*):(.*)', self.process_id_with_prefix)
+      if not match:
+        raise InvalidUsage(f"Process ID {self.process_id_with_prefix} is not known! Please check endpoint api/processes for a list of available processes.")
+
+      self.provider_prefix = match.group(1)
+      self.process_id = match.group(2)
       self.provider_url    = PROVIDERS[self.provider_prefix]['url']
 
     if not self._init_from_db(job_id):
@@ -59,18 +65,20 @@ class Job:
       return False
 
   def _init_from_dict(self, data):
-    self.job_id          = data['job_id']
-    self.process_id      = data['process_id']
-    self.provider_prefix = data['provider_prefix']
-    self.provider_url    = data['provider_url']
-    self.status          = data['status']
-    self.message         = data['message']
-    self.created         = data['created']
-    self.started         = data['started']
-    self.finished        = data['finished']
-    self.updated         = data['updated']
-    self.progress        = data['progress']
-    self.parameters      = data['parameters']
+    self.job_id           = data['job_id']
+    self.process_id       = data['process_id']
+    self.provider_prefix  = data['provider_prefix']
+    self.provider_url     = data['provider_url']
+    self.process_id_with_prefix = f"{data['provider_prefix']}:{data['process_id']}"
+    self.status           = data['status']
+    self.message          = data['message']
+    self.created          = data['created']
+    self.started          = data['started']
+    self.finished         = data['finished']
+    self.updated          = data['updated']
+    self.progress         = data['progress']
+    self.parameters       = data['parameters']
+    self.results_metadata = data['results_metadata']
 
   def _create(self):
     self.job_id    = self.job_id if self.job_id else str(uuid.uuid4())
@@ -106,32 +114,69 @@ class Job:
       "finished":   self.finished,
       "updated":    self.updated,
       "progress":   self.progress,
-      "parameters": json.dumps(self.parameters)
+      "parameters": json.dumps(self.parameters),
+      "results_metadata": json.dumps(self.results_metadata)
     }
 
   def save(self):
     self.updated = datetime.utcnow()
+
     query = """
       UPDATE jobs SET
-      (process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
+      (process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated, results_metadata)
       =
-      (%(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s, %(results_metadata)s)
       WHERE job_id = %(job_id)s
     """
     with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
+
+  def set_results_metadata(self, results_as_json):
+    results_df = gpd.GeoDataFrame.from_features(results_as_json)
+
+    minimal_values_df = results_df.min(numeric_only=True)
+    maximal_values_df = results_df.max(numeric_only=True)
+
+    minimal_values_dict = minimal_values_df.to_dict()
+    maximal_values_dict = maximal_values_df.to_dict()
+
+    types = results_df.dtypes.to_dict()
+
+    values = []
+    for column in maximal_values_dict:
+      values.append(
+        {
+          column:
+          {
+            "type": str(types[column]),
+            "min":  minimal_values_dict[column],
+            "max":  maximal_values_dict[column]
+          }
+        }
+      )
+
+    for column in results_df.select_dtypes(include=[object]).to_dict():
+      values.append(
+        {
+          column:
+          {
+            "type": "string",
+            "values": list(set(results_df[column]))
+          }
+        }
+      )
+
+    self.results_metadata = { "values": values }
+
+    return self.results_metadata
 
   def display(self):
     job_dict = self._to_dict()
     job_dict["type"] = "process"
     job_dict["jobID"] = job_dict.pop("job_id")
     job_dict["parameters"] = self.parameters
-
-    process_id = {
-      "process_id": job_dict.pop("process_id"),
-      "provider_prefix": self.provider_prefix
-    }
-    job_dict["processID"] = base64.urlsafe_b64encode(json.dumps(process_id).encode()).decode()
+    job_dict["results_metadata"] = self.results_metadata
+    job_dict["processID"] = self.process_id_with_prefix
     job_dict["links"] = []
 
     for attr in job_dict:
