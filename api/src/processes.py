@@ -18,7 +18,7 @@ async def all_processes():
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
         async with response:
-          assert response.status == 200
+          assert response.status == 200, f"Response status {response.status}, {response.reason}"
           results = await response.json()
 
           if "processes" in results:
@@ -34,7 +34,7 @@ def _processes_list(results):
   processes = []
   for prefix in PROVIDERS:
     for process in results[prefix]:
-      if process["id"] in PROVIDERS[prefix]["exclude"]:
+      if "exclude" in PROVIDERS[prefix] and process["id"] in PROVIDERS[prefix]["exclude"]:
         continue
 
       process["id"] = f"{prefix}:{process['id']}"

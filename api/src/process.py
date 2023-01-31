@@ -55,13 +55,17 @@ class Process():
     for input in self.inputs:
       try:
         if not "schema" in self.inputs[input]:
-          next
+          continue
 
-        schema = self.inputs[input]["schema"]
+        parameter_metadata = self.inputs[input]
+        schema = parameter_metadata["schema"]
 
         if not input in parameters["inputs"]:
-          logging.warn(f"Model execution {self.process_id_with_prefix} started without parameter {input}.")
-          next
+          if self.is_required(parameter_metadata):
+            raise InvalidUsage(f"Parameter {input} is required", payload={"parameter_description": parameter_metadata})
+          else:
+            logging.warn(f"Model execution {self.process_id_with_prefix} started without parameter {input}.")
+            continue
 
         param = parameters["inputs"][input]
 
@@ -84,11 +88,36 @@ class Process():
             if "minLength" in schema:
               assert len(param) >= schema["minLength"]
 
+          if schema["type"] == "array":
+            assert type(param) == list
+            if "items" in schema and "type" in schema["items"] and schema["items"]["type"] == "string":
+              for item in param:
+                assert type(item) == str
+            if schema["items"]["type"] == "number":
+              for item in param:
+                assert type(item) == int or type(item) == float or type(item) == complex
+            if "uniqueItems" in schema and schema["uniqueItems"]:
+              assert len(param) == len(set(param))
+            if "minItems" in schema:
+              assert len(param) >= schema["minItems"]
+
         if "pattern" in schema:
           assert re.search(schema["pattern"], param)
 
       except AssertionError:
         raise InvalidUsage(f"Invalid parameter {input} = {param}: does not match mandatory schema {schema}")
+
+  def is_required(self, parameter_metadata):
+    if "required" in parameter_metadata:
+      return parameter_metadata["required"]
+
+    if "required" in parameter_metadata["schema"]:
+      return parameter_metadata["schema"]["required"]
+
+    if "minOccurs" in parameter_metadata:
+      return (parameter_metadata["minOccurs"] > 0)
+
+    return False
 
   def execute(self, parameters):
     p = PROVIDERS[self.provider_prefix]
@@ -222,7 +251,8 @@ class Process():
     job.progress = 100
     job.save()
 
-    geoserver.cleanup()
+    if geoserver:
+      geoserver.cleanup()
 
   def is_finished(self, job_details):
     finished = False
