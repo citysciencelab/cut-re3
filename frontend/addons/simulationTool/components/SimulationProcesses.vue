@@ -8,13 +8,14 @@ export default {
 
 <template>
     <div>
-        <h3>Models</h3>
+        <h3>{{ $t("common:modules.addons.models") }}</h3>
 
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col" class="col-4">Model Name</th>
                     <th scope="col" class="col-6">Description</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,10 +37,13 @@ export default {
                             <th scope="row">{{ process.title }}</th>
                             <td>{{ process.description }}</td>
                             <td>
+                                <a href="process.url">Info</a>
+                            </td>
+                            <td>
                                 <a
                                     href="#"
                                     @click="$emit('selected', process.id)"
-                                    >Details</a
+                                    >Model</a
                                 >
                             </td>
                         </tr>

@@ -241,16 +241,42 @@ export default {
          * Initially set the job's filter values retrieved from the job's config
          */
         initMapFilters() {
-            this.mapFilters = [
-                { key: "Step", value: 0, active: true, min: 0, max: 100 },
-                { key: "iteration", value: 0, active: false },
-                {
-                    key: "AgentID",
-                    value: "",
-                    active: false,
-                    options: ["Bahrenfeld-1", "Rotherbaum-0"],
-                },
-            ];
+            this.mapFilters = this.job.results_metadata.values.map(
+                (filterEntry) => {
+                    const key = Object.keys(filterEntry)[0];
+                    const filterValues = value[key];
+                    const { type, min, max, values } = filterValues;
+
+                    const value = type === "string" ? values[0] : min;
+                    const filter = {
+                        key,
+                        active: false,
+                        value,
+                    };
+
+                    if (type === "string") {
+                        filter.options = values;
+                    } else {
+                        filter.min = min;
+                        filter.max = max;
+                        filter.step = 1;
+                    }
+
+                    if (type.startsWith("float")) {
+                        filter.step = "any";
+                    }
+                }
+            );
+            // this.mapFilters = [
+            //     { key: "Step", value: 0, active: true, min: 0, max: 100 },
+            //     { key: "iteration", value: 0, active: false },
+            //     {
+            //         key: "AgentID",
+            //         value: "",
+            //         active: false,
+            //         options: ["Bahrenfeld-1", "Rotherbaum-0"],
+            //     },
+            // ];
             this.displayMapFilters = structuredClone(this.mapFilters);
         },
 
