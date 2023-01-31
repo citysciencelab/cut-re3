@@ -9,7 +9,7 @@ import logging
 import yaml
 import geopandas as gpd
 import re
-from src.errors import InvalidUsage
+from src.errors import InvalidUsage, CustomException
 
 PROVIDERS = yaml.safe_load(open('./configs/providers.yml'))
 
@@ -189,7 +189,7 @@ class Job:
       JobStatus.accepted.value
     ):
 
-        job_result_url = f"{config.server_url}/api/jobs/{self.job_id}/results"
+        job_result_url = f"{config.api_server_url}/api/jobs/{self.job_id}/results"
 
         job_dict['links'] = [{
             'href': job_result_url,
@@ -202,20 +202,21 @@ class Job:
     return {k: job_dict[k] for k in self.DISPLAYED_ATTRIBUTES}
 
   def results(self):
-    if self.status == JobStatus.successful.value:
-      p = PROVIDERS[self.provider_prefix]
-      self.provider_url    = p['url']
+    if self.status != JobStatus.successful.value:
+      return { "error": f"No result available. Job status = {self.status}.", "message": self.message }
 
-      response = requests.get(
-          f"{self.provider_url}/jobs/{self.job_id}/results?f=json",
-          auth    = (p['user'], p['password']),
-          headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-        )
-      # TODO: manage error
-      response.raise_for_status()
+    p = PROVIDERS[self.provider_prefix]
+    self.provider_url    = p['url']
+
+    response = requests.get(
+        f"{self.provider_url}/jobs/{self.job_id}/results?f=json",
+        auth    = (p['user'], p['password']),
+        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+      )
+    if response.ok:
       return response.json()
     else:
-      return { "error": f"No result available: {response.status_code} - {response.reason}" }
+      raise CustomException(f"Could not retrieve results from model server {self.provider_url} - {response.status_code}: {response.reason}")
 
   def __str__(self):
     return f"""
