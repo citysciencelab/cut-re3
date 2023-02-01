@@ -37,8 +37,13 @@ psql -U <username> -d <db_name>
 ```
 
 ## Environment Variables
+...to be configured in the files dev_environment or prod_environment.
+
 |   Variable    | Default value | Description |
 | ------------- | ------------- | ----------- |
+|  LOGLEVEL=DEBUG | WARNING | Specify logging level: DEBUG, INFO, ERROR, WARNING | 
+|  FLASK_DEBUG | 1 |  |
+|  FLASK_ENV | development |  |
 |  API_SERVER_URL      | localhost:3000 | This is only used to return the complete URL in the result of the job details as specified in OGC. |
 |  CORS_URL_REGEX | * | Restrict CORS support to configured URL. Should be the frontend url.  |
 |  POSTGRES_DB | cut_dev | Database name |

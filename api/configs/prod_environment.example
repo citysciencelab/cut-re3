@@ -3,22 +3,22 @@
 # Schema:
 # ENVIRONMENT_KEY=Value
 #
-# Please copy `./api/configs/dev_environment.example` to `./api/configs/dev_environment`
+# Please copy `./.env.example` to `./.env`
 # and fill in the missing information!
-
-LOGLEVEL=DEBUG
-FLASK_DEBUG=1
-FLASK_ENV=development
+LOGLEVEL=WARN
+FLASK_DEBUG=0
+FLASK_ENV=production
+NUMBER_OF_WORKERS=1
 
 # origin to allow requests from: as regular expression or string.
-# Include both the schema and the port (if not 80).
+# Include both the schema and the port (if not 80), e.g. https://example.com:3000
 # Please provide the url to the frontend.
 # default: "*"
-CORS_URL_REGEX="http://localhost:3000"
+CORS_URL_REGEX=
 
-POSTGRES_DB=cut_dev
+POSTGRES_DB=cut_prod
 POSTGRES_HOST=postgis
-POSTGRES_USER=cut_dev
+POSTGRES_USER=cut_prod
 POSTGRES_PASSWORD=postgres
 POSTGRES_PORT=5432
 
@@ -27,6 +27,6 @@ GEOSERVER_ADMIN_USER=admin
 GEOSERVER_ADMIN_PASSWORD=geoserver
 GEOSERVER_BASE_URL=http://geoserver:8080/geoserver
 
-# The API_SERVER_URL is only used to return the complete URL in the result of the job details as specified in OGC.
+# The SERVER_URL is only used to return the complete URL in the result of the job details as specified in OGC.
 # Should be the base url to the api.
 API_SERVER_URL=localhost:3000
