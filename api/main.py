@@ -2,14 +2,28 @@ from flask import Flask, Blueprint, jsonify
 from flask_cors import CORS
 from werkzeug.exceptions import HTTPException
 
-import logging
 import json
 import os
 from routes.processes import processes
 from routes.jobs import jobs
 from src.errors import CustomException
+from logging.config import dictConfig
 
-logger = logging.getLogger(__name__)
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': os.environ.get("LOGLEVEL", "WARNING"),
+        'handlers': ['wsgi']
+    }
+})
 
 app = Flask(__name__)
 app.config['ENV'] = os.environ.get("FLASK_ENV", "production")

@@ -11,7 +11,7 @@ import shutil
 import json
 import logging
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "WARNING"))
 
 class Geoserver:
 
