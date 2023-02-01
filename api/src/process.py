@@ -126,16 +126,22 @@ class Process():
 
     logging.info(f" --> Executing {self.process_id} on model server {p['url']} with params {parameters} as process {self.process_id_with_prefix}")
 
+    job = self.start_process_execution(parameters)
+
     _process = dummy.Process(
-            target=self._process_execution,
-            args=([parameters])
+            target=self._wait_for_results,
+            args=([job])
         )
     _process.start()
 
-    return { "success": True }
+    result = {
+      "job_id": job.job_id,
+      "status": job.status
+    }
+    return result
 
-  def _process_execution(self, params):
-    params["mode"] = "async"
+  def start_process_execution(self, parameters):
+    params = parameters
     p = PROVIDERS[self.provider_prefix]
 
     response = requests.post(
@@ -160,7 +166,7 @@ class Process():
 
       logging.info(f' --> Job {job.job_id} for model {self.process_id_with_prefix} started running.')
 
-      self._wait_for_results(job)
+      return job
 
   def _wait_for_results(self, job):
     finished = False
