@@ -140,8 +140,8 @@ class Process():
     }
     return result
 
-  def start_process_execution(self, parameters):
-    params = parameters
+  def start_process_execution(self, params):
+    params["mode"] = "async"
     p = PROVIDERS[self.provider_prefix]
 
     response = requests.post(
