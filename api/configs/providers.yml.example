@@ -17,5 +17,5 @@ cut:
 modelplatform:
   url: "https://modelplatform.cut.hcu-hamburg.de"
   user: "cut"
-  password: "modelplatform"
+  password: "password"
   timeout:  1800
