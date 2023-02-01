@@ -14,8 +14,8 @@ cut:
   exclude:
     - "abm-test-model"
 
-rico-modelshop:
-  url: "https://ricos-modelshop.cut.hcu-hamburg.de"
+modelplatform:
+  url: "https://modelplatform.cut.hcu-hamburg.de"
   user: "cut"
   password: "password"
   timeout:  1800

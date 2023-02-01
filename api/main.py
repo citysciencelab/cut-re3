@@ -26,8 +26,7 @@ dictConfig({
 })
 
 app = Flask(__name__)
-app.config['ENV'] = os.environ.get("FLASK_ENV", "production")
-app.config['DEBUG'] = os.environ.get("FLASK_DEBUG", "production")
+app.config['DEBUG'] = os.environ.get("FLASK_DEBUG", 0)
 
 CORS(app, origins = os.environ.get("CORS_URL_REGEX", ""))
 
