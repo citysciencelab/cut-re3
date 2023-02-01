@@ -12,6 +12,9 @@ from src.errors import CustomException
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+app.config['ENV'] = os.environ.get("FLASK_ENV", "production")
+app.config['DEBUG'] = os.environ.get("FLASK_DEBUG", "production")
+
 CORS(app, origins = os.environ.get("CORS_URL_REGEX", "*"))
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -41,12 +44,4 @@ def handle_http_exception(error):
     return response
 
 if __name__ == '__main__':
-  # TODO: DO NOT RUN flask with DEBUG in production!!
-  # Use a production WSGI server instead.
   app.run(host='0.0.0.0', port=5001, debug=True)
-
-
-# gunicorn -w 4 -b :8080 main:app --timeout 3600
-# -w number of processes to run
-# should be CPU * 2
-# default: 1

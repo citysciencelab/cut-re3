@@ -12,4 +12,4 @@ RUN pip install --upgrade --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "main.py" ]
+ENTRYPOINT [ "./scripts/entrypoint.sh" ]
