@@ -44,3 +44,9 @@ if __name__ == '__main__':
   # TODO: DO NOT RUN flask with DEBUG in production!!
   # Use a production WSGI server instead.
   app.run(host='0.0.0.0', port=5001, debug=True)
+
+
+# gunicorn -w 4 -b :8080 main:app --timeout 3600
+# -w number of processes to run
+# should be CPU * 2
+# default: 1
