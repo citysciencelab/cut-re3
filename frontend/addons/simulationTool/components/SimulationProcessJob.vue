@@ -174,7 +174,7 @@ export default {
 
             const mapProjection = Radio.request("MapView", "getProjection");
             const response = await getFeaturePOST(this.layer.get("url"), {
-                featureTypes: [`CUT:store-${this.jobId}`],
+                featureTypes: [`CUT:${this.jobId}`],
                 srsName: mapProjection.getCode(),
                 filter: olFilter,
             });
