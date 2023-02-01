@@ -28,6 +28,14 @@ services:
     volumes:
       - ./frontend:/home/node/workspace
 
+  frontend_prod:
+    build:
+      dockerfile: ./frontend/Dockerfile.prod
+    working_dir: /home/node/workspace
+    user: node
+    ports:
+      - "8080:8080"
+
   geoserver:
     image: kartoza/geoserver:2.22.0
     depends_on:
