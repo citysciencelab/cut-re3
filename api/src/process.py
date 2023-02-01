@@ -251,8 +251,10 @@ class Process():
     job.progress = 100
     job.save()
 
-    if geoserver:
+    try:
       geoserver.cleanup()
+    except Exception as e:
+      pass
 
   def is_finished(self, job_details):
     finished = False
