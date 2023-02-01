@@ -88,6 +88,10 @@ Please configure the process IDs in **services-internet.json** as "simModelId". 
 
 Also configure the correct URL to the Geoserver in **services-internet.json** as "url".
 
+### Proudction Container
+
+A production ready container for the frontend is configured under `frontend_prod` in the docker-compose file. Run `docker-compose build frontend_prod` to create this container which includes a production build of the frontend portal files. The command `docker-compose up frontend_prod` will serve the portal on the defined port.
+
 ## Routes
 If not configured differently in nginx/default.conf, then:
 
