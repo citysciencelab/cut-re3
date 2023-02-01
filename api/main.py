@@ -29,7 +29,7 @@ app = Flask(__name__)
 app.config['ENV'] = os.environ.get("FLASK_ENV", "production")
 app.config['DEBUG'] = os.environ.get("FLASK_DEBUG", "production")
 
-CORS(app, origins = os.environ.get("CORS_URL_REGEX", "*"))
+CORS(app, origins = os.environ.get("CORS_URL_REGEX", ""))
 
 api = Blueprint('api', __name__, url_prefix='/api')
 api.register_blueprint(processes, url_prefix='/processes')

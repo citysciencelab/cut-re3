@@ -14,7 +14,7 @@ FLASK_ENV=development
 # Include both the schema and the port (if not 80).
 # Please provide the url to the frontend.
 # default: "*"
-CORS_URL_REGEX="http://localhost:80"
+CORS_URL_REGEX="http://localhost:3000"
 
 POSTGRES_DB=cut_dev
 POSTGRES_HOST=postgis

@@ -8,13 +8,13 @@
 LOGLEVEL=WARN
 FLASK_DEBUG=0
 FLASK_ENV=production
-NUMBER_OF_WORKERS=2
+NUMBER_OF_WORKERS=1
 
 # origin to allow requests from: as regular expression or string.
-# Include both the schema and the port (if not 80).
+# Include both the schema and the port (if not 80), e.g. https://example.com:3000
 # Please provide the url to the frontend.
 # default: "*"
-CORS_URL_REGEX="http://localhost:80"
+CORS_URL_REGEX=
 
 POSTGRES_DB=cut_prod
 POSTGRES_HOST=postgis
