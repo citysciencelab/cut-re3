@@ -54,6 +54,7 @@ class Geoserver:
 
   def save_results(self, job_id: str, data: dict):
     self.job_id = job_id
+    store_name = f"store-{job_id}"
 
     try:
       self.path_to_results = os.path.join('tmp', 'data', job_id)
@@ -70,17 +71,17 @@ class Geoserver:
       self.geojson_to_postgis(
         path =       self.path_to_results,
         filename =   self.RESULTS_FILENAME,
-        table_name = job_id
+        table_name = store_name
       )
 
       success = self.create_store(
-        store_name = job_id,
-        table_name = job_id
+        store_name = store_name,
+        table_name = store_name
       )
 
       success = self.publish_layer(
-        store_name = job_id,
-        layer_name = job_id
+        store_name = store_name,
+        layer_name = store_name
       )
 
     except Exception as e:

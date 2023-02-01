@@ -41,9 +41,8 @@ psql -U <username> -d <db_name>
 
 |   Variable    | Default value | Description |
 | ------------- | ------------- | ----------- |
-|  LOGLEVEL=DEBUG | WARNING | Specify logging level: DEBUG, INFO, ERROR, WARNING | 
-|  FLASK_DEBUG | 1 |  |
-|  FLASK_ENV | development |  |
+|  LOGLEVEL=DEBUG | WARNING | Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL or NOTSET | 
+|  FLASK_DEBUG | 0 |  |
 |  API_SERVER_URL      | localhost:3000 | This is only used to return the complete URL in the result of the job details as specified in OGC. |
 |  CORS_URL_REGEX | * | Restrict CORS support to configured URL. Should be the frontend url.  |
 |  POSTGRES_DB | cut_dev | Database name |

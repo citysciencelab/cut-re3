@@ -1,6 +1,5 @@
 <script>
 import SimulationPagination from "./SimulationPagination.vue";
-import SimulationProcessJobRow from "./SimulationProcessJobRow.vue";
 
 export default {
     name: "SimulationProcessJobsTable",
