@@ -22,8 +22,17 @@ class Job:
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
-  def __init__(self, job_id=None, process_id_with_prefix=None, parameters={}):
+  def __init__(self, job_id=None, remote_job_id=None, process_id_with_prefix=None, parameters={}):
     self.job_id = job_id
+    self.remote_job_id = remote_job_id
+
+    if remote_job_id and not job_id:
+      self.job_id = f"job-{remote_job_id}"
+
+    if job_id and not remote_job_id:
+      match = re.search('job-(.*)$', job_id)
+      self.remote_job_id = match.group(1)
+
     self.process_id        = None
     self.provider_prefix   = None
     self.provider_url      = None
@@ -66,6 +75,7 @@ class Job:
 
   def _init_from_dict(self, data):
     self.job_id           = data['job_id']
+    self.remote_job_id    = data['remote_job_id']
     self.process_id       = data['process_id']
     self.provider_prefix  = data['provider_prefix']
     self.provider_url     = data['provider_url']
@@ -92,9 +102,9 @@ class Job:
 
     query = """
       INSERT INTO jobs
-      (job_id, process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
+      (job_id, remote_job_id, process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
       VALUES
-      (%(job_id)s, %(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+      (%(job_id)s, %(remote_job_id)s, %(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
     """
     with DBHandler() as db:
       db.run_query(query, query_params=self._to_dict())
@@ -105,6 +115,7 @@ class Job:
     return {
       "process_id": self.process_id,
       "job_id":     self.job_id,
+      "remote_job_id": self.remote_job_id,
       "provider_prefix": self.provider_prefix,
       "provider_url": self.provider_url,
       "status":     self.status,
@@ -209,7 +220,7 @@ class Job:
     self.provider_url    = p['url']
 
     response = requests.get(
-        f"{self.provider_url}/jobs/{self.job_id}/results?f=json",
+        f"{self.provider_url}/jobs/{self.remote_job_id}/results?f=json",
         auth    = (p['user'], p['password']),
         headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
       )

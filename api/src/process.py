@@ -156,10 +156,10 @@ class Process():
       # Retrieve the job id from the simulation model server from the location header:
       match = re.search('http.*/jobs/(.*)$', response.headers["location"])
       if match:
-        job_id = match.group(1)
+        remote_job_id = match.group(1)
 
       # Create a new job with the same job_id as the one from the simulation model server:
-      job = Job(job_id=job_id, process_id_with_prefix=self.process_id_with_prefix, parameters=params)
+      job = Job(remote_job_id=remote_job_id, process_id_with_prefix=self.process_id_with_prefix, parameters=params)
       job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
       job.status = JobStatus.running.value
       job.save()
@@ -177,7 +177,7 @@ class Process():
     try:
       while not finished:
         response = requests.get(
-            f"{p['url']}/jobs/{job.job_id}",
+            f"{p['url']}/jobs/{job.remote_job_id}",
             auth    = (p['user'], p['password']),
             headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
           )
@@ -194,7 +194,7 @@ class Process():
         if time.time() - start > timeout:
           raise TimeoutError(f"Job did not finish within {timeout/60} minutes. Giving up.")
 
-      logging.info(f" --> Remote execution job {job.job_id}: success = {finished}. Took approx. {int((time.time() - start)/60)} minutes.")
+      logging.info(f" --> Remote execution job {job.remote_job_id}: success = {finished}. Took approx. {int((time.time() - start)/60)} minutes.")
 
     except Exception as e:
       logging.error(f" --> Could not retrieve results for job {self.process_id_with_prefix} (={self.process_id})/{job.job_id} from simulation model server: {e}")
@@ -214,12 +214,12 @@ class Process():
         job.progress = 100
         job.message = f'Remote execution was not successful! {job_details["message"]}'
         job.save()
-        raise CustomException(f"Remote job {job} could not be successfully executed! {job.message}")
+        raise CustomException(f"Remote job {job.remote_job_id}: {job.message}")
 
       geoserver = Geoserver()
 
       response = requests.get(
-          f"{p['url']}/jobs/{job.job_id}/results?f=json",
+          f"{p['url']}/jobs/{job.remote_job_id}/results?f=json",
           auth    = (p['user'], p['password']),
           headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
         )
