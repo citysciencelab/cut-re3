@@ -5,13 +5,13 @@ RUN apt update && apt install -y build-essential libcairo2-dev libpango1.0-dev \
   libjpeg-dev libgif-dev librsvg2-dev
 
 WORKDIR /home/node/workspace
+USER node
 
-COPY ./frontend .
-COPY ./frontend/devtools/tasks/getMastercodeVersionFolderName-overwrite.js ./devtools/tasks/getMastercodeVersionFolderName.js
+COPY ./ .
+COPY ./devtools/tasks/getMastercodeVersionFolderName-overwrite.js ./devtools/tasks/getMastercodeVersionFolderName.js
 
-RUN npm install -g husky
 RUN npm install
+RUN npm install http-server
 RUN npm run buildPortal
 
-RUN npm install --global http-server
-CMD [ "http-server", "./dist" ]
+CMD [ "npx", "http-server", "./dist" ]

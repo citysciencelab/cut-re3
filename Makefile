@@ -1,10 +1,15 @@
-start:
-	docker-compose up nginx frontend geoserver api
+start: stop
+	docker-compose -f docker-compose.yaml up -d nginx
+	docker-compose -f docker-compose.yaml up frontend geoserver api
+
+start_prod: stop
+	docker-compose -f docker-compose.prod.yaml up -d nginx
+	docker-compose -f docker-compose.prod.yaml up frontend geoserver api
+
+restart: stop start
 
 stop:
 	docker-compose down
-
-restart: stop start
 
 install:
 	docker-compose build frontend
