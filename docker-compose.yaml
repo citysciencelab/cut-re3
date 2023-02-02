@@ -9,17 +9,19 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 
   api:
-    build: api/.
+    build: ./api
+    command: "bash ./scripts/entrypoint.sh"
     env_file:
       - ./api/configs/dev_environment
     volumes:
-      - ./api:/usr/src/app
+      - ./api:/home/python/workspace
+      - ./api/data:/home/python/.local
     depends_on:
       - geoserver
       - nginx
 
   frontend:
-    build: frontend/.
+    build: ./frontend
     depends_on:
       - nginx
     working_dir: /home/node/workspace
@@ -33,7 +35,7 @@ services:
     depends_on:
       - postgis
     volumes:
-      - ./api/data/geoserver:/opt/geoserver/data_dir
+      - ./geoserver/data/geoserver:/opt/geoserver/data_dir
     env_file:
       - ./geoserver/configs/geoserver
 

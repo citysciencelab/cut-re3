@@ -15,3 +15,4 @@ install:
 	docker-compose build frontend
 	docker-compose build api
 	docker-compose run --rm frontend npm install
+	docker-compose run --rm api pip install --user --upgrade --no-cache-dir -r requirements.txt
