@@ -13,6 +13,7 @@ services:
     command: "bash ./scripts/entrypoint.sh"
     env_file:
       - ./api/configs/prod_environment
+      - ./geoserver/configs/postgis
     volumes:
       - ./api:/home/python/workspace
       - ./api/data:/home/python/.local

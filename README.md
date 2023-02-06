@@ -52,9 +52,9 @@ Currently the geoserver stores its data into the folder api/data/geoserver. This
 Remark: The geoserver needs a lot of resources. If you have issues with it you can try to give docker more resources.
 
 ## PostGis configuration
-PostGis is configured with the Geoserver in geoserver/configs/postgis (see above).
+PostGis is configured in geoserver/configs/postgis. The api also loads these env variables by loading geoserver/configs/postgis in the docker-compose files.
 
-The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml
+The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml (development) and docker-compose.prod.yaml (production).
 
 ## nginx configuration
 The nginx configuration can be found at nginx/default.conf. It configures the paths to the respective endpoints.
