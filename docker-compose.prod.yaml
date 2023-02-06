@@ -10,10 +10,12 @@ services:
 
   api:
     build: ./api
+    command: "bash ./scripts/entrypoint.sh"
     env_file:
       - ./api/configs/prod_environment
     volumes:
-      - ./api:/usr/src/app
+      - ./api:/home/python/workspace
+      - ./api/data:/home/python/.local
     depends_on:
       - geoserver
       - nginx
