@@ -22,7 +22,7 @@ class Job:
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
-  def __init__(self, job_id=None, remote_job_id=None, process_id_with_prefix=None, parameters={}):
+  def __init__(self, job_id=None, remote_job_id=None, process_id_with_prefix=None, parameters={}, allow_create=True):
     self.job_id = job_id
     self.remote_job_id = remote_job_id
 
@@ -58,6 +58,9 @@ class Job:
       self.provider_url    = PROVIDERS[self.provider_prefix]['url']
 
     if not self._init_from_db(job_id):
+      if not allow_create:
+        raise CustomException(f"Job could not be found!")
+
       self._create()
 
   def _init_from_db(self, job_id):
@@ -214,7 +217,7 @@ class Job:
 
   def results(self):
     if self.status != JobStatus.successful.value:
-      return { "error": f"No result available. Job status = {self.status}.", "message": self.message }
+      return { "error": f"No results available. Job status = {self.status}.", "message": self.message }
 
     p = PROVIDERS[self.provider_prefix]
     self.provider_url    = p['url']

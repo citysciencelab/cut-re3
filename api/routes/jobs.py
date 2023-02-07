@@ -13,10 +13,10 @@ def index(page):
 
 @jobs.route('/<path:job_id>', methods = ['GET'])
 def show(job_id=None):
-  job = Job(job_id)
+  job = Job(job_id, allow_create=False)
   return Response(json.dumps(job.display()), mimetype='application/json')
 
 @jobs.route('/<path:job_id>/results', methods = ['GET'])
 def results(job_id=None):
-  job = Job(job_id)
+  job = Job(job_id, allow_create=False)
   return Response(json.dumps(job.results()), mimetype='application/json')
