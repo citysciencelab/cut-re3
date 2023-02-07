@@ -11,6 +11,11 @@ restart: stop start
 stop:
 	docker-compose down
 
+clean: stop
+	docker-compose run --rm frontend rm -rf node_modules
+	docker-compose run --rm helper rm -rf /workspace/api
+	docker-compose run --rm helper rm -rf /workspace/geoserver
+
 install:
 	docker-compose build frontend
 	docker-compose build api

@@ -47,3 +47,10 @@ services:
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
       - ./geoserver/configs/postgis
+
+  helper:
+    image: debian:11-slim
+    volumes:
+      - ./api/data:/workspace/api/local
+      - ./api/__pycache__:/workspace/api/pycache
+      - ./geoserver/data/geoserver:/workspace/geoserver
