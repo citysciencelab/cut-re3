@@ -22,7 +22,39 @@ class Job:
 
   SORTABLE_COLUMNS = ['created', 'finished', 'updated', 'started', 'process_id', 'status', 'message']
 
-  def __init__(self, job_id=None, remote_job_id=None, process_id_with_prefix=None, parameters={}, allow_create=True):
+  def __init__(self, job_id=None):
+    self.job_id            = job_id
+    self.status            = None
+    self.message           = ""
+    self.progress          = 0
+    self.created           = None
+    self.started           = None
+    self.finished          = None
+    self.updated           = None
+    self.results_metadata  = {}
+
+    if job_id and not self._init_from_db(job_id):
+        raise CustomException(f"Job could not be found!")
+
+  def create(self, job_id=None, remote_job_id=None, process_id_with_prefix=None, parameters={}):
+    self._set_attributes(job_id=job_id, remote_job_id=remote_job_id, process_id_with_prefix=process_id_with_prefix, parameters=parameters)
+
+    self.status    = JobStatus.accepted.value
+    self.created   = datetime.utcnow()
+    self.updated   = datetime.utcnow()
+
+    query = """
+      INSERT INTO jobs
+      (job_id, remote_job_id, process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
+      VALUES
+      (%(job_id)s, %(remote_job_id)s, %(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
+    """
+    with DBHandler() as db:
+      db.run_query(query, query_params=self._to_dict())
+
+    logging.info(f" --> Job {self.job_id} for {self.process_id} created.")
+
+  def _set_attributes(self, job_id=None, remote_job_id=None, process_id_with_prefix=None, parameters={}):
     self.job_id = job_id
     self.remote_job_id = remote_job_id
 
@@ -33,20 +65,8 @@ class Job:
       match = re.search('job-(.*)$', job_id)
       self.remote_job_id = match.group(1)
 
-    self.process_id        = None
-    self.provider_prefix   = None
-    self.provider_url      = None
     self.process_id_with_prefix = process_id_with_prefix
-    self.parameters        = parameters
-    self.status            = None
-    self.message           = None
-    self.progress          = None
-    self.parameters        = parameters
-    self.created           = None
-    self.started           = None
-    self.finished          = None
-    self.updated           = None
-    self.results_metadata  = {}
+    self.parameters             = parameters
 
     if process_id_with_prefix:
       match = re.search(r'(.*):(.*)', self.process_id_with_prefix)
@@ -54,14 +74,11 @@ class Job:
         raise InvalidUsage(f"Process ID {self.process_id_with_prefix} is not known! Please check endpoint api/processes for a list of available processes.")
 
       self.provider_prefix = match.group(1)
-      self.process_id = match.group(2)
+      self.process_id      = match.group(2)
       self.provider_url    = PROVIDERS[self.provider_prefix]['url']
 
-    if not self._init_from_db(job_id):
-      if not allow_create:
-        raise CustomException(f"Job could not be found!")
-
-      self._create()
+    if not self.job_id:
+      self.job_id  = str(uuid.uuid4())
 
   def _init_from_db(self, job_id):
     query = """
@@ -92,27 +109,6 @@ class Job:
     self.progress         = data['progress']
     self.parameters       = data['parameters']
     self.results_metadata = data['results_metadata']
-
-  def _create(self):
-    self.job_id    = self.job_id if self.job_id else str(uuid.uuid4())
-    self.status    = JobStatus.accepted.value
-    self.progress  = 0
-    self.message   = ""
-    self.created   = datetime.utcnow()
-    self.started   = None
-    self.updated   = datetime.utcnow()
-    self.finished  = None
-
-    query = """
-      INSERT INTO jobs
-      (job_id, remote_job_id, process_id, provider_prefix, provider_url, status, progress, parameters, message, created, started, finished, updated)
-      VALUES
-      (%(job_id)s, %(remote_job_id)s, %(process_id)s, %(provider_prefix)s, %(provider_url)s, %(status)s, %(progress)s, %(parameters)s, %(message)s, %(created)s, %(started)s, %(finished)s, %(updated)s)
-    """
-    with DBHandler() as db:
-      db.run_query(query, query_params=self._to_dict())
-
-    logging.info(f" --> Job {self.job_id} for {self.process_id} created.")
 
   def _to_dict(self):
     return {
