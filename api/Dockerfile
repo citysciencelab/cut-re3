@@ -3,7 +3,6 @@ FROM python:3
 RUN apt update && apt upgrade -y
 RUN apt install -qq -y --no-install-recommends \
   libpq-dev gdal-bin libgdal-dev
-RUN pip install --upgrade pip
 RUN apt clean
 
 RUN useradd -ms /bin/bash python
