@@ -17,4 +17,4 @@ RUN npm install http-server
 
 RUN npm run buildPortal
 
-CMD [ "npx", "http-server", "./dist" ]
+CMD [ "npx", "http-server", "-a", "0.0.0.0", "-p", "9001", "./dist" ]

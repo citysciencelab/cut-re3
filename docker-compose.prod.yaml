@@ -27,8 +27,7 @@ services:
       dockerfile: Dockerfile.prod
     working_dir: /home/node/workspace
     user: node
-    ports:
-      - "9001:8080"
+    command: npx http-server -a 0.0.0.0 -p 9001 ./dist
 
   geoserver:
     image: kartoza/geoserver:2.22.0
