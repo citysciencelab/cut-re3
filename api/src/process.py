@@ -158,7 +158,6 @@ class Process():
       if match:
         remote_job_id = match.group(1)
 
-      # Create a new job with the same job_id as the one from the simulation model server:
       job = Job()
       job.create(remote_job_id=remote_job_id, process_id_with_prefix=self.process_id_with_prefix, parameters=params)
       job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
