@@ -144,29 +144,34 @@ class Process():
     params["mode"] = "async"
     p = PROVIDERS[self.provider_prefix]
 
-    response = requests.post(
-        f"{p['url']}/processes/{self.process_id}/execution",
-        json    = params,
-        auth    = (p['user'], p['password']),
-        headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
-      )
-    response.raise_for_status()
+    try:
+      response = requests.post(
+          f"{p['url']}/processes/{self.process_id}/execution",
+          json    = params,
+          auth    = (p['user'], p['password']),
+          headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+        )
 
-    if response.ok and response.headers:
-      # Retrieve the job id from the simulation model server from the location header:
-      match = re.search('http.*/jobs/(.*)$', response.headers["location"])
-      if match:
-        remote_job_id = match.group(1)
+      response.raise_for_status()
 
-      job = Job()
-      job.create(remote_job_id=remote_job_id, process_id_with_prefix=self.process_id_with_prefix, parameters=params)
-      job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-      job.status = JobStatus.running.value
-      job.save()
+      if response.ok and response.headers:
+        # Retrieve the job id from the simulation model server from the location header:
+        match = re.search('http.*/jobs/(.*)$', response.headers["location"])
+        if match:
+          remote_job_id = match.group(1)
 
-      logging.info(f' --> Job {job.job_id} for model {self.process_id_with_prefix} started running.')
+        job = Job()
+        job.create(remote_job_id=remote_job_id, process_id_with_prefix=self.process_id_with_prefix, parameters=params)
+        job.started = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        job.status = JobStatus.running.value
+        job.save()
 
-      return job
+        logging.info(f' --> Job {job.job_id} for model {self.process_id_with_prefix} started running.')
+
+        return job
+
+    except Exception as e:
+       raise CustomException(f"Job could not be started remotely: {e}")
 
   def _wait_for_results(self, job):
     finished = False

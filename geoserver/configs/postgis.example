@@ -11,7 +11,7 @@ POSTGRES_USER=
 POSTGRES_PASSWORD=
 PGDATA=
 
-# for development
+# for development i.e.
 # POSTGRES_DB=cut_dev
 # POSTGRES_USER=postgres
 # POSTGRES_PASSWORD=postgres

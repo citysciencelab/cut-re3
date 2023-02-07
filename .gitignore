@@ -6,7 +6,7 @@
 api/__pycache__/*
 api/*/__pycache__/*
 api/*/*/__pycache__/*
-api/data/geoserver/*
+api/data/*
 api/configs/providers.yml
 api/configs/dev_environment
 api/configs/prod_environment

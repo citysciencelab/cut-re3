@@ -12,7 +12,7 @@ services:
     build: ./api
     command: "bash ./scripts/entrypoint.sh"
     env_file:
-      - ./api/configs/dev_environment
+      - ./api/configs/prod_environment
       - ./geoserver/configs/postgis
     volumes:
       - ./api:/home/python/workspace
@@ -22,14 +22,12 @@ services:
       - nginx
 
   frontend:
-    build: ./frontend
-    depends_on:
-      - nginx
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
     working_dir: /home/node/workspace
     user: node
-    command: "npm start"
-    volumes:
-      - ./frontend:/home/node/workspace
+    command: npx http-server -a 0.0.0.0 -p 9001 ./dist
 
   geoserver:
     image: kartoza/geoserver:2.22.0
@@ -47,10 +45,3 @@ services:
       - ./geoserver/data/pg_data:/var/lib/postgresql/data
     env_file:
       - ./geoserver/configs/postgis
-
-  helper:
-    image: debian:11-slim
-    volumes:
-      - ./api/data:/workspace/api/local
-      - ./api/__pycache__:/workspace/api/pycache
-      - ./geoserver/data/geoserver:/workspace/geoserver

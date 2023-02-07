@@ -16,5 +16,3 @@ CREATE TABLE IF NOT EXISTS jobs (
   parameters       json,
   results_metadata json
 );
-
-GRANT ALL PRIVILEGES ON TABLE jobs TO cut_dev;
