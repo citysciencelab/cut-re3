@@ -102,6 +102,6 @@ The **Geoserver** is available under localhost:3000/geoserver. Choose "Layer pre
 The **backend api** is available under localhost:3000/api.
 
 ## Reset data in development
-If you are in development and want to reset all PostGis and Geoserver data, you can safely delete the geoserver/data and api/data folders completely.
+If you are in development and want to reset all PostGis and Geoserver data, you can safely delete the geoserver/data folder completely.
 
 

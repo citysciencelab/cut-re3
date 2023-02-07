@@ -16,9 +16,3 @@ install:
 	docker-compose build api
 	docker-compose run --rm frontend npm install
 	docker-compose run --rm api pip install --user --upgrade --no-cache-dir -r requirements.txt
-
-install_prod:
-	docker-compose -f docker-compose.prod.yaml build frontend
-	docker-compose -f docker-compose.prod.yaml build api
-	docker-compose -f docker-compose.prod.yaml run --rm frontend npm install
-	docker-compose -f docker-compose.prod.yaml run --rm api pip install --user --upgrade --no-cache-dir -r requirements.txt

@@ -30,8 +30,6 @@ services:
     command: "npm start"
     volumes:
       - ./frontend:/home/node/workspace
-    ports:
-      - "9001:8080"
 
   geoserver:
     image: kartoza/geoserver:2.22.0
