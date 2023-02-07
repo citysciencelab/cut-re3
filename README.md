@@ -19,7 +19,7 @@ In the frontend a user may start a simulation with custom parameters (as specifi
 ## Prerequisites
 - Docker
 
-## Setup
+## Setup Development
 The components are configured in a docker-compose setup with nginx as a proxy.
 
 After you added the below configurations you can install and start the application with
@@ -100,6 +100,14 @@ The **frontend** is available under localhost:3000. Click on the link "portal" -
 The **Geoserver** is available under localhost:3000/geoserver. Choose "Layer previews" in the menu to see the list of uploaded layers. If you click on OpenLayers then the data will be displayed in a new tab.
 
 The **backend api** is available under localhost:3000/api.
+
+## Deployment
+For deployment run
+```
+make install_prod
+make start_prod
+```
+It will use the provided docker-compose.prod.yaml file together with the nginx default.conf settings.
 
 ## Reset data in development
 If you are in development and want to reset all PostGis and Geoserver data, you can safely delete the geoserver/data folder completely.
