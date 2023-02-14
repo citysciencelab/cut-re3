@@ -47,14 +47,12 @@ Currently all results are stored to the Geoserver in a single workspace (e.g. "C
 
 The workspace name is configured by the backend api but also has to be configured by the frontend.
 
-Currently the geoserver stores its data into the folder api/data/geoserver. This is configured in the docker-compose.yaml file.
-
-Remark: The geoserver needs a lot of resources. If you have issues with it you can try to give docker more resources.
+The geoserver stores its data into the folder geoserver/data/geoserver. This is configured in the docker-compose.yaml file.
 
 ## PostGis configuration
 PostGis is configured in geoserver/configs/postgis. The api also loads these env variables by loading geoserver/configs/postgis in the docker-compose files.
 
-The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml (development) and docker-compose.prod.yaml (production).
+The data is stored in geoserver/data/pg_data as configured in docker-compose.yaml (development) and docker-compose.prod.yaml (production). If you want to run development and production on the same server, the data should be written to separate paths.
 
 ## nginx configuration
 The nginx configuration can be found at nginx/default.conf. It configures the paths to the respective endpoints.
@@ -70,9 +68,9 @@ The **dev_environment** file is loaded by docker-compose. In a production enviro
 
 The **providers** file sets up the remote simulation model servers. The implemented backend loads **all** models (= processes) from the configured simulation model servers except the ones explicitely excluded.
 
-The simulation model servers have to provide endpoints that comply with the OGC processes standard in order to be loaded from this api (see https://ogcapi.ogc.org/processes/). Otherwise they will be silently ignored. An error will be logged.
+The simulation model servers have to provide endpoints that comply with the OGC processes api standard in order to be loaded from this api (see https://ogcapi.ogc.org/processes/). Otherwise they will be silently ignored. An error will be logged.
 
-In case the **providers** file needs to be modified, the server has to be restarted.
+In case the **providers** file needs to be modified, the server has to be restarted (make restart).
 
 ## Frontend configuration
 - frontend/portal/simulation/config.js
@@ -102,7 +100,7 @@ The **Geoserver** is available under localhost:3000/geoserver. Choose "Layer pre
 The **backend api** is available under localhost:3000/api.
 
 ## Deployment
-For deployment run
+After configurations are done for production, for deployment you can run
 ```
 make install_prod
 make start_prod
