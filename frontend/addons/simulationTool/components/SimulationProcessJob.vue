@@ -1,8 +1,7 @@
 <script>
 import Chart from "chart.js";
-import { WFS } from "ol/format";
+import { GeoJSON, WFS } from "ol/format";
 import { and, equalTo } from "ol/format/filter";
-import { getFeaturePOST } from "../../../src/api/wfs/getFeature";
 
 export default {
     name: "SimulationProcessJob",
@@ -156,9 +155,11 @@ export default {
         },
 
         /**
-         * Update the layer features, filtered on the server via WFS filter
+         * Returns the XML representation of the given map filters as an XML string
+         * to include into a WFS request.
+         *
          */
-        async updateLayerServer() {
+        getFilterString() {
             const filters = this.mapFilters.filter((mf) => mf.active);
 
             let olFilter = undefined;
@@ -172,19 +173,58 @@ export default {
                           );
             }
 
-            const mapProjection = Radio.request("MapView", "getProjection");
-            const response = await getFeaturePOST(this.layer.get("url"), {
-                featureTypes: [`CUT:${this.jobId}`],
-                srsName: mapProjection.getCode(),
+            // we need this to get the XML representation of the filter
+            const requestBody = new WFS().writeGetFeature({
+                featureTypes: ["empty"],
                 filter: olFilter,
             });
+            const queryNode = requestBody.firstChild;
 
-            const dataProjetion = new WFS().readProjection(response);
-            const features = new WFS().readFeatures(
-                response,
-                mapProjection,
-                dataProjetion
-            );
+            if (queryNode.firstChild) {
+                return queryNode.innerHTML;
+            }
+
+            return null;
+        },
+
+        /**
+         * Construct the WFS url to fetch a GeoJson - we have to do it manually because
+         * the masterportal's "getFeaturePOST" function does not support a custom output format
+         *
+         * @param {string} filter An XML filter string
+         */
+        getWFSUrl(filter) {
+            const mapProjection = Radio.request("MapView", "getProjection");
+            const url = new URL(this.layer.get("url"));
+
+            url.searchParams.append("service", "WFS");
+            url.searchParams.append("version", this.layer.get("version"));
+            url.searchParams.append("request", "GetFeature");
+            url.searchParams.append("typeName", `CUT:${this.jobId}`);
+            url.searchParams.append("outputFormat", "application/json");
+            url.searchParams.append("srsName", mapProjection.getCode());
+
+            if (filter) {
+                url.searchParams.append("filter", filter);
+            }
+
+            return url.toString();
+        },
+
+        /**
+         * Update the layer features, filtered on the server via WFS filter
+         */
+        async updateLayerServer() {
+            const filter = this.getFilterString();
+
+            // at least one filter is required - do not try to fetch all features
+            if (!filter) {
+                return;
+            }
+
+            const url = this.getWFSUrl(filter);
+            const geojson = await fetch(url).then((res) => res.json());
+            const features = new GeoJSON().readFeatures(geojson);
 
             this.updateSource(features);
             this.renderChart();
@@ -195,20 +235,9 @@ export default {
          */
         async updateLayerClient() {
             if (!this.features) {
-                const mapProjection = Radio.request("MapView", "getProjection");
-                const response = await getFeaturePOST(this.layer.get("url"), {
-                    featureTypes: [`CUT:${this.jobId}`],
-                    format: "application/json",
-                    srsName: mapProjection.getCode(),
-                });
-                const dataProjetion = new WFS().readProjection(response);
-
-                // generate ol features and reproject data
-                this.features = new WFS().readFeatures(
-                    response,
-                    mapProjection,
-                    dataProjetion
-                );
+                const url = this.getWFSUrl();
+                const geojson = await fetch(url).then((res) => res.json());
+                this.features = new GeoJSON().readFeatures(geojson);
             }
 
             // filter features by mapFilters
@@ -296,7 +325,7 @@ export default {
         },
 
         /**
-         * Hlper function to update a filter value
+         * Helper function to update a filter value
          * @param {String} key The filter key
          * @param {String | Number} value The filter's new value
          * @param {Boolean} active If the filter is active
