@@ -43,7 +43,7 @@ The Geoserver uses two configuration files:
 
 Please copy and adapt the example files from geoserver/configs/geoserver.example and postgis.example. The example files include example values for a development setup.
 
-Currently all results are stored to the Geoserver in a single workspace (e.g. "CUT"). The stores and layers are named by their job ids.
+Currently all results are stored to the Geoserver in a single workspace (e.g. "CUT"). The stores and layers are named by their job ids with the prefix "job-".
 
 The workspace name is configured by the backend api but also has to be configured by the frontend.
 
