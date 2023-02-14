@@ -2,7 +2,6 @@
 import Chart from "chart.js";
 import { GeoJSON, WFS } from "ol/format";
 import { and, equalTo } from "ol/format/filter";
-import { getFeaturePOST } from "../../../src/api/wfs/getFeature";
 
 export default {
     name: "SimulationProcessJob",
