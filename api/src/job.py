@@ -154,11 +154,16 @@ class Job:
 
     values = []
     for column in maximal_values_dict:
+
+      type = str(types[column])
+      if type == 'float64' and results_df[column].apply(float.is_integer).all():
+        type = 'int'
+
       values.append(
         {
           column:
           {
-            "type": str(types[column]),
+            "type": type,
             "min":  minimal_values_dict[column],
             "max":  maximal_values_dict[column]
           }

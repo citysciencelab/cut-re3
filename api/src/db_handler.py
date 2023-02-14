@@ -38,8 +38,8 @@ class DBHandler():
       query_params['limit'] = limit
       query_params['offset'] = offset
 
-    logging.debug(f" --> SQL query = {query}")
-    logging.debug(f" --> query_params = {query_params}")
+    #logging.debug(f" --> SQL query = {query}")
+    #logging.debug(f" --> query_params = {query_params}")
 
     with self.connection:
       with self.connection.cursor(cursor_factory = RealDictCursor) as cursor:
