@@ -1,4 +1,8 @@
 # CUT Prototype Urban Model Platform and Masterportal Simulation Controller
+
+![Architektur](https://user-images.githubusercontent.com/61881523/232417254-a620fd2c-bd1c-416a-ae64-b0f564fd64cc.jpg)
+
+
 The repository for the Masterportal addons and the OGC API Processes Backend
 that are developed for the third real world experiment in the CUT project.
 In the future, this will also be the place where the participatory model will
