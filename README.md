@@ -1,4 +1,4 @@
-⚠️ This repository contains the original developments of the thrid real-world experiment in the Connected Urban Twins Project. Both parts, the [Urban Model Platform](https://github.com/citysciencelab/urban-model-platform) and the ]Masterportal Simulation Controller](https://github.com/citysciencelab/cut-masterportal-simulation-controller) are continued in seperate repositories. 
+⚠️ This repository contains the original developments of the thrid real-world experiment in the Connected Urban Twins Project. Both parts, the [Urban Model Platform](https://github.com/citysciencelab/urban-model-platform) and the [Masterportal Simulation Controller](https://github.com/citysciencelab/cut-masterportal-simulation-controller) are continued in seperate repositories. 
 
 # CUT Prototype Urban Model Platform and Masterportal Simulation Controller
 
